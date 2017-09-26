@@ -3,6 +3,10 @@ import os
 
 from plot import plot_accuracies
 
+import random
+
+import numpy
+
 RUNNING_ON_SERVER = False
 DEBUGGING = True
 
@@ -81,7 +85,7 @@ def test_environment():
 
 def run_command(str_cmd):
     if DEBUGGING:
-        print "******** RUNNING COMMAND: {} ********".format(str_cmd)
+        print "**** RUNNING COMMAND:\n{} ****".format(str_cmd)
     (status, str_output) = commands.getstatusoutput(str_cmd)
     if status != 0:
         print "error in running bash command: {}".format(status)
@@ -127,14 +131,66 @@ def run_all_train_test_return_accuracies(classifier):
         print "accuracies for classifier {}:\n{}".format(classifier, accuracies)
     return accuracies
 
-set_environment()
 
+def solution_to_part_1():
+    accuracies_j48 = run_all_train_test_return_accuracies(CLASSIFIER_J48)
+    accuracies_ibk = run_all_train_test_return_accuracies(CLASSIFIER_IBk)
+
+    plot_accuracies('Number of Features', 'Test Accuracy', 'Sensitivity to Irrelevant Features',
+                    LABEL_J48_ACCURACY, set_feature_sizes, accuracies_j48,
+                    LABEL_IBK_ACCURACY, set_feature_sizes, accuracies_ibk)
+
+
+def shuffle_example(file_directory, file_name, train_set_size):
+    lines = open('{}{}'.format(file_directory, file_name)).readlines()
+    header = lines[0:20]
+    lines = lines[20:]
+    random.shuffle(lines)
+    (file_name, file_extension) = remove_file_extension(file_name)
+
+    open('{}{}.{}'.format(file_directory, file_name, file_extension), 'w').writelines(header)
+    open('{}{}.{}'.format(file_name, file_name, file_extension), 'w').writelines(lines)
+
+
+def create_train_set_file():
+    pass
+
+
+#  credit: https://stackoverflow.com/questions/15389768/standard-deviation-of-a-list
+def calculate_std_mean(experiments):
+    arr = numpy.array([A_rank, B_rank, C_rank])
+
+    numpy.mean(arr, axis=0)
+
+    array([0.7, 2.2, 1.8, 2.13333333, 3.36666667,
+           5.1])
+
+    numpy.std(arr, axis=0)
+
+    array([0.45460606, 1.29614814, 1.37355985, 1.50628314, 1.15566239,
+           1.2083046])
+
+
+def solution_to_part_2():
+
+
+
+    for i in range(1, 11):  # 1, 2, 3, ..., 10
+        shuffle_example()
+
+        for j in range(50, 550, 50):  # 50, 100, ..., 500
+            create_train_set_file()
+
+            run_train_test_return_accuracy(CLASSIFIER_J48, all_train_sets[i], all_test_sets[i])
+
+
+    (std, mean) = calculate_std_mean(experiments)
+
+
+
+
+set_environment()
 test_environment()
 
-accuracies_j48 = run_all_train_test_return_accuracies(CLASSIFIER_J48)
-accuracies_ibk = run_all_train_test_return_accuracies(CLASSIFIER_IBk)
 
-plot_accuracies('Number of Features', 'Test Accuracy', 'Sensitivity to Irrelevant Features',
-                LABEL_J48_ACCURACY, set_feature_sizes, accuracies_j48,
-                LABEL_IBK_ACCURACY, set_feature_sizes, accuracies_ibk)
-
+solution_to_part_2()
