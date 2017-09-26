@@ -141,15 +141,48 @@ def solution_to_part_1():
                     LABEL_IBK_ACCURACY, set_feature_sizes, accuracies_ibk)
 
 
-def shuffle_example(file_directory, file_name, train_set_size):
+def remove_file_extension(file_name):
+
+    tokens = file_name.split(".")
+    file_name = ""
+    extension = ""
+
+    for i, val in enumerate(tokens):
+        if i == len(tokens)-1:
+            extension = val
+        else:
+            file_name= file_name + val
+
+    if DEBUGGING:
+        print  "{}{}".format(file_name, extension)
+
+    return file_name, extension
+
+
+def shuffle_example(file_directory, file_name):
     lines = open('{}{}'.format(file_directory, file_name)).readlines()
-    header = lines[0:20]
+    header = lines[0:19]
     lines = lines[20:]
+
+    print "HEADER"
+    for line in header:
+        print line
+
+    print "LINES:"
+    for line in lines:
+        print line
+
+
     random.shuffle(lines)
+
+    print "SHUFFLED LINES:"
+    for line in lines:
+        print line
+
     (file_name, file_extension) = remove_file_extension(file_name)
 
-    open('{}{}.{}'.format(file_directory, file_name, file_extension), 'w').writelines(header)
-    open('{}{}.{}'.format(file_name, file_name, file_extension), 'w').writelines(lines)
+    open('{}{}test.{}'.format(file_directory, file_name, file_extension), 'w').writelines(header)
+    open('{}{}test.{}'.format(file_directory, file_name, file_extension), 'a').writelines(lines)
 
 
 def create_train_set_file():
@@ -160,23 +193,23 @@ def create_train_set_file():
 def calculate_std_mean(experiments):
     arr = numpy.array([A_rank, B_rank, C_rank])
 
-    numpy.mean(arr, axis=0)
+    mean = numpy.mean(arr, axis=0)
 
-    array([0.7, 2.2, 1.8, 2.13333333, 3.36666667,
-           5.1])
+    # array([0.7, 2.2, 1.8, 2.13333333, 3.36666667,
+    #        5.1])
 
-    numpy.std(arr, axis=0)
+    std = numpy.std(arr, axis=0)
 
-    array([0.45460606, 1.29614814, 1.37355985, 1.50628314, 1.15566239,
-           1.2083046])
+    # array([0.45460606, 1.29614814, 1.37355985, 1.50628314, 1.15566239,
+    #        1.2083046])
+    return (std, mean)
 
 
 def solution_to_part_2():
 
-
-
     for i in range(1, 11):  # 1, 2, 3, ..., 10
-        shuffle_example()
+        shuffle_example(WEKA_DATA_PATH, DATA_TRAIN_14)
+        exit(1)
 
         for j in range(50, 550, 50):  # 50, 100, ..., 500
             create_train_set_file()
