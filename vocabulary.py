@@ -31,6 +31,7 @@ class Vocabulary:
 
         return 0
 
+
     #  TODO
     def get_total_count_for_class(self, class_number):
 
