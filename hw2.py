@@ -61,30 +61,33 @@ def probability_of_word_given_class(word, class_value, vocab, smoothing_factor):
     return (n_w_in_c + m)/(n_c + m*v)
 
 
-def read_file_to_vocab(file_dir, file_name):
-    vocab = Vocabulary()
+def read_file_to_lines(file_dir, file_name):
 
     file_lines = open("{}/{}".format(file_dir, file_name), 'r').readlines()
     # file_lines = file_lines[0:10]
+    return file_lines
 
+
+def lines_to_vocab(file_lines):
+    vocab = Vocabulary()
     if DEBUG_VERBOSE:
         for index, line in enumerate(file_lines):
             print "{}: {}".format(index, line)
 
+# TODO: Extract method from here
     # remove punctuations from input
     if SANITIZE_LINES:
         file_lines = list(map(sanitize_line, file_lines))
-
     for index, line in enumerate(file_lines):
         if DEBUG_DEVELOPER:
             print "line number: {}".format(index)
         tokens_and_class_value = line.split()
 
-        line_class_value = tokens_and_class_value[len(tokens_and_class_value)-1]
+        line_class_value = tokens_and_class_value[len(tokens_and_class_value) - 1]
         line_class_value = int(line_class_value)
 
         # truncate the class value from line
-        line_word_tokens = tokens_and_class_value[0:(len(tokens_and_class_value)-1)]
+        line_word_tokens = tokens_and_class_value[0:(len(tokens_and_class_value) - 1)]
 
         # convert all words to lowercase
         if SANITIZE_TOKENS:
@@ -92,10 +95,9 @@ def read_file_to_vocab(file_dir, file_name):
 
         if DEBUG_VERBOSE:
             print "class value for line {}: {}".format(line_word_tokens, line_class_value)
-
+#Extract method till here
         for word_occurrence in line_word_tokens:
             vocab.add_word_to_vocabulary(word_occurrence, line_class_value)
-
     return vocab
 
 
@@ -103,14 +105,16 @@ def unit_tests(vocab):
     vocab.unit_test_no_0_0()
 
 set_environment()
-vocabulary = read_file_to_vocab(INPUT_FILES_DIR, DATASET_FILE_YELP)
-# print vocabulary.get_vocabulary_size()
-# print vocabulary.get_total_count_for_class(CLASS_NEGATIVE)
-# print vocabulary.get_total_count_for_class(CLASS_POSITIVE)
-# print vocabulary.get_word_count_given_class("terrible", CLASS_POSITIVE)
+lines = read_file_to_lines(INPUT_FILES_DIR, DATASET_FILE_YELP)
+vocabulary = lines_to_vocab(lines)
+
 print probability_of_word_given_class("terrible", CLASS_NEGATIVE, vocabulary, SMOOTHING_FACTOR)
 
+
+# TODO: test_lines should be tokens and values
+def classify_naive_bayes(training_set_lines, test_set_lines):
+    training_vocab = lines_to_vocab(training_set_lines)
+
+
+
 unit_tests(vocabulary)
-
-
-# w = Word("h", 0, 100)

@@ -5,8 +5,8 @@
 #
 #  This class keeps records of vocabulary words and their class counts
 #
-#  Words are stored in a dictionary called self.words = {('key', class_counts[])}
-#    where the key is token's name,
+#  Words and their class_counts are stored in a dictionary called self.words = {('word_key', class_counts[])}
+#    where the key is word's name,
 #    and the value is an array of count per classes
 #    (I used an array for class counts so that I can use this module later if the classes were more than two.)
 from __future__ import division
@@ -14,6 +14,13 @@ from __future__ import division
 import output_class
 
 SKIP_IT = -1
+
+# CONTINUE HERE:
+# TODO: Should I shuffle the vocabulary or do I need another DS for 10-fold stratified cross validation? If the former:
+# TODO: Use ordered dict so I can shuffle.
+# from collections import OrderedDict
+#
+# d = OrderedDict()
 
 
 class Vocabulary:
@@ -39,7 +46,7 @@ class Vocabulary:
     def get_word_count_given_class(self, word_key, class_number):
         word_counts = self.words.get(word_key)
         if word_counts is None:
-            #  Word does not exist in vocabulary at all (No_classes). Algorithm should skip it.
+            #  Note: Word does not exist in vocabulary at all (neither of classes). Algorithm should skip it.
             return SKIP_IT
         return word_counts[class_number]
 
