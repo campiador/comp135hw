@@ -10,13 +10,17 @@ from __future__ import division
 
 import random
 
+import time
+
+import constants
+import plot
 import statistics
 import vocabulary
+from vocabulary import Vocabulary
 
 
-from word import Word
 import re
-from math import log
+from numpy import log2
 import output_class
 
 # CONSTANTS
@@ -26,16 +30,19 @@ DATASET_FILE_YELP = "yelp_labelled.txt"
 DATASET_FILE_IMDB = "imdb_labelled.txt"
 DATASET_FILE_AMAZON = "amazon_cells_labelled.txt"
 
+# for improving code readability
+TRAIN = 0
+TEST = 1
+
 # CONTROL VARIABLES
-DEBUG_DEVELOPER = 1
-DEBUG_VERBOSE = 0
+
 LIMIT_LINES_TO_10 = 0
 ON_SERVER = 0
 
 SANITIZE_LINES = 1
 SANITIZE_TOKENS = 1
 
-SMOOTHING_FACTOR = 1
+DEFAULT_SMOOTHING_FACTOR = 1
 
 
 def set_environment():
@@ -62,27 +69,33 @@ def probability_of_word_given_class(word, class_value, vocab, smoothing_factor):
     n_w_in_c = vocab.get_word_count_given_class(word, class_value)
     if n_w_in_c == vocabulary.SKIP_IT:
         return vocabulary.SKIP_IT
+    if n_w_in_c == 0 and constants.DEBUG_DEVELOPER:
+        print "zero count for {} in class {}".format(word, class_value)
     n_c = vocab.get_total_count_for_class(class_value)
     v = vocab.get_vocabulary_size()
     m = smoothing_factor
-    if DEBUG_VERBOSE:
-        print "(n_w_in_c + m)/(n_c + m*v) = ({} + {})/({} + {}*{}) = {}".format(n_w_in_c, m, n_c, m, v, (n_w_in_c + m)/(n_c + m*v))
+    if constants.DEBUG_DEVELOPER:
+        print "(n_w_in_c + m)/(n_c + m*v) = ({} + {})/({} + {}*{}) = {}"\
+            .format(n_w_in_c, m, n_c, m, v, (n_w_in_c + m)/(n_c + m*v))
     return (n_w_in_c + m)/(n_c + m*v)
 
 
 def calculate_score_of_testline_given_class(word_tokens, class_value, vocab, smoothing_factor):
     score = 0
     for word_token in word_tokens:
+        print "getting score for {}, class {}".format(word_token, class_value)
         p = probability_of_word_given_class(word_token, class_value, vocab, smoothing_factor)
-        if p == vocabulary.SKIP_IT:
-            if DEBUG_VERBOSE:
-                print "Zero probability for {} in class {}".format(word_token, class_value)
+        if constants.DEBUG_DEVELOPER and p == vocabulary.SKIP_IT:
+            print "Skipping {} in class {}".format(word_token, class_value)
             continue
-        if DEBUG_VERBOSE:
-            print "score updated for {}, class {}".format(word_token, class_value)
-        score += log(p, 2)
+        if constants.DEBUG_DEVELOPER and p == 0:
+            print "Logging Zero score for {}".format(word_token, class_value)
 
-    score += log(vocab.get_class_proportion(class_value), 2)
+        if constants.DEBUG_DEVELOPER:
+            print "score updated for {}, class {}".format(word_token, class_value)
+        score += log2(p)
+
+    score += log2(vocab.get_class_proportion(class_value))
     return score
 
 
@@ -95,8 +108,8 @@ def read_file_to_lines(file_dir, file_name):
 
 
 def lines_to_vocab(file_lines):
-    vocab = vocabulary.Vocabulary()
-    if DEBUG_VERBOSE:
+    vocab = Vocabulary()
+    if constants.DEBUG_DEVELOPER:
         for index, line in enumerate(file_lines):
             print "{}: {}".format(index, line)
 
@@ -105,11 +118,11 @@ def lines_to_vocab(file_lines):
     if SANITIZE_LINES:
         file_lines = list(map(sanitize_line_remove_punctuation, file_lines))
     for index, line in enumerate(file_lines):
-        if DEBUG_VERBOSE:
+        if constants.DEBUG_VERBOSE:
             print "line number: {}".format(index)
         line_class_value, line_word_tokens = get_classvalue_and_wordtokens(line)
 
-        if DEBUG_VERBOSE:
+        if constants.DEBUG_VERBOSE:
             print "class value for line {}: {}".format(line_word_tokens, line_class_value)
 #Extract method till here
         for word_occurrence in line_word_tokens:
@@ -141,12 +154,11 @@ def classify_naive_bayes(training_set_lines, test_line, smoothing_factor):
     for class_i in output_class.CLASSES:
         class_i_score = calculate_score_of_testline_given_class(word_tokens, class_i, training_vocab,
                                                                     smoothing_factor)
-
         class_scores.append(class_i_score)
 
     # NOTE: In case of multiple maximums, this function returns the first position.
     index_of_highest_score = class_scores.index(max(class_scores))
-    if DEBUG_VERBOSE:
+    if constants.DEBUG_VERBOSE:
         print "class scores are {} and index {} was selected".format(class_scores, index_of_highest_score)
 
     return index_of_highest_score
@@ -255,39 +267,78 @@ def cross_validate_kfold(train_test_sets):
     accuracies = []
     for i in range(0, K):
         print "testing on strata {}".format(i+1)
-        accuracy = train_test_and_return_accuracy(train_test_sets[i][train], train_test_sets[i][test], SMOOTHING_FACTOR)
+        accuracy = train_test_and_return_accuracy(train_test_sets[i][train], train_test_sets[i][test], DEFAULT_SMOOTHING_FACTOR)
         accuracies.append(accuracy)
 
     std, mean = statistics.calculate_std_mean(accuracies)
 
     return std, mean
 
-TRAIN = 0
-def cut_data_and_cross_validate_return_stds_and_means(train_test_sets):
 
-    original_size = len(train_test_sets[TRAIN])
+def create_subsamples_and_kfold_crossvalidate_return_accuracies(k_stratified_train_test_set_tuples, smoothing_factor):
+    original_size = len(k_stratified_train_test_set_tuples[TRAIN])
+    n_train_test_sets = len(k_stratified_train_test_set_tuples)
+    print "number of training sets: {}".format(n_train_test_sets)
     partial_std_means = 0
 
-    for i in range(10, 1):
-        fraction = (i / 10) + 0.1 # 0.1, 0.2, 0.3, ..., 1.0
-        for train_test_set in train_test_sets: # 0 = train_sets
-            # CONTINUE:
-            # this wont work cause the dataset is being passed by reference and it becomes smaller and smaller
-            train_test_set[TRAIN] = train_test_set[TRAIN][0:(int(fraction*len(train_test_set[TRAIN])))]
+    all_accuracies = []
+    for train_test_split in k_stratified_train_test_set_tuples:
+        test_set_for_kth_split = train_test_split[TEST]
+        partial_accuracies = []
+        # fractions 0.1, 0.2, 0.3, ..., 1.0
+        for i in range(0, 10):
+            fraction = (i / 10) + 0.1
+            fraction_start = 0
+            fraction_end = (int(fraction * len(train_test_split[TRAIN])))
+
+            # FIXME: watch the one with 719 fraction end
+            if fraction_end == 719:
+                fraction_end += 1
+            if constants.DEBUG_VERBOSE:
+                print "fraction_start: {}, fraction_end: {}".format(fraction_start, fraction_end)
+
+            partial_fraction_train_set = train_test_split[TRAIN][fraction_start:fraction_end]
+
+            partial_accuracy = train_test_and_return_accuracy(partial_fraction_train_set, test_set_for_kth_split,
+                                                              smoothing_factor)
+            partial_accuracies.append(partial_accuracy)
+
+        all_accuracies.append(partial_accuracies)
+
+    return all_accuracies
 
 
-
-
-
-    return partial_std_means
-
-
+# TODO: Sanitize!
 def solution_to_part_one():
-    train_test_sets = prepare_k_stratified_train_test_sets()
+    start_time = time.time()
 
     # returns [(std_0.1, mean_0.1), (std_0.2, mean_0.2), ..., (std_1.0, mean_1.0)]
-    partial_std_means = cut_data_and_cross_validate_return_stds_and_means(train_test_sets)
+    k_stratified_train_test_set_tuples = prepare_k_stratified_train_test_sets()
 
+    if constants.DEBUG_DEVELOPER:
+        print "data prepared!"
+
+    # HINT: acc_s1p2 = accuracy of split 1, partial fraction 0.2
+    # returns: [[acc_s1p1, acc_s1p2, ... acc_s1p10], [acc_s2p1, acc_s2p2, ... acc_s2p10], ...
+    # ..., [acc_skp1, acc_skp2, ... acc_skp10]]
+    accuracies = create_subsamples_and_kfold_crossvalidate_return_accuracies(k_stratified_train_test_set_tuples,
+                                                                      DEFAULT_SMOOTHING_FACTOR)
+
+    stds, means = statistics.calculate_std_mean(accuracies)
+
+    print "stds = {},\nmeans = {}".format(stds, means)
+
+    plot.plot_accuracies_with_stderr_1("tt", "x", "y", "l1", [90, 180, 270, 360, 450, 540, 630, 720, 810, 900],
+                                       means, stds)
+
+
+
+    elapsed_time = time.time() - start_time
+    print "program took {} seconds to run".format(elapsed_time)
+
+
+
+solution_to_part_one()
 
 #
 # print len(train_test_sets)
@@ -295,14 +346,16 @@ def solution_to_part_one():
 #     print len(tes)
 
 
-
 #
-# vocabulary = lines_to_vocab(training_lines)
+# #
+# training_lines = read_file_to_lines(INPUT_FILES_DIR, DATASET_FILE_YELP)
+# # vocabulary = lines_to_vocab(training_lines)
 #
-# my_test_line = "best poor never sad amazing!\t0"
+# my_test_line = "best terrible great excellent amazing!\t1"
 # my_test_line = sanitize_line_remove_punctuation(my_test_line)
 #
-# predicted_class = classify_naive_bayes(all_original, my_test_line, 1)
+#
+# predicted_class = classify_naive_bayes(training_lines, my_test_line, 0)
 #
 # actual_class, _ = get_classvalue_and_wordtokens(my_test_line)
 #

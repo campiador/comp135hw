@@ -22,7 +22,6 @@ SKIP_IT = -1
 #
 # d = OrderedDict()
 
-
 class Vocabulary:
     def __init__(self):
         self.words = {}
