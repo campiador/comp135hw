@@ -44,11 +44,12 @@ class Vocabulary:
         return class_count
 
     def get_word_count_given_class(self, word_key, class_number):
-        word_counts = self.words.get(word_key)
-        if word_counts is None:
+        class_counts = self.words.get(word_key)
+        if class_counts is None:
+            # FIXME: how are you gonna handle the SKIP_IT situation
             #  Note: Word does not exist in vocabulary at all (neither of classes). Algorithm should skip it.
             return SKIP_IT
-        return word_counts[class_number]
+        return class_counts[class_number]
 
     def get_class_proportion(self, class_value):
 
@@ -66,7 +67,7 @@ class Vocabulary:
         total_count = 0
         for class_values in iter(self.words.values()):
             for class_value in class_values:
-                total_count += class_values
+                total_count += class_value
         return total_count
 
     def unit_test_no_0_0(self):

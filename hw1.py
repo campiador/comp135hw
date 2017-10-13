@@ -91,7 +91,7 @@ def run_command(str_cmd):
     if status != 0:
         print "error in running bash command: {}".format(status)
         print str_output
-        exit(2)
+        exit(1)
 
     # print str_output
 
