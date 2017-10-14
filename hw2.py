@@ -14,6 +14,7 @@ import time
 
 import constants
 import plot
+import subplotable
 import statistics
 import vocabulary
 from vocabulary import Vocabulary
@@ -30,12 +31,15 @@ DATASET_FILE_YELP = "yelp_labelled.txt"
 DATASET_FILE_IMDB = "imdb_labelled.txt"
 DATASET_FILE_AMAZON = "amazon_cells_labelled.txt"
 
+DATASET_FILES = [DATASET_FILE_YELP, DATASET_FILE_IMDB, DATASET_FILE_AMAZON]
+
 # for improving code readability
 TRAIN = 0
 TEST = 1
 
 # CONTROL VARIABLES
 
+SHORTEN_EXPERIMENT = 0
 LIMIT_LINES_TO_10 = 0
 ON_SERVER = 0
 
@@ -44,7 +48,7 @@ SANITIZE_TOKENS = 1
 
 DEFAULT_SMOOTHING_FACTOR = 1
 
-
+INPUT_FILES_DIR = "."
 def set_environment():
     global INPUT_FILES_DIR
     # Don't put a "/" in the end of the path
@@ -69,12 +73,12 @@ def probability_of_word_given_class(word, class_value, vocab, smoothing_factor):
     n_w_in_c = vocab.get_word_count_given_class(word, class_value)
     if n_w_in_c == vocabulary.SKIP_IT:
         return vocabulary.SKIP_IT
-    if n_w_in_c == 0 and constants.DEBUG_DEVELOPER:
+    if n_w_in_c == 0 and constants.DEBUG_VERBOSE:
         print "zero count for {} in class {}".format(word, class_value)
     n_c = vocab.get_total_count_for_class(class_value)
     v = vocab.get_vocabulary_size()
     m = smoothing_factor
-    if constants.DEBUG_DEVELOPER:
+    if constants.DEBUG_VERBOSE:
         print "(n_w_in_c + m)/(n_c + m*v) = ({} + {})/({} + {}*{}) = {}"\
             .format(n_w_in_c, m, n_c, m, v, (n_w_in_c + m)/(n_c + m*v))
     return (n_w_in_c + m)/(n_c + m*v)
@@ -83,15 +87,17 @@ def probability_of_word_given_class(word, class_value, vocab, smoothing_factor):
 def calculate_score_of_testline_given_class(word_tokens, class_value, vocab, smoothing_factor):
     score = 0
     for word_token in word_tokens:
-        print "getting score for {}, class {}".format(word_token, class_value)
+        if constants.DEBUG_VERBOSE:
+            print "getting score for {}, class {}".format(word_token, class_value)
         p = probability_of_word_given_class(word_token, class_value, vocab, smoothing_factor)
-        if constants.DEBUG_DEVELOPER and p == vocabulary.SKIP_IT:
-            print "Skipping {} in class {}".format(word_token, class_value)
+        if p == vocabulary.SKIP_IT:
+            if constants.DEBUG_VERBOSE:
+                print "Skipping {} in class {}".format(word_token, class_value)
             continue
-        if constants.DEBUG_DEVELOPER and p == 0:
+        if constants.DEBUG_VERBOSE and p == 0:
             print "Logging Zero score for {}".format(word_token, class_value)
 
-        if constants.DEBUG_DEVELOPER:
+        if constants.DEBUG_VERBOSE:
             print "score updated for {}, class {}".format(word_token, class_value)
         score += log2(p)
 
@@ -109,7 +115,7 @@ def read_file_to_lines(file_dir, file_name):
 
 def lines_to_vocab(file_lines):
     vocab = Vocabulary()
-    if constants.DEBUG_DEVELOPER:
+    if constants.DEBUG_VERBOSE:
         for index, line in enumerate(file_lines):
             print "{}: {}".format(index, line)
 
@@ -197,7 +203,8 @@ def stratify_lines_to_k_parts(all_original_lines, k):
 
     # [number of class1 lines per strata, number of class2 lines per strata, ...]
     numbers_of_classlines_per_part = [len(classlines)/k for classlines in lines_partitioned_by_class]
-    print  numbers_of_classlines_per_part
+    if constants.DEBUG_VERBOSE:
+        print  numbers_of_classlines_per_part
 
     all_k_stratas = []
 
@@ -242,8 +249,8 @@ def train_test_and_return_accuracy(training_lines, test_lines, smoothing_factor)
 set_environment()
 
 
-def prepare_k_stratified_train_test_sets():
-    all_original_lines = read_file_to_lines(INPUT_FILES_DIR, DATASET_FILE_YELP)
+def prepare_k_stratified_train_test_sets(input_file_dir, input_file_name):
+    all_original_lines = read_file_to_lines(input_file_dir, input_file_name)
     # FIXME: Do we need to shuffle in the beginning?
     random.shuffle(all_original_lines)
     k_parts = stratify_lines_to_k_parts(all_original_lines, K)
@@ -255,8 +262,9 @@ def prepare_k_stratified_train_test_sets():
         pass_k_parts_by_value = k_parts[:]
 
         train_set_i, test_set_i = get_training_and_test_for_ith_split(pass_k_parts_by_value, i)
-        print "train set {} len {}:\n{}".format(i, len(train_set_i), train_set_i)
-        print "test set {} len {}:\n{}\n".format(i, len(test_set_i), test_set_i)
+        if constants.DEBUG_VERBOSE:
+            print "train set {} len {}:\n{}".format(i, len(train_set_i), train_set_i)
+            print "test set {} len {}:\n{}\n".format(i, len(test_set_i), test_set_i)
         train_test_sets.append((train_set_i, test_set_i))
     return train_test_sets
 
@@ -266,7 +274,8 @@ def cross_validate_kfold(train_test_sets):
     test = 1
     accuracies = []
     for i in range(0, K):
-        print "testing on strata {}".format(i+1)
+        if constants.DEBUG_VERBOSE:
+            print "testing on strata {}".format(i+1)
         accuracy = train_test_and_return_accuracy(train_test_sets[i][train], train_test_sets[i][test], DEFAULT_SMOOTHING_FACTOR)
         accuracies.append(accuracy)
 
@@ -275,14 +284,15 @@ def cross_validate_kfold(train_test_sets):
     return std, mean
 
 
-def create_subsamples_and_kfold_crossvalidate_return_accuracies(k_stratified_train_test_set_tuples, smoothing_factor):
-    original_size = len(k_stratified_train_test_set_tuples[TRAIN])
-    n_train_test_sets = len(k_stratified_train_test_set_tuples)
-    print "number of training sets: {}".format(n_train_test_sets)
-    partial_std_means = 0
-
+def create_partial_training_sets_and_kfold_crossvalidate_return_accuracies(k_stratified_train_test_set_tuples,
+                                                                           smoothing_factor):
+    k = len(k_stratified_train_test_set_tuples)
+    if constants.DEBUG_VERBOSE:
+        print "number of training sets: {}".format(k)
     all_accuracies = []
-    for train_test_split in k_stratified_train_test_set_tuples:
+    for i, train_test_split in enumerate(k_stratified_train_test_set_tuples):
+        if constants.DEBUG_CLIENT:
+            print "** validating split {} **".format(i)
         test_set_for_kth_split = train_test_split[TEST]
         partial_accuracies = []
         # fractions 0.1, 0.2, 0.3, ..., 1.0
@@ -290,6 +300,9 @@ def create_subsamples_and_kfold_crossvalidate_return_accuracies(k_stratified_tra
             fraction = (i / 10) + 0.1
             fraction_start = 0
             fraction_end = (int(fraction * len(train_test_split[TRAIN])))
+
+            if constants.DEBUG_CLIENT:
+                print "* validating fraction {} *".format(fraction)
 
             # FIXME: watch the one with 719 fraction end
             if fraction_end == 719:
@@ -308,37 +321,63 @@ def create_subsamples_and_kfold_crossvalidate_return_accuracies(k_stratified_tra
     return all_accuracies
 
 
+print "Ignore the runtime warning from log2 function. I'm not dividing by zeo! " \
+      "The error is due to a numpy library bug."
 # TODO: Sanitize!
 def solution_to_part_one():
+    print "starting hw2 part 1"
+
     start_time = time.time()
 
-    # returns [(std_0.1, mean_0.1), (std_0.2, mean_0.2), ..., (std_1.0, mean_1.0)]
-    k_stratified_train_test_set_tuples = prepare_k_stratified_train_test_sets()
+    part_1_smoothing_factors = [0, 1]
 
-    if constants.DEBUG_DEVELOPER:
-        print "data prepared!"
+    subplotable_objects = []
 
-    # HINT: acc_s1p2 = accuracy of split 1, partial fraction 0.2
-    # returns: [[acc_s1p1, acc_s1p2, ... acc_s1p10], [acc_s2p1, acc_s2p2, ... acc_s2p10], ...
-    # ..., [acc_skp1, acc_skp2, ... acc_skp10]]
-    accuracies = create_subsamples_and_kfold_crossvalidate_return_accuracies(k_stratified_train_test_set_tuples,
-                                                                      DEFAULT_SMOOTHING_FACTOR)
+    for data_set_file_name in DATASET_FILES:
+        if constants.DEBUG_CLIENT:
+            print "**** Starting experiment with data from file: {} ****".format(data_set_file_name)
 
-    stds, means = statistics.calculate_std_mean(accuracies)
+        for smoothing_factor in part_1_smoothing_factors:
+            if constants.DEBUG_CLIENT:
+                print "*** Smoothing Factor: {} ***".format(smoothing_factor)
+            # returns [(std_0.1, mean_0.1), (std_0.2, mean_0.2), ..., (std_1.0, mean_1.0)]
+            k_stratified_train_test_set_tuples = prepare_k_stratified_train_test_sets(
+                INPUT_FILES_DIR, data_set_file_name)
 
-    print "stds = {},\nmeans = {}".format(stds, means)
-
-    plot.plot_accuracies_with_stderr_1("tt", "x", "y", "l1", [90, 180, 270, 360, 450, 540, 630, 720, 810, 900],
-                                       means, stds)
+            if constants.DEBUG_CLIENT:
+                print "data stratified!"
 
 
+            # HINT: acc_s1p2 = accuracy of split 1, partial fraction 0.2
+            # returns: [[acc_s1p1, acc_s1p2, ... acc_s1p10], [acc_s2p1, acc_s2p2, ... acc_s2p10], ...
+            # ..., [acc_skp1, acc_skp2, ... acc_skp10]]
+            accuracies = create_partial_training_sets_and_kfold_crossvalidate_return_accuracies(
+                k_stratified_train_test_set_tuples, smoothing_factor)
+
+            stds, means = statistics.calculate_std_mean(accuracies)
+
+            if constants.DEBUG_VERBOSE:
+                print "stds = {},\nmeans = {}".format(stds, means)
+
+            bar_legend_label =  "smoothing factor: {} ".format(smoothing_factor)
+            x_values = [90, 180, 270, 360, 450, 540, 630, 720, 810, 900]
+
+            subplotable_object = subplotable.SubPlotable(bar_legend_label, x_values, means, stds)
+            subplotable_objects.append(subplotable_object)
+
+        label_plot = "Learning Curves with Cross Validation for {}".format(data_set_file_name.replace(".txt", ""))
+        label_plot_x = "Training Size"
+        label_plot_y = "Accuracy"
+        plot.plot_accuracies_with_stderr_poly(label_plot, label_plot_x, label_plot_y,
+                                              [0, 1000], [0, 1], subplotable_objects)
+        subplotable_objects = []
 
     elapsed_time = time.time() - start_time
-    print "program took {} seconds to run".format(elapsed_time)
-
-
+    if constants.DEBUG_CLIENT:
+        print "program took {} seconds to run".format(elapsed_time)
 
 solution_to_part_one()
+
 
 #
 # print len(train_test_sets)
