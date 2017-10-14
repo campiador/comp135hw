@@ -83,11 +83,20 @@ def plot_accuracies_with_stderr_poly(main_title, x_axis_tile, y_axis_title, rang
 
     plt.axis([range_x[PLOT_START], range_x[PLOT_END], range_y[PLOT_START], range_y[PLOT_END]])
     plt.legend(loc='best')
-    plt.show(block=False)
+
+    # BUG:
+    # When I show(block=False) or don't show() at all, the plt object somehow does not die and what happens is
+    # the past plots are not discarded when drawing new plots.
+    # When I show(block=True), the image does not get saved!
+
+    # BUG FIX:
+    # First save, then show(block = True)
 
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-
-
     plt.savefig('./hw2_part1_{}_{}.png'.format(main_title, st))
+
+    plt.show(block=True)
+
+
 

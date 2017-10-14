@@ -5,7 +5,9 @@
 #
 # This code implements Naive Bayes algorithm with smoothing
 # We then evaluate it using cross validation on the task of sentiment analysis
-
+#
+# NOTE: To be able to use this codei
+#
 from __future__ import division
 
 import random
@@ -137,6 +139,8 @@ def lines_to_vocab(file_lines):
 
 
 def get_classvalue_and_wordtokens(line):
+    if SANITIZE_LINES:
+        line = sanitize_line_remove_punctuation(line)
     tokens_and_class_value = line.split()
     line_class_value = tokens_and_class_value[len(tokens_and_class_value) - 1]
     line_class_value = int(line_class_value)
@@ -146,9 +150,12 @@ def get_classvalue_and_wordtokens(line):
     if SANITIZE_TOKENS:
         line_word_tokens = list(map(sanitize_token_to_lowercase, line_word_tokens))
     return line_class_value, line_word_tokens
+#
+#
+# if DEVE
+# total_time_spent_in_vocab = 0
 
-
-def classify_naive_bayes(training_set_lines, test_line, smoothing_factor):
+def create_classifier_and_classify_naive_bayes(training_set_lines, test_line, smoothing_factor):
     training_vocab = lines_to_vocab(training_set_lines)
 
     _, word_tokens = get_classvalue_and_wordtokens(test_line)
@@ -239,7 +246,7 @@ def get_training_and_test_for_ith_split(k_splits, i):
 def train_test_and_return_accuracy(training_lines, test_lines, smoothing_factor):
     number_of_correct_predictions = 0
     for test_line in test_lines:
-        prediction = classify_naive_bayes(training_lines, test_line, smoothing_factor)
+        prediction = create_classifier_and_classify_naive_bayes(training_lines, test_line, smoothing_factor)
         actual, _ = get_classvalue_and_wordtokens(test_line)
         if is_classification_correct(prediction, actual):
             number_of_correct_predictions += 1
@@ -304,7 +311,7 @@ def create_partial_training_sets_and_kfold_crossvalidate_return_accuracies(k_str
             if constants.DEBUG_CLIENT:
                 print "* validating fraction {} *".format(fraction)
 
-            # FIXME: watch the one with 719 fraction end
+            # NOTE: watch the one with 719 fraction end
             if fraction_end == 719:
                 fraction_end += 1
             if constants.DEBUG_VERBOSE:
@@ -321,9 +328,11 @@ def create_partial_training_sets_and_kfold_crossvalidate_return_accuracies(k_str
     return all_accuracies
 
 
-print "Ignore the runtime warning from log2 function. I'm not dividing by zeo! " \
+if constants.DEBUG_CLIENT:
+    print "Ignore the runtime warning from log2 function. I'm not dividing by zero! " \
       "The error is due to a numpy library bug."
-# TODO: Sanitize!
+
+
 def solution_to_part_one():
     print "starting hw2 part 1"
 
@@ -331,9 +340,8 @@ def solution_to_part_one():
 
     part_1_smoothing_factors = [0, 1]
 
-    subplotable_objects = []
-
     for data_set_file_name in DATASET_FILES:
+        subplotable_objects = []
         if constants.DEBUG_CLIENT:
             print "**** Starting experiment with data from file: {} ****".format(data_set_file_name)
 
@@ -346,7 +354,6 @@ def solution_to_part_one():
 
             if constants.DEBUG_CLIENT:
                 print "data stratified!"
-
 
             # HINT: acc_s1p2 = accuracy of split 1, partial fraction 0.2
             # returns: [[acc_s1p1, acc_s1p2, ... acc_s1p10], [acc_s2p1, acc_s2p2, ... acc_s2p10], ...
@@ -362,15 +369,14 @@ def solution_to_part_one():
             bar_legend_label =  "smoothing factor: {} ".format(smoothing_factor)
             x_values = [90, 180, 270, 360, 450, 540, 630, 720, 810, 900]
 
-            subplotable_object = subplotable.SubPlotable(bar_legend_label, x_values, means, stds)
+            subplotable_object = subplotable.SubPlotable(bar_legend_label, x_values, 100* means, 100* stds)
             subplotable_objects.append(subplotable_object)
 
         label_plot = "Learning Curves with Cross Validation for {}".format(data_set_file_name.replace(".txt", ""))
         label_plot_x = "Training Size"
         label_plot_y = "Accuracy"
         plot.plot_accuracies_with_stderr_poly(label_plot, label_plot_x, label_plot_y,
-                                              [0, 1000], [0, 1], subplotable_objects)
-        subplotable_objects = []
+                                              [0, 1000], [0, 100], subplotable_objects)
 
     elapsed_time = time.time() - start_time
     if constants.DEBUG_CLIENT:
