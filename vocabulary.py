@@ -74,12 +74,3 @@ class Vocabulary:
             if count_values[0] == 0 and count_values[1] == 0:
                 print "ERROR: found a word in vocabulary with both class counts equal to 0"
 
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,10 @@
+#  plot.py
+#  by Behnam Heydarshahi, October 2017
+#  Empirical/Programming Assignment 2
+#  COMP 135 Machine Learning
+#
+#  This module draws charts
+
 import matplotlib.pyplot as plt
 import datetime
 import time

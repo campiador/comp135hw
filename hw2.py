@@ -23,7 +23,7 @@ from vocabulary import Vocabulary
 
 
 import re
-from numpy import log2
+from numpy import log2, os
 import output_class
 
 # CONSTANTS
@@ -45,7 +45,7 @@ TEST = 1
 
 SHORTEN_EXPERIMENT = 0
 LIMIT_LINES_TO_10 = 0
-ON_SERVER = 0
+ON_SERVER = 1
 
 SANITIZE_LINES = 1
 SANITIZE_TOKENS = 1
@@ -60,6 +60,8 @@ def set_environment():
         INPUT_FILES_DIR = "."
     else:  # On local machine
         INPUT_FILES_DIR = "./sentiment labelled sentences"
+    if not os.path.exists("./output/"):
+        os.makedirs("./output/")
 
 
 # Credit: https://stackoverflow.com/questions/10017147/removing-a-list-of-characters-in-string
@@ -354,12 +356,6 @@ def kfold_crossvalidate_for_smoothing_factors_and_return_accuracies(k_stratified
 
     return all_splits_accuracies
 
-
-if constants.DEBUG_CLIENT:
-    print "Ignore the runtime warning from log2 function. I'm not dividing by zero! " \
-      "The warning is due to a numpy library bug."
-
-
 def solution_to_part_one():
     print "starting hw2 part 1"
 
@@ -457,32 +453,7 @@ def solution_to_part_two():
         print "program took {} seconds to run".format(elapsed_time)
 
 
-# solution_to_part_one()
+
+solution_to_part_one()
 solution_to_part_two()
 
-
-
-#
-# print len(train_test_sets)
-# for tr,tes in train_test_sets:
-#     print len(tes)
-
-
-#
-# #
-# training_lines = read_file_to_lines(INPUT_FILES_DIR, DATASET_FILE_YELP)
-# # vocabulary = lines_to_vocab(training_lines)
-#
-# my_test_line = "best terrible great excellent amazing!\t1"
-# my_test_line = sanitize_line_remove_punctuation(my_test_line)
-#
-#
-# predicted_class = classify_naive_bayes(training_lines, my_test_line, 0)
-#
-# actual_class, _ = get_classvalue_and_wordtokens(my_test_line)
-#
-# print "predicted class is {} and actual class is {}".format(predicted_class, actual_class)
-#
-# print("yay" if is_classification_correct(predicted_class, actual_class) else "wrong prediction")
-
-# unit_tests(vocabulary)

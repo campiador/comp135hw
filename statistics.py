@@ -1,4 +1,9 @@
-
+#  statistics.py
+#  by Behnam Heydarshahi, October 2017
+#  Empirical/Programming Assignment 2
+#  COMP 135 Machine Learning
+#
+#  This class keeps statistical formulas for mean and std deviation
 import numpy
 
 import constants
