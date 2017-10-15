@@ -1,0 +1,22 @@
+line_1	0
+line_2	0
+line_3	0
+line_4	0
+line_5	0
+line_6	0
+line_7	0
+line_8	0
+line_9	0
+line_10	1
+line_11	1
+line_12	1
+line_13	1
+line_14	1
+line_15	1
+line_16	1
+line_17	1
+line_18	1
+line_19	1
+line_20	1
+
+

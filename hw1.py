@@ -94,7 +94,7 @@ def run_command(str_cmd):
     if status != 0:
         print "error in running bash command: {}".format(status)
         print str_output
-        exit(2)
+        exit(1)
 
     # print str_output
 
@@ -160,6 +160,7 @@ def remove_file_extension(file_name):
     if CLIENT_DEBUG:
         print  "{}{}".format(file_name, extension)
 
+
     return file_name, extension
 
 
@@ -217,9 +218,7 @@ def create_training_set_file(file_directory, file_name, header, lines, training_
     return new_file_name
 
 
-
-
-#  credit: https://stackoverflow.com/questions/15389768/standard-deviation-of-a-list
+# credit: https://stackoverflow.com/questions/15389768/standard-deviation-of-a-list
 def calculate_std_mean(experiments):
     # A_rank = [0.8, 0.4, 1.2, 3.7, 2.6, 5.8]
     # B_rank = [0.1, 2.8, 3.7, 2.6, 5, 3.4]
@@ -231,8 +230,6 @@ def calculate_std_mean(experiments):
         print "numpy.array:{}".format(arr)
 
     mean = numpy.mean(arr, axis=0)
-
-
 
     # array([0.7, 2.2, 1.8, 2.13333333, 3.36666667,
     #        5.1])
