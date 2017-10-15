@@ -1,12 +1,13 @@
 Behnam Heydarshahi
-Machine Learning Assignmnet 1
+Machine Learning Assignment 2
 
 EXECUTION INSTRUCTIONS:
 
    ./compile_and_run
 
 NOTE:
-If ran into problems, check DATA_PATH variable in hw1.py
+If ran into problems, check INPUT_FILES_PATH variable in hw1.py
     
 OUTPUT:
-The resulting charts will be in two PNG files whose names start with "part1_accuracies" and "part_2_accuracies_stderr"
+The resulting charts will be in 6 png files in output directory.
+Their names begin with hw2_part2_*.
