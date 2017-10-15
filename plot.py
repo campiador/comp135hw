@@ -49,7 +49,7 @@ def plot_accuracies_with_stderr(l_title, l_axis_x, l_axis_y, l1, x1, y1, y1err, 
     plt.axis([0, 550, 0, 100])
     plt.legend(loc='best')
     plt.show(block=False)
-    plt.savefig('./part_2_accuracies_with_stderr.png')
+    plt.savefig('./output/hw1_part_2_accuracies_with_stderr.png')
 
 
 #plotables
@@ -62,7 +62,8 @@ def get_cmap(n, name='hsv'):
     return plt.cm.get_cmap(name, n)
 
 
-def plot_accuracies_with_stderr_poly(main_title, x_axis_tile, y_axis_title, range_x, range_y, subplotables):
+def plot_accuracies_with_stderr_poly(main_title, x_axis_tile, y_axis_title, range_x, range_y, subplotables,
+                                     output_file_name):
     cmap = get_cmap(len(subplotables) + 1)
 
     for i, plotable in enumerate(subplotables):
@@ -89,14 +90,19 @@ def plot_accuracies_with_stderr_poly(main_title, x_axis_tile, y_axis_title, rang
     # the past plots are not discarded when drawing new plots.
     # When I show(block=True), the image does not get saved!
 
-    # BUG FIX:
+    # BUG FIX 1:
     # First save, then show(block = True)
+
+    # BUG FIX 2:
+    # Even better: after show(block=false)  call plt.gcf().clear(). Also might call plt.clf() plt.cla() plt.close().
+
 
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-    plt.savefig('./hw2_part1_{}_{}.png'.format(main_title, st))
+    plt.savefig('./output/{}_{}_{}.png'.format(output_file_name, main_title, st))
 
-    plt.show(block=True)
+    plt.show(block=False)
+    plt.gcf().clear()
 
 
 
