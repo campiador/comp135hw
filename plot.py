@@ -1,4 +1,7 @@
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
 
 
 def plot_accuracies(l_title, l_axis_x, l_axis_y, l1, x1, y1, l2, x2, y2):
@@ -15,7 +18,7 @@ def plot_accuracies(l_title, l_axis_x, l_axis_y, l1, x1, y1, l2, x2, y2):
     plt.axis([0, 100, 0, 100])
     plt.legend(loc='best')
     plt.show(block=False)
-    plt.savefig('part1_accuracies.png')
+    plt.savefig('./part1_accuracies.png')
 
 
 
@@ -41,4 +44,4 @@ def plot_accuracies_with_stderr(l_title, l_axis_x, l_axis_y, l1, x1, y1, y1err, 
     plt.axis([0, 550, 0, 100])
     plt.legend(loc='best')
     plt.show(block=False)
-    plt.savefig('./accuracies_with_stderr.png')
+    plt.savefig('./part2_accuracies_with_stderr.png')
