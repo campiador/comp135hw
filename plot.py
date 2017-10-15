@@ -5,6 +5,9 @@
 #
 #  This module draws charts
 
+=======
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import datetime
 import time
@@ -14,6 +17,7 @@ import constants
 CAPSIZE = 4
 PLOT_START = 0
 PLOT_END = 1
+
 
 
 def plot_accuracies(l_title, l_axis_x, l_axis_y, l1, x1, y1, l2, x2, y2):
@@ -30,7 +34,7 @@ def plot_accuracies(l_title, l_axis_x, l_axis_y, l1, x1, y1, l2, x2, y2):
     plt.axis([0, 100, 0, 100])
     plt.legend(loc='best')
     plt.show(block=False)
-    plt.savefig('part1_accuracies.png')
+    plt.savefig('./part1_accuracies.png')
 
 
 
@@ -110,6 +114,4 @@ def plot_accuracies_with_stderr_poly(main_title, x_axis_tile, y_axis_title, rang
 
     plt.show(block=False)
     plt.gcf().clear()
-
-
 

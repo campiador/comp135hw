@@ -9,9 +9,10 @@ import random
 import numpy
 
 
-RUNNING_ON_SERVER = False
+RUNNING_ON_SERVER = True
 CLIENT_DEBUG = False
-DEVELOPER_DEBUG = True
+DEVELOPER_DEBUG = False
+GRADER_DEBUG = True
 
 
 CLASSIFIER_J48 = "classifiers.trees.J48"
@@ -54,6 +55,8 @@ def set_environment():
         # For running on Homework server
         # os.environ['CLASSPATH']='/r/aiml/ml-software/weka-3-6-11/weka.jar' + ":" + os.environ['CLASSPATH']
         # os.environ['WEKADATA']='/r/aiml/ml-software/weka-3-6-11/data/'
+	
+
         if CLIENT_DEBUG:
             print "SHELL: {}".format(os.environ['SHELL'])
         CLASSPATH = os.environ['CLASSPATH']
@@ -268,15 +271,18 @@ def solution_to_part_2():
             training_file_name = feature[0]
             test_file_name = feature[1]
 
-            if CLIENT_DEBUG:
+            if GRADER_DEBUG or CLIENT_DEBUG:
                 print "\nRunning experiment for {} {} {}\n".format(classifier, training_file_name, test_file_name)
 
-            mean, std = run_experiment_for_classifier_and_feature_size(classifier, training_file_name, test_file_name)
+            mean, std = run_experiment_10_times_for_classifier_and_feature_size(classifier, training_file_name, test_file_name)
 
             if CLIENT_DEBUG:
                 print  "std{}".format(std)
                 print "mean{}".format(mean)
             four_data_to_be_plotted.append([mean, std, classifier, test_file_name])
+
+            if GRADER_DEBUG:
+                print "mean of 10: {}\nstd_error of 10:{}".format(mean, std)
 
     plot_accuracies_with_stderr("Learning Curves", "Training Set Size", "Test Accuracy",
                                 get_label_for_experiment(four_data_to_be_plotted[0][2], four_data_to_be_plotted[0][3]),
@@ -297,11 +303,12 @@ def solution_to_part_2():
                                 )
 
 
-def run_experiment_for_classifier_and_feature_size(classifier, training_file_name, test_file_name):
+def run_experiment_10_times_for_classifier_and_feature_size(classifier, training_file_name, test_file_name):
     iteration_results = []
     for iteration_number in range(1, N_REPETITIONS + 1):  # 1, 2, 3, ..., 10
-        if CLIENT_DEBUG:
+        if GRADER_DEBUG:
             print "\nITERATION: {}".format(iteration_number)
+	if DEVELOPER_DEBUG:
             print "shuffling"
 
         (header, data_rows) = shuffle_file_return_header_and_data_rows(WEKA_DATA_PATH, training_file_name)

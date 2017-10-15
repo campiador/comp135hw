@@ -1,0 +1,12 @@
+Behnam Heydarshahi
+Machine Learning Assignmnet 1
+
+EXECUTION INSTRUCTIONS:
+
+   ./compile_and_run
+
+NOTE:
+If ran into problems, check DATA_PATH variable in hw1.py
+    
+OUTPUT:
+The resulting charts will be in two PNG files whose names start with "part1_accuracies" and "part_2_accuracies_stderr"
