@@ -452,7 +452,7 @@ def solution_to_part_two():
     if constants.DEBUG_CLIENT:
         print "program took {} seconds to run".format(elapsed_time)
 
-
+set_environment()
 
 solution_to_part_one()
 solution_to_part_two()
