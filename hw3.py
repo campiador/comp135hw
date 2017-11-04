@@ -99,20 +99,19 @@ def parse_examples_from_file_to_list(data_set_file_path):
     pass
 
 # FIXME: NOT SURE how to calculate cluster scatter
-def calculate_cluster_scatter(clusters, centers):
+def calculate_clustering_scatter(clusters, centers):
     cluster_scatter = 0
     for i, cluster in enumerate(clusters):
-        cluster_size = len(cluster)
-        sum_members_distance_from_center = 0
+        cluster_center = find_center(cluster)
         for cluster_member in cluster:
-            sum_members_distance_from_center += (cluster_member - centers[i]) ** 2 #TODO: on all features
-        cluster_scatter += sum_members_distance_from_center
-
+            for i, attribute in cluster_member:
+                # FIXME: assuming each member (or center) is on array of only i attributes
+                cluster_scatter += (attribute - cluster_center[i]) ** 2
     return cluster_scatter
 
 
 # TODO: Implement
-def calculate_cluster_nmi(clusters, examples):
+def calculate_clustering_nmi(clusters, examples):
     pass
 
 
@@ -125,8 +124,8 @@ def part_1_1_random_initializtion():
 
     clusters, centers = cluster_k_means(k, examples)
 
-    cs = calculate_cluster_scatter(clusters, centers)
-    nmi = calculate_cluster_nmi(clusters, examples)
+    cs = calculate_clustering_scatter(clusters, centers)
+    nmi = calculate_clustering_nmi(clusters, examples)
 
 
 def part_1_2_smart_initialization():
