@@ -6,8 +6,11 @@
 # This code implements Naive Bayes algorithm with smoothing
 # We then evaluate it using cross validation on the task of sentiment analysis
 #
-# NOTE: To be able to use this codei
-#
+# NOTE: This implementation supports any value for K in k-fold cross-validation, as well as any number of class labels.
+# I also sanitize the strings for better accuracy.
+# Doing the above to, I decided to trade off performance for usability of this module in my future projects.
+
+
 from __future__ import division
 
 import random
@@ -20,11 +23,12 @@ import subplotable
 import statistics
 import vocabulary
 from vocabulary import Vocabulary
+import output_class
 
 
 import re
-from numpy import log2, os
-import output_class
+from numpy import log2
+import os
 
 # CONSTANTS
 
@@ -47,8 +51,8 @@ SHORTEN_EXPERIMENT = 0
 LIMIT_LINES_TO_10 = 0
 ON_SERVER = 1
 
-SANITIZE_LINES = 1
-SANITIZE_TOKENS = 1
+SANITIZE_LINES = 0
+SANITIZE_TOKENS = 0
 
 DEFAULT_SMOOTHING_FACTOR = 1
 
@@ -75,27 +79,15 @@ def sanitize_token_to_lowercase(token):
     return token.lower()
 
 
-def probability_of_word_given_class(word, class_value, vocab, smoothing_factor):
-    n_w_in_c = vocab.get_word_count_given_class(word, class_value)
-    if n_w_in_c == vocabulary.SKIP_IT:
-        return vocabulary.SKIP_IT
-    if n_w_in_c == 0 and constants.DEBUG_VERBOSE:
-        print "zero count for {} in class {}".format(word, class_value)
-    n_c = vocab.get_total_count_for_class(class_value)
-    v = vocab.get_vocabulary_size()
-    m = smoothing_factor
-    if constants.DEBUG_VERBOSE:
-        print "(n_w_in_c + m)/(n_c + m*v) = ({} + {})/({} + {}*{}) = {}"\
-            .format(n_w_in_c, m, n_c, m, v, (n_w_in_c + m)/(n_c + m*v))
-    return (n_w_in_c + m)/(n_c + m*v)
-
-
 def calculate_score_of_testline_given_class(word_tokens, class_value, vocab, smoothing_factor):
     score = 0
+
     for word_token in word_tokens:
-        if constants.DEBUG_VERBOSE:
+        if constants.DEBUG_DEVELOPER:
             print "getting score for {}, class {}".format(word_token, class_value)
-        p = probability_of_word_given_class(word_token, class_value, vocab, smoothing_factor)
+        p = vocab.calculate_probability_of_word_given_class(word_token, class_value, smoothing_factor)
+        p = vocab.calculate_probability_of_word_given_class(word_token, class_value, smoothing_factor)
+
         if p == vocabulary.SKIP_IT:
             if constants.DEBUG_VERBOSE:
                 print "Skipping {} in class {}".format(word_token, class_value)
@@ -105,10 +97,12 @@ def calculate_score_of_testline_given_class(word_tokens, class_value, vocab, smo
 
         if constants.DEBUG_VERBOSE:
             print "score updated for {}, class {}".format(word_token, class_value)
+
         score += log2(p)
 
     score += log2(vocab.get_class_proportion(class_value))
     return score
+
 
 
 def read_file_to_lines(file_dir, file_name):
@@ -139,6 +133,9 @@ def lines_to_vocab(file_lines):
 #Extract method till here
         for word_occurrence in line_word_tokens:
             vocab.add_word_to_vocabulary(word_occurrence, line_class_value)
+
+    vocab.setup()
+
     return vocab
 
 
@@ -154,14 +151,10 @@ def get_classvalue_and_wordtokens(line):
     if SANITIZE_TOKENS:
         line_word_tokens = list(map(sanitize_token_to_lowercase, line_word_tokens))
     return line_class_value, line_word_tokens
-#
-#
-# if DEVE
-# total_time_spent_in_vocab = 0
 
-def create_classifier_and_classify_naive_bayes(training_set_lines, test_line, smoothing_factor):
-    training_vocab = lines_to_vocab(training_set_lines)
 
+def create_classifier_and_classify_naive_bayes(training_vocab, test_line, smoothing_factor):
+    # print "in create_classifier_and_classify"
     _, word_tokens = get_classvalue_and_wordtokens(test_line)
 
     if SANITIZE_TOKENS:
@@ -170,13 +163,15 @@ def create_classifier_and_classify_naive_bayes(training_set_lines, test_line, sm
     class_scores = []
     for class_i in output_class.CLASSES:
         class_i_score = calculate_score_of_testline_given_class(word_tokens, class_i, training_vocab,
-                                                                    smoothing_factor)
+                                                                smoothing_factor)
         class_scores.append(class_i_score)
 
     # NOTE: In case of multiple maximums, this function returns the first position.
     index_of_highest_score = class_scores.index(max(class_scores))
     if constants.DEBUG_VERBOSE:
         print "class scores are {} and index {} was selected".format(class_scores, index_of_highest_score)
+
+    # print "exiting create_classifier_and_classify"
 
     return index_of_highest_score
 
@@ -202,8 +197,6 @@ def separate_lines_by_class(lines):
         separated_lines[line_classvalue].append(line)
 
     return separated_lines
-
-
 
 
 #  [[part1_lines], [part2_lines], ..., [part_k_lines]]
@@ -247,10 +240,11 @@ def get_training_and_test_for_ith_split(k_splits, i):
     return training_lines, testing_lines
 
 
-def train_test_and_return_accuracy(training_lines, test_lines, smoothing_factor):
+def train_test_and_return_accuracy(training_vocab, test_lines, smoothing_factor):
     number_of_correct_predictions = 0
+
     for test_line in test_lines:
-        prediction = create_classifier_and_classify_naive_bayes(training_lines, test_line, smoothing_factor)
+        prediction = create_classifier_and_classify_naive_bayes(training_vocab, test_line, smoothing_factor)
         actual, _ = get_classvalue_and_wordtokens(test_line)
         if is_classification_correct(prediction, actual):
             number_of_correct_predictions += 1
@@ -278,21 +272,6 @@ def prepare_k_stratified_train_test_sets(input_file_dir, input_file_name):
             print "test set {} len {}:\n{}\n".format(i, len(test_set_i), test_set_i)
         train_test_sets.append((train_set_i, test_set_i))
     return train_test_sets
-
-
-# def cross_validate_kfold(train_test_sets):
-#     train = 0
-#     test = 1
-#     accuracies = []
-#     for i in range(0, K):
-#         if constants.DEBUG_VERBOSE:
-#             print "testing on strata {}".format(i+1)
-#         accuracy = train_test_and_return_accuracy(train_test_sets[i][train], train_test_sets[i][test], DEFAULT_SMOOTHING_FACTOR)
-#         accuracies.append(accuracy)
-#
-#     std, mean = statistics.calculate_std_mean(accuracies)
-#
-#     return std, mean
 
 
 def create_partial_training_sets_and_kfold_crossvalidate_return_accuracies(k_stratified_train_test_set_tuples,
@@ -323,7 +302,9 @@ def create_partial_training_sets_and_kfold_crossvalidate_return_accuracies(k_str
 
             partial_fraction_train_set = train_test_split[TRAIN][fraction_start:fraction_end]
 
-            partial_accuracy = train_test_and_return_accuracy(partial_fraction_train_set, test_set_for_kth_split,
+            training_vocab = lines_to_vocab(partial_fraction_train_set)
+
+            partial_accuracy = train_test_and_return_accuracy(training_vocab, test_set_for_kth_split,
                                                               smoothing_factor)
             partial_accuracies.append(partial_accuracy)
 
@@ -344,11 +325,13 @@ def kfold_crossvalidate_for_smoothing_factors_and_return_accuracies(k_stratified
         test_set_for_kth_split = train_test_split[TEST]
         accuracies_for_one_factor = []
 
+        training_vocab = lines_to_vocab(train_test_split[TRAIN])
+
         for smoothing_factor in smoothing_factors: # 0, 0.1, ..., 1.0, 2, ..., 20
             if constants.DEBUG_CLIENT:
                 print "* validating for smoothing factor {} *".format(smoothing_factor)
 
-            accuracy_for_one_factor = train_test_and_return_accuracy(train_test_split[TRAIN], test_set_for_kth_split,
+            accuracy_for_one_factor = train_test_and_return_accuracy(training_vocab, test_set_for_kth_split,
                                                                      smoothing_factor)
             accuracies_for_one_factor.append(accuracy_for_one_factor)
 
@@ -399,7 +382,7 @@ def solution_to_part_one():
         label_plot_x = "Training Size"
         label_plot_y = "Accuracy"
         plot.plot_accuracies_with_stderr_poly(label_plot, label_plot_x, label_plot_y,
-                                              [0, 1000], [0, 100], subplotable_objects)
+                                              [0, 1000], [0, 100], subplotable_objects, "hw1p1")
 
     elapsed_time = time.time() - start_time
     if constants.DEBUG_CLIENT:
@@ -419,19 +402,14 @@ def solution_to_part_two():
         if constants.DEBUG_CLIENT:
             print "**** Starting experiment with data from file: {} ****".format(data_set_file_name)
 
-        # returns [(std_0.1, mean_0.1), (std_0.2, mean_0.2), ..., (std_1.0, mean_1.0)]
         k_stratified_train_test_set_tuples = prepare_k_stratified_train_test_sets(
             INPUT_FILES_DIR, data_set_file_name)
 
         if constants.DEBUG_CLIENT:
             print "data stratified!"
 
-        # HINT: acc_s1p2 = accuracy of split 1, partial fraction 0.2
-        # returns: [[acc_s1p1, acc_s1p2, ... acc_s1p10], [acc_s2p1, acc_s2p2, ... acc_s2p10], ...
-        # ..., [acc_skp1, acc_skp2, ... acc_skp10]]
         accuracies_sets = kfold_crossvalidate_for_smoothing_factors_and_return_accuracies(k_stratified_train_test_set_tuples,
                                                                                      part_2_smoothing_factors)
-
         stds, means = statistics.calculate_std_mean(accuracies_sets)
 
         if constants.DEBUG_VERBOSE:
@@ -455,5 +433,5 @@ def solution_to_part_two():
 set_environment()
 
 solution_to_part_one()
-solution_to_part_two()
+# solution_to_part_two()
 

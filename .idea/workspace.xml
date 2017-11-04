@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="modernized directory" />
+    <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="sett">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/amazon_cells_labelled.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hw3.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imdb_labelled.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/word_in_vocab.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yelp_labelled.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/word.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hw2.py" afterPath="$PROJECT_DIR$/hw2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plot.py" afterPath="$PROJECT_DIR$/plot.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vocabulary.py" afterPath="$PROJECT_DIR$/vocabulary.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,71 +22,15 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="hw2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hw2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="60" column="29" lean-forward="true" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+            <state relative-caret-position="4698">
+              <caret line="261" column="0" lean-forward="false" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
               <folding>
-                <element signature="e#294#325#0" expanded="true" />
+                <element signature="e#537#568#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hw1_part1.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hw1_part1.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hw1_part.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hw1_part.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hw1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hw1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1289">
-              <caret line="299" column="22" lean-forward="false" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="constants.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/constants.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="word.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/word.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="subplotable.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/subplotable.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -83,8 +38,32 @@
       <file leaf-file-name="vocabulary.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vocabulary.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1249">
-              <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state relative-caret-position="558">
+              <caret line="31" column="10" lean-forward="false" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+              <folding>
+                <element signature="e#506#537#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/constants.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -93,21 +72,41 @@
       <file leaf-file-name="plot.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-774">
-              <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-              <folding>
-                <element signature="e#148#179#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1314">
+              <caret line="73" column="4" lean-forward="false" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="output_class.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output_class.py">
+      <file leaf-file-name="subplotable.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/subplotable.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+            <state relative-caret-position="198">
+              <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hw3.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hw3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="statistics.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/statistics.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="67" lean-forward="false" selection-start-line="5" selection-start-column="67" selection-end-line="5" selection-end-column="67" />
+              <folding>
+                <element signature="e#193#205#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,36 +122,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find />
-      <find>friend's</find>
-      <find>terrible</find>
-      <find>proba</find>
-      <find>prop</find>
-      <find>line num</find>
-      <find>getting</find>
-      <find>1</find>
-      <find>0\</find>
-      <find>range</find>
-      <find>(2</find>
-      <find>class sc</find>
-      <find>log</find>
-      <find>limi</find>
-      <find>DEBUG_VERBOSE</find>
-      <find>skippin</find>
-      <find>zer</find>
-      <find>deve</find>
-      <find>fra</find>
-      <find>print</find>
-      <find>:1</find>
-      <find>classify</find>
-      <find>todo</find>
-      <find>stack</find>
-      <find>std</find>
-      <find>sanitiz</find>
-      <find>default</find>
-      <find>subplotab</find>
       <find>means</find>
       <find>saniti</find>
+      <find>output</find>
+      <find>start</find>
+      <find>starting</find>
+      <find>prepare</find>
+      <find>factor</find>
+      <find>calc</find>
+      <find>propor</find>
+      <find>to_voc</find>
+      <find>set_t</find>
+      <find>words</find>
+      <find>look</find>
+      <find>seriously</find>
+      <find>to_line</find>
+      <find>folks</find>
+      <find>self.score</find>
+      <find>set.scores</find>
+      <find>key</find>
+      <find>get_tota</find>
+      <find>total</find>
+      <find>word value</find>
+      <find>total_count</find>
+      <find>appeti</find>
+      <find>appetizer</find>
+      <find>vocab</find>
+      <find>class_count</find>
+      <find>split</find>
+      <find>gett</find>
+      <find>subplo</find>
     </findStrings>
     <replaceStrings>
       <replace>constants.DEBUG_VERBOSE</replace>
@@ -171,13 +170,17 @@
         <option value="$PROJECT_DIR$/hw1.py" />
         <option value="$PROJECT_DIR$/plotable.py" />
         <option value="$PROJECT_DIR$/statistics.py" />
-        <option value="$PROJECT_DIR$/plot.py" />
         <option value="$PROJECT_DIR$/output_class.py" />
+        <option value="$PROJECT_DIR$/subplotable.py" />
+        <option value="$PROJECT_DIR$/plot.py" />
+        <option value="$PROJECT_DIR$/word.py" />
+        <option value="$PROJECT_DIR$/sentiment labelled sentences/word_in_vocab.py" />
+        <option value="$PROJECT_DIR$/word_in_vocab.py" />
         <option value="$PROJECT_DIR$/constants.py" />
         <option value="$PROJECT_DIR$/vocabulary.py" />
-        <option value="$PROJECT_DIR$/word.py" />
-        <option value="$PROJECT_DIR$/subplotable.py" />
+        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/hw2.py" />
+        <option value="$PROJECT_DIR$/hw3.py" />
       </list>
     </option>
   </component>
@@ -220,7 +223,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -250,10 +252,11 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -265,7 +268,11 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/../comp135hw1-for_ramtin" />
     </key>
   </component>
@@ -281,7 +288,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.hw2">
+  <component name="RunManager" selected="Python.test">
     <configuration default="false" name="Nosetests in hw1.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -352,6 +359,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="comp135hw1" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -417,18 +442,20 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in hw1.py" />
       <item index="1" class="java.lang.String" itemvalue="Python.hw1" />
       <item index="2" class="java.lang.String" itemvalue="Python.plot" />
       <item index="3" class="java.lang.String" itemvalue="Python.hw2" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.hw2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.hw1" />
-        <item index="2" class="java.lang.String" itemvalue="Python.plot" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests in hw1.py" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.test" />
+        <item index="1" class="java.lang.String" itemvalue="Python.hw2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.hw1" />
+        <item index="3" class="java.lang.String" itemvalue="Python.plot" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in hw1.py" />
       </list>
     </recent_temporary>
   </component>
@@ -579,14 +606,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3270242" sideWeight="0.50238097" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3270242" sideWeight="0.49761903" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270242" sideWeight="0.50476193" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270242" sideWeight="0.4952381" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19642857" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19583334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -596,6 +622,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.49761903" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -625,154 +652,29 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sentiment labelled sentences/amazon_cells_labelled.txt" />
-    <entry file="file://$PROJECT_DIR$/sentiment labelled sentences/yelp_labelled.txt" />
-    <entry file="file:///usr/lib/python2.7/random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1247972723/numpy/core/umath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="2302" column="4" lean-forward="false" selection-start-line="2302" selection-start-column="4" selection-end-line="2302" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw1_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 16:55:27.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw1_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:03:00.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw1_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 16:59:49.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 17:12:23.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:15:26.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 17:08:08.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 17:50:05.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 17:50:33.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:48:52.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:50:54.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:53:04.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 17:52:45.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 17:52:19.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 17:48:34.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:45:08.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:27:15.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 17:56:50.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:57:46.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:59:18.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:00:37.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:02:43.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 18:08:30.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:19:18.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 18:15:13.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 18:24:49.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:35:29.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 17:12:23.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:15:26.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 17:08:08.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 17:50:05.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 17:50:33.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:48:52.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:50:54.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:53:04.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 17:52:45.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 17:52:19.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 17:48:34.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:45:08.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:27:15.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 17:56:50.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:57:46.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:59:18.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:00:37.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:02:43.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 18:08:30.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:19:18.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-14 18:15:13.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-14 18:24:49.png" />
+    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:35:29.png" />
     <entry file="file://$PROJECT_DIR$/output/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 12:22:52.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -803,24 +705,26 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 14:45:10.png">
+    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 14:45:10.png" />
+    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 15:02:40.png" />
+    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 14:54:56.png" />
+    <entry file="file://$PROJECT_DIR$/hw1_part1.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 15:02:40.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/yelp_labelled.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 14:54:56.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 14:58:53.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/output_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/statistics.py">
@@ -833,82 +737,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw1_part1.png">
+    <entry file="file://$PROJECT_DIR$/hw1_part.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hw1_part.png">
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1247972723/numpy/core/umath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="2472" column="24" lean-forward="false" selection-start-line="2472" selection-start-column="15" selection-end-line="2472" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/word.py" />
+    <entry file="file://$PROJECT_DIR$/word_in_vocab.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 15:24:05.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 14:58:53.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 16:58:24.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hw1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1289">
-          <caret line="299" column="22" lean-forward="false" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
+        <state relative-caret-position="-22">
+          <caret line="138" column="4" lean-forward="false" selection-start-line="138" selection-start-column="4" selection-end-line="138" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vocabulary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1249">
-          <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/word.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/subplotable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="60" column="29" lean-forward="true" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
-          <folding>
-            <element signature="e#294#325#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-774">
-          <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        <state relative-caret-position="1314">
+          <caret line="73" column="4" lean-forward="false" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vocabulary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="31" column="10" lean-forward="false" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
           <folding>
-            <element signature="e#148#179#0" expanded="true" />
+            <element signature="e#506#537#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/constants.py">
+    <entry file="file://$PROJECT_DIR$/hw2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="4698">
+          <caret line="261" column="0" lean-forward="false" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
+          <folding>
+            <element signature="e#537#568#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/subplotable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
           <folding />
         </state>
       </provider>

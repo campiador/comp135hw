@@ -4,8 +4,6 @@
 #  COMP 135 Machine Learning
 #
 #  This module draws charts
-
-=======
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
