@@ -141,17 +141,20 @@ def cluster_k_means(k, examples):
     iteration = 0
 
     centers = pick_k_cluster_centers(k, examples, INIT_RANDOM)
-    print "centers", centers
+    if LOG_VERBOSE:
+        print "centers", centers
 
     while iteration < ITERATION_LIMIT:
-        print "\niteration:", iteration
+        # print "\niteration:", iteration
         clusters = associate_examples_with_centers(examples, centers)
-        if LOG_DEVELOPER:
+        if LOG_VERBOSE:
             print "clusters:", clusters
         centers = recalculate_means(clusters)
-        print "new_centers:", centers
-        print "new_centers length:", len(centers)
+        # print "new_centers:", centers
+        # print "new_centers length:", len(centers)
         if has_converged(centers):
+            if LOG_DEVELOPER:
+                print "converged on iteration", iteration
             break
         iteration += 1
 
@@ -313,6 +316,8 @@ if __name__ == "__main__":
     # test_hw3_parser()
 
     for file in DATASETS:
+        if LOG_DEVELOPER:
+            print file
         file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
         k = determine_number_of_classes(file_lines)
         examples = extract_examples(file_lines)
@@ -332,11 +337,7 @@ if __name__ == "__main__":
         print "cs:", cs
 
         golden_clusters = calculate_golden_clusters(k, examples)
+        nmi = calculate_clustering_nmi(clusters, golden_clusters)
+        print "nmi:", nmi
 
-        calculate_clustering_nmi(clusters, golden_clusters)
         print "\n"
-
-            # if LOG_DEVELOPER:
-    #     for example in examples:
-    #         print example
-
