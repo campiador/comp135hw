@@ -1,0 +1,3 @@
+LOG_VERBOSE = False
+LOG_DEVELOPER = True
+LOG_CLIENT = True
