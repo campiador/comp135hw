@@ -8,11 +8,21 @@
 
 
 class Example:
-    def __init__(self, id, attributes, label):
+    def __init__(self, id, features, label):
         """" @:param id corresponds to line number in the arff file
-             @:param attributes corresponds to feature values
+             @:param features corresponds to feature values
              @:param label corresponds to output label
         """
         self.id = id
-        self.attributes = attributes
+        self.features = features
         self.label = label
+
+
+def data_line_to_example(data_line, index):
+
+    data_line = data_line.replace(", ", ",")
+    features = data_line.split(",")
+
+    example = Example(index, features[0: -1], features[-1])
+
+    return example

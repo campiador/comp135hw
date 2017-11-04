@@ -22,6 +22,7 @@ import numpy as np
 
 # Control Variables
 from log.log import LOG_VERBOSE, LOG_DEVELOPER
+from models.example import data_line_to_example
 
 ON_SERVER = False
 INPUT_FILES_DIR = "."
@@ -204,7 +205,8 @@ def parse_file_to_lines(file_dir, file_name):
     # if LIMIT_LINES_TO_10:
     #     file_lines = file_lines[0:20]
 
-    print "lines read: ", len(file_lines)
+    if LOG_VERBOSE:
+        print "lines read: ", len(file_lines)
     return file_lines
 
 def part_1_1_random_initializtion():
@@ -244,8 +246,25 @@ def determine_number_of_classes(file_lines):
         return len(classes_list)
 
 
+def find_data_line_position(file_lines):
+    for i, line in enumerate(file_lines):
+        line = line.lower()
+        if line.startswith("@data"):
+            return i
+    # if @data not found
+    print "input file missed @data (case-insensitive) "
+    raise ValueError
+
+
+
 def extract_examples(file_lines):
-    pass
+    index_data = find_data_line_position(file_lines)
+    data_lines = file_lines[index_data + 1:]
+    examples = []
+    for i, data_line in enumerate(data_lines):
+        example = data_line_to_example(data_line, i)
+        examples.append(example)
+    return examples
 
 
 if __name__ == "__main__":
@@ -257,10 +276,18 @@ if __name__ == "__main__":
     for file in DATASETS:
         file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
         k = determine_number_of_classes(file_lines)
-        print "number of classes:", k , "\n"
-
-    examples = extract_examples(file_lines)
-    if LOG_DEVELOPER:
-        for example in examples:
-            print example
+        examples = extract_examples(file_lines)
+        if LOG_VERBOSE: #To make sure parsing was successful
+            print "dataset:", file
+            print "number of classes:", k
+            print "first line id:", examples[0].id
+            print "first line features:", examples[0].features
+            print "first line label:", examples[0].label, "\n"
+            print "last line id:", examples[-1].id
+            print "last line features:", examples[-1].features
+            print "last line label:", examples[-1].label
+            print "\n"
+    # if LOG_DEVELOPER:
+    #     for example in examples:
+    #         print example
 
