@@ -13,22 +13,17 @@
 
 from __future__ import division
 
+import os
 import random
-
+import re
 import time
 
-import constants
-import plot
-import subplotable
-import statistics
-import vocabulary
-from vocabulary import Vocabulary
-import output_class
-
-
-import re
 from numpy import log2
-import os
+
+from graphics import subplotable, plot
+from models import vocabulary, output_class, constants
+from models.vocabulary import Vocabulary
+from statistics_numeric_methods import statistics
 
 # CONSTANTS
 

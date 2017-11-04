@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import datetime
 import time
 
-import constants
+from models import constants
 
 CAPSIZE = 4
 PLOT_START = 0

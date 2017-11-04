@@ -1,13 +1,11 @@
 import commands
 import os
-
-from plot import plot_accuracies
-from plot import plot_accuracies_with_stderr
-
 import random
 
 import numpy
 
+from graphics.plot import plot_accuracies
+from graphics.plot import plot_accuracies_with_stderr
 
 RUNNING_ON_SERVER = True
 CLIENT_DEBUG = False

@@ -1,4 +1,6 @@
-from math import sqrt
+from __future__ import division
+from math import sqrt, log
+import numpy as np
 
 ITERATION_LIMIT = 500
 INIT_RANDOM = 0
@@ -110,9 +112,50 @@ def calculate_clustering_scatter(clusters, centers):
     return cluster_scatter
 
 
-# TODO: Implement
-def calculate_clustering_nmi(clusters, examples):
-    pass
+# Question: if an example is found multiple times in a cluster, should it increment the n score twice? probably yes.
+def calculate_clustering_nmi(clusters, golden_clusters):
+    row_dimension = len(clusters)
+    col_dimension = len(golden_clusters)
+    n_total = row_dimension * col_dimension
+    n_matrix = np.zeros(shape=(row_dimension, col_dimension), dtype=np.int)
+    a_vector = np.zeros(shape=row_dimension, dtype=np.int)
+    b_vector = np.zeros(shape=col_dimension, dtype=np.int)
+
+    for i, cluster in enumerate(clusters):
+        for j, golden_cluster in enumerate(golden_clusters):
+            for member in cluster:
+                for golden_member in golden_cluster:
+                    if member.attributes == golden_member.attributes: # Verify: example (member) data strcuture
+                        n_matrix[i][j] += 1
+                        a_vector[i] += 1
+                        b_vector[j] += 1
+
+    # H(U)
+    h_clusters = 0
+    for a_i in a_vector:
+        h_clusters += a_i * log(n_total / a_i)
+    h_clusters /= n_total
+
+    # H(V)
+    h_golden_clusters = 0
+    for b_i in b_vector:
+        h_golden_clusters += b_i * log(n_total / b_i)
+    h_golden_clusters /= n_total
+
+    # I(U, V)
+    i_clusters_and_golden_clusters = 0
+    for i in row_dimension:
+        for j in col_dimension:
+            i_clusters_and_golden_clusters += (n_matrix[i][j]) * log((n_matrix[i][j]* n_total)/a_vector[i]*b_vector[j])
+
+    nmi = (2 * i_clusters_and_golden_clusters) / (h_clusters + h_golden_clusters)
+
+    return nmi
+
+
+
+
+
 
 
 def part_1_1_random_initializtion():

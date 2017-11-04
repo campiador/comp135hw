@@ -6,7 +6,7 @@
 #  This class keeps statistical formulas for mean and std deviation
 import numpy
 
-import constants
+from models import constants
 
 
 # credit: https://stackoverflow.com/questions/15389768/standard-deviation-of-a-list
