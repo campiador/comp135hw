@@ -1,13 +1,61 @@
+# hw3.py
+# by Behnam Heydarshahi, November 2017
+# Empirical/Programming Assignment 3
+# COMP 135 Machine Learning
+#
+# This code implements k-means algorithm, it stops upon convergence of centers (means) or reaching ITERATION_LIMIT
+# PART 1: We initialize centers
+#         (i) randomly and then (ii) smartly,
+#         We report Cluster Scatter vs Normalized Mutual Information against label-driven golden clustering
+# Note: k = #labels
+#
+# PART 2: We try different K's from 2 to 22, see which one results in better CS.
+#
+
+
 from __future__ import division
+
+import os
 from math import sqrt, log
+
 import numpy as np
 
+# Control Variables
+from log.log import LOG_VERBOSE, LOG_DEVELOPER
+
+ON_SERVER = False
+INPUT_FILES_DIR = "."
 ITERATION_LIMIT = 500
+
+# Enums
 INIT_RANDOM = 0
 INIT_SMART = 1
 
 POSITIVE_INFINITY = float("inf")
 
+DATASET_FILE_ART_05 = "artdata0.5.arff"
+DATASET_FILE_ART_1 = "artdata1.arff"
+DATASET_FILE_ART_2 = "artdata2.arff"
+DATASET_FILE_ART_3 = "artdata3.arff"
+DATASET_FILE_ART_4 = "artdata4.arff"
+DATASET_FILE_IONOSPHERE = "ionosphere.arff"
+DATASET_FILE_IRIS = "iris.arff"
+DATASET_FILE_SOYBEAN = "soybean-processed.arff"
+
+DATASETS = [DATASET_FILE_ART_05, DATASET_FILE_ART_1, DATASET_FILE_ART_2, DATASET_FILE_ART_3, DATASET_FILE_ART_4,
+            DATASET_FILE_IONOSPHERE, DATASET_FILE_IRIS, DATASET_FILE_SOYBEAN]
+
+
+
+def set_environment():
+    global INPUT_FILES_DIR
+    # Don't put a "/" in the end of the path
+    if ON_SERVER:
+        INPUT_FILES_DIR = "."
+    else:  # On local machine
+        INPUT_FILES_DIR = "./input/hw3/data"
+    if not os.path.exists("./output/hw3"):
+        os.makedirs("./output/hw3")
 
 def has_converged(new_centers):
     if has_converged.last_centers == new_centers:
@@ -59,7 +107,7 @@ def associate_examples_with_centers(examples, centers):
     for example in examples:
         index_closest_center = find_closest_center(example, centers)
         clusters[index_closest_center].append(example)
-    pass
+    return clusters
 
 
 def find_center(cluster):
@@ -96,9 +144,6 @@ def cluster_k_means(k, examples):
 
     return clusters, centers
 
-
-def parse_examples_from_file_to_list(data_set_file_path):
-    pass
 
 # FIXME: NOT SURE how to calculate cluster scatter
 def calculate_clustering_scatter(clusters, centers):
@@ -153,17 +198,21 @@ def calculate_clustering_nmi(clusters, golden_clusters):
     return nmi
 
 
+def parse_file_to_lines(file_dir, file_name):
 
+    file_lines = open("{}/{}".format(file_dir, file_name), 'r').readlines()
+    # if LIMIT_LINES_TO_10:
+    #     file_lines = file_lines[0:20]
 
-
-
+    print "lines read: ", len(file_lines)
+    return file_lines
 
 def part_1_1_random_initializtion():
 
     k = 0
     data_set_file_path = ""
 
-    examples = parse_examples_from_file_to_list(data_set_file_path)
+    file_lines = parse_file_to_lines(data_set_file_path)
 
     clusters, centers = cluster_k_means(k, examples)
 
@@ -179,7 +228,39 @@ def part_2_effect_of_k_on_cs():
     pass
 
 
+def determine_number_of_classes(file_lines):
+    class_line = ""
+    for file_line in file_lines:
+        file_line = file_line.lower()
+        if file_line.startswith("@attribute class"):
+            class_line = file_line
+            break
+    if class_line is "":
+        raise ValueError
+    else: # class_line found
+        classes_string = class_line[class_line.index('{') + 1:class_line.index('}')]
+        classes_string.replace(" ,", ",")
+        classes_list = classes_string.split(",")
+        return len(classes_list)
+
+
+def extract_examples(file_lines):
+    pass
+
+
 if __name__ == "__main__":
-    part_1_1_random_initializtion()
-    part_1_2_smart_initialization()
-    part_2_effect_of_k_on_cs()
+    set_environment()
+    # part_1_1_random_initializtion()
+    # part_1_2_smart_initialization()
+    # part_2_effect_of_k_on_cs()
+
+    for file in DATASETS:
+        file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
+        k = determine_number_of_classes(file_lines)
+        print "number of classes:", k , "\n"
+
+    examples = extract_examples(file_lines)
+    if LOG_DEVELOPER:
+        for example in examples:
+            print example
+

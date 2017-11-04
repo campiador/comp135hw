@@ -58,7 +58,7 @@ def set_environment():
     if ON_SERVER:
         INPUT_FILES_DIR = "."
     else:  # On local machine
-        INPUT_FILES_DIR = "./sentiment labelled sentences"
+        INPUT_FILES_DIR = "./hw2 sentiment labelled sentences"
     if not os.path.exists("./output/"):
         os.makedirs("./output/")
 
