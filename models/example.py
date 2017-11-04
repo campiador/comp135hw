@@ -17,12 +17,21 @@ class Example:
         self.features = features
         self.label = label
 
+    def __str__(self):
+        return "example ".format(self.id)
+
+    def __repr__(self):
+        return "example {}".format(self.id)
+
 
 def data_line_to_example(data_line, index):
 
     data_line = data_line.replace(", ", ",")
     features = data_line.split(",")
-
-    example = Example(index, features[0: -1], features[-1])
+    float_features = map(float, features[0:-1])
+    label = features[-1]
+    example = Example(index, float_features, label)
 
     return example
+
+

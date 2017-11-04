@@ -16,6 +16,7 @@
 from __future__ import division
 
 import os
+import random
 from math import sqrt, log
 
 import numpy as np
@@ -23,6 +24,7 @@ import numpy as np
 # Control Variables
 from log.log import LOG_VERBOSE, LOG_DEVELOPER
 from models.example import data_line_to_example
+# from tests.hw3.unit_test import test_hw3_parser
 
 ON_SERVER = False
 INPUT_FILES_DIR = "."
@@ -68,10 +70,17 @@ def has_converged(new_centers):
 has_converged.last_centers = [] # initializing static variable
 
 
-# TODO: Develop!
+# NOTE: Add the only the example's features to the centers, not the whole example
 def pick_k_cluster_centers(k, examples, random_or_smart_initializtion):
+    centers = []
+    count_examples = len(examples)
     if INIT_RANDOM == random_or_smart_initializtion:
-        pass
+        while len(centers) < k:
+            random_id = random.randrange(0, count_examples)
+            random_example = examples[random_id]
+            if random_example.features not in centers:
+                centers.append(random_example.features)
+        return centers
     elif INIT_SMART == random_or_smart_initializtion:
         pass
     else:
@@ -81,11 +90,10 @@ def pick_k_cluster_centers(k, examples, random_or_smart_initializtion):
 
 def distance(example, center):
     distance_sum = 0
-    center_features = center.features()
-    example_features = example.features()
+    example_features = example.features
 
     for i, example_feature in enumerate(example_features):
-        distance_sum += (example_feature - center_features[i]) ** 2
+        distance_sum += (example_feature - center[i]) ** 2
 
     return sqrt(distance_sum)
 
@@ -103,8 +111,7 @@ def find_closest_center(example, centers):
 
 
 def associate_examples_with_centers(examples, centers):
-    clusters = []
-    # for i, center in enumerate(centers):
+    clusters = [[] for _ in centers]
     for example in examples:
         index_closest_center = find_closest_center(example, centers)
         clusters[index_closest_center].append(example)
@@ -112,14 +119,14 @@ def associate_examples_with_centers(examples, centers):
 
 
 def find_center(cluster):
-    sum_of_features = 0
+    sum_of_features = []
     for member in cluster:
-        for i, feature_value in member: #FIXME: member data structure unknown
+        for i, feature_value in enumerate(member.features):
+            sum_of_features.append(0)
             sum_of_features[i] += feature_value
-    cluster_mean  = sum_of_features / len(cluster)
+    cluster_mean = [feature_i / len(cluster) for feature_i in sum_of_features]
 
     return cluster_mean
-
 
 
 def recalculate_means(clusters):
@@ -127,18 +134,23 @@ def recalculate_means(clusters):
     for cluster in clusters:
         center = find_center(cluster)
         new_centers.append(center)
-
     return new_centers
 
 
 def cluster_k_means(k, examples):
     iteration = 0
 
-    centers = pick_k_cluster_centers(k)
+    centers = pick_k_cluster_centers(k, examples, INIT_RANDOM)
+    print "centers", centers
 
     while iteration < ITERATION_LIMIT:
+        print "\niteration:", iteration
         clusters = associate_examples_with_centers(examples, centers)
+        if LOG_DEVELOPER:
+            print "clusters:", clusters
         centers = recalculate_means(clusters)
+        print "new_centers:", centers
+        print "new_centers length:", len(centers)
         if has_converged(centers):
             break
         iteration += 1
@@ -146,15 +158,14 @@ def cluster_k_means(k, examples):
     return clusters, centers
 
 
-# FIXME: NOT SURE how to calculate cluster scatter
 def calculate_clustering_scatter(clusters, centers):
     cluster_scatter = 0
-    for i, cluster in enumerate(clusters):
-        cluster_center = find_center(cluster)
+    for j, cluster in enumerate(clusters):
         for cluster_member in cluster:
-            for i, attribute in cluster_member:
+            for i, attribute in enumerate(cluster_member.features):
                 # FIXME: assuming each member (or center) is on array of only i attributes
-                cluster_scatter += (attribute - cluster_center[i]) ** 2
+                cluster_scatter += (attribute - centers[j][i]) ** 2
+
     return cluster_scatter
 
 
@@ -171,7 +182,7 @@ def calculate_clustering_nmi(clusters, golden_clusters):
         for j, golden_cluster in enumerate(golden_clusters):
             for member in cluster:
                 for golden_member in golden_cluster:
-                    if member.attributes == golden_member.attributes: # Verify: example (member) data strcuture
+                    if member.features == golden_member.features: # Verify: example (member) data strcuture
                         n_matrix[i][j] += 1
                         a_vector[i] += 1
                         b_vector[j] += 1
@@ -190,9 +201,12 @@ def calculate_clustering_nmi(clusters, golden_clusters):
 
     # I(U, V)
     i_clusters_and_golden_clusters = 0
-    for i in row_dimension:
-        for j in col_dimension:
-            i_clusters_and_golden_clusters += (n_matrix[i][j]) * log((n_matrix[i][j]* n_total)/a_vector[i]*b_vector[j])
+    for i in range(0, row_dimension):
+        for j in range(0, col_dimension):
+            if n_matrix[i][j] == 0:
+                continue
+            else:
+                i_clusters_and_golden_clusters += (n_matrix[i][j]) * log((n_matrix[i][j]* n_total)/a_vector[i]*b_vector[j])
 
     nmi = (2 * i_clusters_and_golden_clusters) / (h_clusters + h_golden_clusters)
 
@@ -208,6 +222,7 @@ def parse_file_to_lines(file_dir, file_name):
     if LOG_VERBOSE:
         print "lines read: ", len(file_lines)
     return file_lines
+
 
 def part_1_1_random_initializtion():
 
@@ -267,11 +282,35 @@ def extract_examples(file_lines):
     return examples
 
 
+def find_all_k_labels_in_examples(k, examples):
+    labels = []
+    for example in examples:
+        if example.label not in labels:
+            labels.append(example.label)
+        if len(labels) == k: #we have all the labels, no need to go through more examples
+            break
+    return labels
+
+
+def calculate_golden_clusters(k, examples):
+    golden_clusters = [[] for _ in range(0, k)]
+
+    all_k_labels = find_all_k_labels_in_examples(k, examples)
+
+    for example in examples:
+        cluster_number = all_k_labels.index(example.label)
+        golden_clusters[cluster_number].append(example)
+
+    return golden_clusters
+
+
+
 if __name__ == "__main__":
     set_environment()
     # part_1_1_random_initializtion()
     # part_1_2_smart_initialization()
     # part_2_effect_of_k_on_cs()
+    # test_hw3_parser()
 
     for file in DATASETS:
         file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
@@ -286,8 +325,18 @@ if __name__ == "__main__":
             print "last line id:", examples[-1].id
             print "last line features:", examples[-1].features
             print "last line label:", examples[-1].label
-            print "\n"
-    # if LOG_DEVELOPER:
+
+        clusters, centers = cluster_k_means(k, examples)
+
+        cs = calculate_clustering_scatter(clusters, centers)
+        print "cs:", cs
+
+        golden_clusters = calculate_golden_clusters(k, examples)
+
+        calculate_clustering_nmi(clusters, golden_clusters)
+        print "\n"
+
+            # if LOG_DEVELOPER:
     #     for example in examples:
     #         print example
 
