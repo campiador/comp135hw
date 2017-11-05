@@ -18,8 +18,8 @@
       <file leaf-file-name="hw3.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="187" column="41" lean-forward="false" selection-start-line="187" selection-start-column="41" selection-end-line="187" selection-end-column="41" />
+            <state relative-caret-position="448">
+              <caret line="227" column="45" lean-forward="true" selection-start-line="227" selection-start-column="45" selection-end-line="227" selection-end-column="45" />
               <folding>
                 <element signature="e#523#554#0" expanded="true" />
               </folding>
@@ -693,7 +693,21 @@
       <option name="project" value="LOCAL" />
       <updated>1509831829256</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="bug report: NMI value too high">
+      <created>1509905630232</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1509905630232</updated>
+    </task>
+    <task id="LOCAL-00027" summary="debugged error: high nmi. bug cause: (1) n_total init wrong. (ii) I(H, V) formula missing n_total">
+      <created>1509906489472</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1509906489472</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -741,7 +755,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="second commit" />
     <MESSAGE value="works local and remote" />
     <MESSAGE value="part (a) done" />
     <MESSAGE value="part b started" />
@@ -765,7 +778,9 @@
     <MESSAGE value="kmeans implemented and tested with nmi and cs" />
     <MESSAGE value="clean logging" />
     <MESSAGE value="debugged nmi formula" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugged nmi formula" />
+    <MESSAGE value="bug report: NMI value too high" />
+    <MESSAGE value="debugged error: high nmi. bug cause: (1) n_total init wrong. (ii) I(H, V) formula missing n_total" />
+    <option name="LAST_COMMIT_MESSAGE" value="debugged error: high nmi. bug cause: (1) n_total init wrong. (ii) I(H, V) formula missing n_total" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1026,8 +1041,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hw3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="187" column="41" lean-forward="false" selection-start-line="187" selection-start-column="41" selection-end-line="187" selection-end-column="41" />
+        <state relative-caret-position="448">
+          <caret line="227" column="45" lean-forward="true" selection-start-line="227" selection-start-column="45" selection-end-line="227" selection-end-column="45" />
           <folding>
             <element signature="e#523#554#0" expanded="true" />
           </folding>

@@ -224,8 +224,8 @@ def calculate_clustering_nmi(clusters, golden_clusters):
             if n_matrix[i][j] == 0:
                 continue
             else:
-                i_clusters_and_golden_clusters += (n_matrix[i][j] / n_total) * \
-                                                  log((n_matrix[i][j] * n_total) / (a_vector[i] * b_vector[j]))
+                i_clusters_and_golden_clusters += n_matrix[i][j] * log((n_matrix[i][j] * n_total) / (a_vector[i] * b_vector[j]))
+    i_clusters_and_golden_clusters /= n_total
 
     # NMI(U, V)
     nmi = (2 * i_clusters_and_golden_clusters) / (h_clusters + h_golden_clusters)
