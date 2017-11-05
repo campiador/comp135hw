@@ -24,6 +24,7 @@ import numpy as np
 # Control Variables
 from log.log import LOG_VERBOSE, LOG_DEVELOPER
 from models.example import data_line_to_example
+
 # from tests.hw3.unit_test import test_hw3_parser
 
 ON_SERVER = False
@@ -129,10 +130,16 @@ def find_center(cluster):
     return cluster_mean
 
 
-def recalculate_means(clusters):
+# Passing a random example is necessary in case we run into an empty cluster and need a center for it
+def recalculate_means(clusters, random_example):
     new_centers = []
     for cluster in clusters:
-        center = find_center(cluster)
+        if len(cluster) == 0: # Empty cluster
+            if LOG_DEVELOPER:
+                print "empty cluster found, using random example"
+            center = random_example.features
+        else:
+            center = find_center(cluster)
         new_centers.append(center)
     return new_centers
 
@@ -141,15 +148,20 @@ def cluster_k_means(k, examples):
     iteration = 0
 
     centers = pick_k_cluster_centers(k, examples, INIT_RANDOM)
+
     if LOG_VERBOSE:
         print "centers", centers
 
     while iteration < ITERATION_LIMIT:
-        # print "\niteration:", iteration
+        if LOG_VERBOSE:
+            print "\niteration:", iteration
         clusters = associate_examples_with_centers(examples, centers)
         if LOG_VERBOSE:
             print "clusters:", clusters
-        centers = recalculate_means(clusters)
+
+        random_example = examples[random.randrange(0, len(examples))]
+
+        centers = recalculate_means(clusters, random_example)
         # print "new_centers:", centers
         # print "new_centers length:", len(centers)
         if has_converged(centers):
@@ -173,10 +185,12 @@ def calculate_clustering_scatter(clusters, centers):
 
 
 # Question: if an example is found multiple times in a cluster, should it increment the n score twice? probably yes.
+# FIXME: Output should be between 0 and 1
 def calculate_clustering_nmi(clusters, golden_clusters):
     row_dimension = len(clusters)
     col_dimension = len(golden_clusters)
-    n_total = row_dimension * col_dimension
+    # n_total = row_dimension * col_dimension
+    n_total = 0
     n_matrix = np.zeros(shape=(row_dimension, col_dimension), dtype=np.int)
     a_vector = np.zeros(shape=row_dimension, dtype=np.int)
     b_vector = np.zeros(shape=col_dimension, dtype=np.int)
@@ -189,6 +203,7 @@ def calculate_clustering_nmi(clusters, golden_clusters):
                         n_matrix[i][j] += 1
                         a_vector[i] += 1
                         b_vector[j] += 1
+                        n_total += 1
 
     # H(U)
     h_clusters = 0
@@ -316,29 +331,30 @@ if __name__ == "__main__":
     # part_2_effect_of_k_on_cs()
     # test_hw3_parser()
 
-    for file in DATASETS:
-        if LOG_DEVELOPER:
-            print file
-        file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
-        k = determine_number_of_classes(file_lines)
-        examples = extract_examples(file_lines)
-        if LOG_VERBOSE: #To make sure parsing was successful
-            print "dataset:", file
-            print "number of classes:", k
-            print "first line id:", examples[0].id
-            print "first line features:", examples[0].features
-            print "first line label:", examples[0].label, "\n"
-            print "last line id:", examples[-1].id
-            print "last line features:", examples[-1].features
-            print "last line label:", examples[-1].label
+    # for file in DATASETS:
+    file = DATASET_FILE_SOYBEAN
+    if LOG_DEVELOPER:
+        print file
+    file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
+    k = determine_number_of_classes(file_lines)
+    examples = extract_examples(file_lines)
+    if LOG_VERBOSE: #To make sure parsing was successful
+        print "dataset:", file
+        print "number of classes:", k
+        print "first line id:", examples[0].id
+        print "first line features:", examples[0].features
+        print "first line label:", examples[0].label, "\n"
+        print "last line id:", examples[-1].id
+        print "last line features:", examples[-1].features
+        print "last line label:", examples[-1].label
 
-        clusters, centers = cluster_k_means(k, examples)
+    clusters, centers = cluster_k_means(k, examples)
 
-        cs = calculate_clustering_scatter(clusters, centers)
-        print "cs:", cs
+    cs = calculate_clustering_scatter(clusters, centers)
+    print "cs:", cs
 
-        golden_clusters = calculate_golden_clusters(k, examples)
-        nmi = calculate_clustering_nmi(clusters, golden_clusters)
-        print "nmi:", nmi
+    golden_clusters = calculate_golden_clusters(k, examples)
+    nmi = calculate_clustering_nmi(clusters, golden_clusters)
+    print "nmi:", nmi
 
-        print "\n"
+    print "\n"
