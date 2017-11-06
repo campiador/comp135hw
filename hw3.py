@@ -326,7 +326,7 @@ def find_all_k_labels_in_examples(k, examples):
     for example in examples:
         if example.label not in labels:
             labels.append(example.label)
-        if len(labels) == k: #we have all the labels, no need to go through more examples
+        if len(labels) == k:  # We have all the labels, no need to go through more examples
             break
     return labels
 
@@ -406,50 +406,48 @@ def part_2_effect_of_k_on_cs(examples, golden_clusters):
 
 if __name__ == "__main__":
     set_environment()
-    # test_hw3_parser()
     start_time = time.time()
 
-    # for file in DATASETS:
-    file = DATASET_FILE_SOYBEAN
-    if LOG_DEVELOPER:
-        print file
-    file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
-    k = determine_number_of_classes(file_lines)
-    examples = extract_examples(file_lines)
-    if LOG_VERBOSE: #To make sure parsing was successful
-        print "dataset:", file
-        print "number of classes:", k
-        print "first line id:", examples[0].id
-        print "first line features:", examples[0].features
-        print "first line label:", examples[0].label, "\n"
-        print "last line id:", examples[-1].id
-        print "last line features:", examples[-1].features
-        print "last line label:", examples[-1].label
+    for file in DATASETS:
+        if LOG_DEVELOPER:
+            print file
+        file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
+        k = determine_number_of_classes(file_lines)
+        examples = extract_examples(file_lines)
+        if LOG_VERBOSE: #To make sure parsing was successful
+            print "dataset:", file
+            print "number of classes:", k
+            print "first line id:", examples[0].id
+            print "first line features:", examples[0].features
+            print "first line label:", examples[0].label, "\n"
+            print "last line id:", examples[-1].id
+            print "last line features:", examples[-1].features
+            print "last line label:", examples[-1].label
 
 
-    golden_clusters = calculate_golden_clusters(k, examples)
+        golden_clusters = calculate_golden_clusters(k, examples)
 
 
-    part_start_time = time.time()
-    part_1_1_random_initialization(k, examples, golden_clusters)
-    part_elapsed_time = time.time() - part_start_time
-    if LOG_CLIENT:
-        print "part 1.1 took {} seconds to run".format(part_elapsed_time)
+        part_start_time = time.time()
+        part_1_1_random_initialization(k, examples, golden_clusters)
+        part_elapsed_time = time.time() - part_start_time
+        if LOG_CLIENT:
+            print "part 1.1 took {} seconds to run".format(part_elapsed_time)
 
-    part_start_time = time.time()
-    part_1_2_smart_initialization(k, examples, golden_clusters)
-    part_elapsed_time = time.time() - part_start_time
-    if LOG_CLIENT:
-        print "part 1.2 took {} seconds to run".format(part_elapsed_time)
+        part_start_time = time.time()
+        part_1_2_smart_initialization(k, examples, golden_clusters)
+        part_elapsed_time = time.time() - part_start_time
+        if LOG_CLIENT:
+            print "part 1.2 took {} seconds to run".format(part_elapsed_time)
 
-    part_start_time = time.time()
-    part_2_effect_of_k_on_cs(examples, [])
-    part_elapsed_time = time.time() - part_start_time
-    if LOG_CLIENT:
-        print "part 2 took {} seconds to run".format(part_elapsed_time)
+        part_start_time = time.time()
+        part_2_effect_of_k_on_cs(examples, [])
+        part_elapsed_time = time.time() - part_start_time
+        if LOG_CLIENT:
+            print "part 2 took {} seconds to run".format(part_elapsed_time)
 
-    elapsed_time = time.time() - start_time
+        elapsed_time = time.time() - start_time
 
-    if LOG_CLIENT:
-        print "program took {} seconds to run".format(elapsed_time)
+        if LOG_CLIENT:
+            print "program took {} seconds to run".format(elapsed_time)
 
