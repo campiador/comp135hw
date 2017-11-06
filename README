@@ -1,0 +1,14 @@
+Behnam Heydarshahi
+Machine Learning Assignment 3
+k-means clustering
+
+EXECUTION INSTRUCTIONS:
+
+   ./compile_and_run
+
+NOTE:
+If ran into problems, check INPUT_FILES_PATH variable in hw3.py
+I usually keep input files in ./input/ directory.
+    
+OUTPUT:
+The resulting charts will be in 6 png files in ./output/hw3/ directory.
