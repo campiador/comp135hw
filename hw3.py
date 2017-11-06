@@ -22,7 +22,9 @@ from math import sqrt, log
 import numpy as np
 
 # Control Variables
-from log.log import LOG_VERBOSE, LOG_DEVELOPER
+import time
+
+from log.log import LOG_VERBOSE, LOG_DEVELOPER, LOG_CLIENT
 from models.example import data_line_to_example
 
 # from tests.hw3.unit_test import test_hw3_parser
@@ -93,7 +95,7 @@ def generate_cluster_centers(k, examples, random_or_smart_initializtion):
             for i, random_center in enumerate(ten_random_centers):
                 for _, smart_center in enumerate(smart_centers):
 
-                    min_distance_from_this_smart_center = distance_fix_my_references_please_behnam(random_center, smart_center)
+                    min_distance_from_this_smart_center = distance(random_center, smart_center)
 
                     if min_distance_from_this_smart_center < ten_random_centers_min_distances[i]:
                         ten_random_centers_min_distances[i] = min_distance_from_this_smart_center
@@ -122,7 +124,7 @@ def generate_k_different_random_centers(examples, k):
     return different_centers
 
 
-def distance_fix_my_references_please_behnam(example_features, center):
+def distance(example_features, center):
     distance_sum = 0
 
     for i, example_feature in enumerate(example_features):
@@ -135,7 +137,7 @@ def find_closest_center(example, centers):
     index_min_distance = 0
     min_distance = POSITIVE_INFINITY
     for i, center in enumerate(centers):
-        distance_from_center = distance_fix_my_references_please_behnam(example.features, center)
+        distance_from_center = distance(example.features, center)
         if distance_from_center < min_distance:
             min_distance = distance_from_center
             index_min_distance = i
@@ -187,7 +189,7 @@ def cluster_k_means(k, examples, initialization_method):
 
     while iteration < ITERATION_LIMIT:
         if LOG_VERBOSE:
-            print "\niteration:", iteration
+            print "iteration:", iteration
 
         # ASSOCIATION
         clusters = associate_examples_with_centers(examples, centers)
@@ -203,11 +205,10 @@ def cluster_k_means(k, examples, initialization_method):
 
         # ADJUSTING CENTERS
         centers = recalculate_means(clusters, random_centers)
-        # print "new_centers:", centers
-        # print "new_centers length:", len(centers)
+
         if has_converged(centers):
-            if LOG_DEVELOPER:
-                print "converged on iteration", iteration
+            if LOG_VERBOSE:
+                print "converged after {} iterations".format(iteration)
             break
         iteration += 1
 
@@ -219,14 +220,12 @@ def calculate_clustering_scatter(clusters, centers):
     for j, cluster in enumerate(clusters):
         for cluster_member in cluster:
             for i, attribute in enumerate(cluster_member.features):
-                # FIXME: assuming each member (or center) is on array of only i attributes
                 cluster_scatter += (attribute - centers[j][i]) ** 2
 
     return cluster_scatter
 
 
 # Question: if an example is found multiple times in a cluster, should it increment the n score twice? probably yes.
-# FIXME: Output should be between 0 and 1
 def calculate_clustering_nmi(clusters, golden_clusters):
     row_dimension = len(clusters)
     col_dimension = len(golden_clusters)
@@ -283,26 +282,6 @@ def parse_file_to_lines(file_dir, file_name):
     if LOG_VERBOSE:
         print "lines read: ", len(file_lines)
     return file_lines
-
-
-def part_1_1_random_initialization(k, examples, golden_clusters):
-    init_method = INIT_RANDOM
-    cs_nmi_list = []
-    for i in range(0, NUMBER_OF_RANDOM_INITIALIZTIONS):
-        cs_nmi = cluster_and_return_cs_nmi(k, examples, init_method, golden_clusters)
-        cs_nmi_list.append(cs_nmi)
-
-    return cs_nmi_list
-
-
-def part_1_2_smart_initialization(k, examples, golden_clusters):
-    init_method = INIT_SMART
-    cs_nmi = cluster_and_return_cs_nmi(k, examples, init_method, golden_clusters)
-    return cs_nmi
-
-
-def part_2_effect_of_k_on_cs():
-    pass
 
 
 def determine_number_of_classes(file_lines):
@@ -367,25 +346,68 @@ def calculate_golden_clusters(k, examples):
 def cluster_and_return_cs_nmi(k, examples, init_method, golden_clusters):
     clusters, centers = cluster_k_means(k, examples, init_method)
     cs = calculate_clustering_scatter(clusters, centers)
-    if LOG_DEVELOPER:
+    if LOG_VERBOSE:
         print "cs:", cs
     if len(golden_clusters) == 0:  # if we do not need nmi, just return -1 for it
         nmi = -1
     else:
         nmi = calculate_clustering_nmi(clusters, golden_clusters)
-    if LOG_DEVELOPER:
+    if LOG_VERBOSE:
         print "nmi:", nmi
     print "\n"
 
     return cs, nmi
 
 
+def part_1_1_random_initialization(k, examples, golden_clusters):
+    if LOG_CLIENT:
+        print "\nPART 1.1: effect of random center initializtion on CS and NMI"
+
+    init_method = INIT_RANDOM
+    cs_nmi_list = []
+    for i in range(0, NUMBER_OF_RANDOM_INITIALIZTIONS):
+        if LOG_CLIENT:
+            print "random initialization iteration:", i+1
+        cs_nmi = cluster_and_return_cs_nmi(k, examples, init_method, golden_clusters)
+        cs_nmi_list.append(cs_nmi)
+
+    return cs_nmi_list
+
+
+def part_1_2_smart_initialization(k, examples, golden_clusters):
+    if LOG_CLIENT:
+        print "\nPART 1.2: effect of smart center initializtion on CS and NMI"
+
+    cs_nmi = cluster_and_return_cs_nmi(k, examples, INIT_SMART, golden_clusters)
+    return cs_nmi
+
+
+def part_2_effect_of_k_on_cs(examples, golden_clusters):
+    if LOG_CLIENT:
+        print "\nPART 2: effect of k on CS"
+
+    k_cs_list = []
+
+    for k in range(2, 23):  # 2, 3, 4, ..., 22
+        if LOG_CLIENT:
+            print "k=", k
+
+        for i in range(0, 10):
+            if LOG_CLIENT:
+                print "k:{}, iteration:{}".format(k, i+1)
+            lowest_cs = POSITIVE_INFINITY
+            (cs, _) = cluster_and_return_cs_nmi(k, examples, INIT_RANDOM, golden_clusters)
+            if cs < lowest_cs:
+                lowest_cs = cs
+        best_of_ten = (k, lowest_cs)
+        k_cs_list.append(best_of_ten)
+
+    return k_cs_list
+
 if __name__ == "__main__":
     set_environment()
-
-    # part_1_2_smart_initialization()
-    # part_2_effect_of_k_on_cs()
     # test_hw3_parser()
+    start_time = time.time()
 
     # for file in DATASETS:
     file = DATASET_FILE_SOYBEAN
@@ -404,7 +426,30 @@ if __name__ == "__main__":
         print "last line features:", examples[-1].features
         print "last line label:", examples[-1].label
 
+
     golden_clusters = calculate_golden_clusters(k, examples)
 
+
+    part_start_time = time.time()
     part_1_1_random_initialization(k, examples, golden_clusters)
+    part_elapsed_time = time.time() - part_start_time
+    if LOG_CLIENT:
+        print "part 1.1 took {} seconds to run".format(part_elapsed_time)
+
+    part_start_time = time.time()
     part_1_2_smart_initialization(k, examples, golden_clusters)
+    part_elapsed_time = time.time() - part_start_time
+    if LOG_CLIENT:
+        print "part 1.2 took {} seconds to run".format(part_elapsed_time)
+
+    part_start_time = time.time()
+    part_2_effect_of_k_on_cs(examples, [])
+    part_elapsed_time = time.time() - part_start_time
+    if LOG_CLIENT:
+        print "part 2 took {} seconds to run".format(part_elapsed_time)
+
+    elapsed_time = time.time() - start_time
+
+    if LOG_CLIENT:
+        print "program took {} seconds to run".format(elapsed_time)
+

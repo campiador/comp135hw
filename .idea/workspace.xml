@@ -18,21 +18,11 @@
       <file leaf-file-name="hw3.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="409" column="63" lean-forward="true" selection-start-line="409" selection-start-column="63" selection-end-line="409" selection-end-column="63" />
+            <state relative-caret-position="1685">
+              <caret line="246" column="0" lean-forward="true" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
               <folding>
                 <element signature="e#523#554#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="example.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/example.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -98,12 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>total_count</find>
-      <find>appeti</find>
-      <find>appetizer</find>
-      <find>vocab</find>
-      <find>class_count</find>
-      <find>split</find>
       <find>gett</find>
       <find>subplo</find>
       <find>zer</find>
@@ -128,6 +112,12 @@
       <find>len te</find>
       <find>pr</find>
       <find>print</find>
+      <find>converged on ite</find>
+      <find>\n</find>
+      <find>random ite</find>
+      <find>converged af</find>
+      <find>FIXME</find>
+      <find>distance(</find>
     </findStrings>
     <replaceStrings>
       <replace>constants.DEBUG_VERBOSE</replace>
@@ -155,10 +145,10 @@
         <option value="$PROJECT_DIR$/constants.py" />
         <option value="$PROJECT_DIR$/vocabulary.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/hw2.py" />
         <option value="$PROJECT_DIR$/log/log.py" />
         <option value="$PROJECT_DIR$/tests/hw3/unit_test.py" />
         <option value="$PROJECT_DIR$/models/example.py" />
+        <option value="$PROJECT_DIR$/hw2.py" />
         <option value="$PROJECT_DIR$/hw3.py" />
         <option value="$PROJECT_DIR$/hw3.py" />
       </list>
@@ -714,7 +704,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509906597639</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="smart init implemented">
+      <created>1509933968486</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1509933968486</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -735,13 +732,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270242" sideWeight="0.35059524" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3270242" sideWeight="0.64940476" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26939654" sideWeight="0.20501836" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265086" sideWeight="0.6462668" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19583334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20134638" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26939654" sideWeight="0.79498166" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.49761903" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957938" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -762,7 +759,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="part (a) done" />
     <MESSAGE value="part b started" />
     <MESSAGE value="shuffle loses one line!" />
     <MESSAGE value="part 2 finished" />
@@ -787,14 +783,14 @@
     <MESSAGE value="bug report: NMI value too high" />
     <MESSAGE value="debugged error: high nmi. bug cause: (1) n_total init wrong. (ii) I(H, V) formula missing n_total" />
     <MESSAGE value="more efficient nmi calculation" />
-    <option name="LAST_COMMIT_MESSAGE" value="more efficient nmi calculation" />
+    <MESSAGE value="smart init implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="smart init implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:57:46.png" />
     <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 17:59:18.png" />
     <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:00:37.png" />
     <entry file="file://$PROJECT_DIR$/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-14 18:02:43.png" />
@@ -957,13 +953,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hw2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4853">
-          <caret line="136" column="4" lean-forward="false" selection-start-line="136" selection-start-column="4" selection-end-line="136" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/input/hw3/data/artdata3.arff">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -982,14 +971,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/hw3/data/artdata1.arff">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1033,14 +1014,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/input/hw3/data/artdata0.5.arff">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1048,10 +1021,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1247972723/time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/hw3/data/artdata1.arff">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="414" column="41" lean-forward="false" selection-start-line="414" selection-start-column="41" selection-end-line="414" selection-end-column="41" />
+          <folding>
+            <element signature="e#537#568#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hw3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="409" column="63" lean-forward="true" selection-start-line="409" selection-start-column="63" selection-end-line="409" selection-end-column="63" />
+        <state relative-caret-position="1685">
+          <caret line="246" column="0" lean-forward="true" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
           <folding>
             <element signature="e#523#554#0" expanded="true" />
           </folding>
