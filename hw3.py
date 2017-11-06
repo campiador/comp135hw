@@ -34,6 +34,8 @@ ITERATION_LIMIT = 500
 # Enums
 INIT_RANDOM = 0
 INIT_SMART = 1
+NUMBER_OF_RANDOM_INITIALIZTIONS = 10
+
 
 POSITIVE_INFINITY = float("inf")
 
@@ -72,26 +74,56 @@ has_converged.last_centers = [] # initializing static variable
 
 
 # NOTE: Add the only the example's features to the centers, not the whole example
-def pick_k_cluster_centers(k, examples, random_or_smart_initializtion):
-    centers = []
-    count_examples = len(examples)
+def generate_cluster_centers(k, examples, random_or_smart_initializtion):
     if INIT_RANDOM == random_or_smart_initializtion:
-        while len(centers) < k:
-            random_id = random.randrange(0, count_examples)
-            random_example = examples[random_id]
-            if random_example.features not in centers:
-                centers.append(random_example.features)
-        return centers
+        return generate_k_different_random_centers(examples, k)
+
     elif INIT_SMART == random_or_smart_initializtion:
-        pass
+        if LOG_DEVELOPER:
+            print "init smart centers"
+        smart_centers = []
+        random_first_center = generate_k_different_random_centers(examples, 1)[0]
+        smart_centers.append(random_first_center)
+
+        while len(smart_centers) < k:
+
+            ten_random_centers = generate_k_different_random_centers(examples, 10)
+            ten_random_centers_min_distances = [POSITIVE_INFINITY for _ in ten_random_centers]
+
+            for i, random_center in enumerate(ten_random_centers):
+                for _, smart_center in enumerate(smart_centers):
+
+                    min_distance_from_this_smart_center = distance_fix_my_references_please_behnam(random_center, smart_center)
+
+                    if min_distance_from_this_smart_center < ten_random_centers_min_distances[i]:
+                        ten_random_centers_min_distances[i] = min_distance_from_this_smart_center
+
+            largest_min_distance = max(ten_random_centers_min_distances)
+            index_of_largest_min_distance = ten_random_centers_min_distances.index(largest_min_distance)
+
+            smart_centers.append(ten_random_centers[index_of_largest_min_distance])
+
+        return smart_centers
+
     else:
         print "ERROR: value out of range for random_start: ", random_or_smart_initializtion
         exit(1)
 
 
-def distance(example, center):
+def generate_k_different_random_centers(examples, k):
+    count_examples = len(examples)
+
+    different_centers = []
+    while len(different_centers) < k:
+        random_id = random.randrange(0, count_examples)
+        random_example = examples[random_id]
+        if random_example.features not in different_centers:
+            different_centers.append(random_example.features)
+    return different_centers
+
+
+def distance_fix_my_references_please_behnam(example_features, center):
     distance_sum = 0
-    example_features = example.features
 
     for i, example_feature in enumerate(example_features):
         distance_sum += (example_feature - center[i]) ** 2
@@ -99,12 +131,11 @@ def distance(example, center):
     return sqrt(distance_sum)
 
 
-
 def find_closest_center(example, centers):
     index_min_distance = 0
     min_distance = POSITIVE_INFINITY
     for i, center in enumerate(centers):
-        distance_from_center = distance(example, center)
+        distance_from_center = distance_fix_my_references_please_behnam(example.features, center)
         if distance_from_center < min_distance:
             min_distance = distance_from_center
             index_min_distance = i
@@ -131,23 +162,25 @@ def find_center(cluster):
 
 
 # Passing a random example is necessary in case we run into an empty cluster and need a center for it
-def recalculate_means(clusters, random_example):
+def recalculate_means(clusters, random_centers):
     new_centers = []
     for cluster in clusters:
         if len(cluster) == 0: # Empty cluster
             if LOG_DEVELOPER:
-                print "empty cluster found, using random example"
-            center = random_example.features
+                print "empty cluster found, using the first center, then removing it from list"
+            center = random_centers[0]
+            random_centers.remove(center)
         else:
             center = find_center(cluster)
         new_centers.append(center)
     return new_centers
 
 
-def cluster_k_means(k, examples):
+def cluster_k_means(k, examples, initialization_method):
     iteration = 0
 
-    centers = pick_k_cluster_centers(k, examples, INIT_RANDOM)
+    #  INITIALIZATION
+    centers = generate_cluster_centers(k, examples, initialization_method)
 
     if LOG_VERBOSE:
         print "centers", centers
@@ -155,13 +188,21 @@ def cluster_k_means(k, examples):
     while iteration < ITERATION_LIMIT:
         if LOG_VERBOSE:
             print "\niteration:", iteration
+
+        # ASSOCIATION
         clusters = associate_examples_with_centers(examples, centers)
         if LOG_VERBOSE:
             print "clusters:", clusters
 
-        random_example = examples[random.randrange(0, len(examples))]
+        # In case of empty clusters we will need up to k random examples
+        n_empty_clusters = 0
+        for cluster in clusters:
+            if len(cluster) == 0:
+                n_empty_clusters += 1
+        random_centers = generate_cluster_centers(n_empty_clusters, examples, INIT_RANDOM)  # Yes. Should be RANDOM.
 
-        centers = recalculate_means(clusters, random_example)
+        # ADJUSTING CENTERS
+        centers = recalculate_means(clusters, random_centers)
         # print "new_centers:", centers
         # print "new_centers length:", len(centers)
         if has_converged(centers):
@@ -244,21 +285,20 @@ def parse_file_to_lines(file_dir, file_name):
     return file_lines
 
 
-def part_1_1_random_initializtion():
+def part_1_1_random_initialization(k, examples, golden_clusters):
+    init_method = INIT_RANDOM
+    cs_nmi_list = []
+    for i in range(0, NUMBER_OF_RANDOM_INITIALIZTIONS):
+        cs_nmi = cluster_and_return_cs_nmi(k, examples, init_method, golden_clusters)
+        cs_nmi_list.append(cs_nmi)
 
-    k = 0
-    data_set_file_path = ""
-
-    file_lines = parse_file_to_lines(data_set_file_path)
-
-    clusters, centers = cluster_k_means(k, examples)
-
-    cs = calculate_clustering_scatter(clusters, centers)
-    nmi = calculate_clustering_nmi(clusters, examples)
+    return cs_nmi_list
 
 
-def part_1_2_smart_initialization():
-    pass
+def part_1_2_smart_initialization(k, examples, golden_clusters):
+    init_method = INIT_SMART
+    cs_nmi = cluster_and_return_cs_nmi(k, examples, init_method, golden_clusters)
+    return cs_nmi
 
 
 def part_2_effect_of_k_on_cs():
@@ -324,10 +364,25 @@ def calculate_golden_clusters(k, examples):
     return golden_clusters
 
 
+def cluster_and_return_cs_nmi(k, examples, init_method, golden_clusters):
+    clusters, centers = cluster_k_means(k, examples, init_method)
+    cs = calculate_clustering_scatter(clusters, centers)
+    if LOG_DEVELOPER:
+        print "cs:", cs
+    if len(golden_clusters) == 0:  # if we do not need nmi, just return -1 for it
+        nmi = -1
+    else:
+        nmi = calculate_clustering_nmi(clusters, golden_clusters)
+    if LOG_DEVELOPER:
+        print "nmi:", nmi
+    print "\n"
+
+    return cs, nmi
+
 
 if __name__ == "__main__":
     set_environment()
-    # part_1_1_random_initializtion()
+
     # part_1_2_smart_initialization()
     # part_2_effect_of_k_on_cs()
     # test_hw3_parser()
@@ -349,13 +404,7 @@ if __name__ == "__main__":
         print "last line features:", examples[-1].features
         print "last line label:", examples[-1].label
 
-    clusters, centers = cluster_k_means(k, examples)
-
-    cs = calculate_clustering_scatter(clusters, centers)
-    print "cs:", cs
-
     golden_clusters = calculate_golden_clusters(k, examples)
-    nmi = calculate_clustering_nmi(clusters, golden_clusters)
-    print "nmi:", nmi
 
-    print "\n"
+    part_1_1_random_initialization(k, examples, golden_clusters)
+    part_1_2_smart_initialization(k, examples, golden_clusters)
