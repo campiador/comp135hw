@@ -376,8 +376,8 @@ def solution_to_part_one():
         label_plot = "Learning Curves with Cross Validation for {}".format(data_set_file_name.replace(".txt", ""))
         label_plot_x = "Training Size"
         label_plot_y = "Accuracy"
-        plot.plot_accuracies_with_stderr_poly(label_plot, label_plot_x, label_plot_y,
-                                              [0, 1000], [0, 100], subplotable_objects, "hw1p1")
+        plot.plot_y_with_stderr(label_plot, label_plot_x, label_plot_y,
+                                [0, 1000], [0, 100], subplotable_objects, "hw1p1")
 
     elapsed_time = time.time() - start_time
     if constants.DEBUG_CLIENT:
@@ -418,8 +418,8 @@ def solution_to_part_two():
         label_plot = "Learning Curves with Cross Validation for {}".format(data_set_file_name.replace(".txt", ""))
         label_plot_x = "Smoothing Factor"
         label_plot_y = "Accuracy"
-        plot.plot_accuracies_with_stderr_poly(label_plot, label_plot_x, label_plot_y,
-                                              [0, 10], [0, 100], subplotable_objects, "hw2_part2")
+        plot.plot_y_with_stderr(label_plot, label_plot_x, label_plot_y,
+                                [0, 10], [0, 100], subplotable_objects, "hw2_part2")
 
     elapsed_time = time.time() - start_time
     if constants.DEBUG_CLIENT:

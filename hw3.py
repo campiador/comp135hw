@@ -24,6 +24,8 @@ import numpy as np
 # Control Variables
 import time
 
+from graphics.plot import plot_y_with_stderr, plot_x_y
+from graphics.subplotable import SubPlotable
 from log.log import LOG_VERBOSE, LOG_DEVELOPER, LOG_CLIENT
 from models.example import data_line_to_example
 
@@ -382,7 +384,7 @@ def part_1_2_smart_initialization(k, examples, golden_clusters):
     return cs_nmi
 
 
-def part_2_effect_of_k_on_cs(examples, golden_clusters):
+def part_2_effect_of_k_on_cs(examples):
     if LOG_CLIENT:
         print "\nPART 2: effect of k on CS"
 
@@ -396,7 +398,7 @@ def part_2_effect_of_k_on_cs(examples, golden_clusters):
             if LOG_CLIENT:
                 print "k:{}, iteration:{}".format(k, i+1)
             lowest_cs = POSITIVE_INFINITY
-            (cs, _) = cluster_and_return_cs_nmi(k, examples, INIT_RANDOM, golden_clusters)
+            (cs, _) = cluster_and_return_cs_nmi(k, examples, INIT_RANDOM, [])  # [] = No golden clusters
             if cs < lowest_cs:
                 lowest_cs = cs
         best_of_ten = (k, lowest_cs)
@@ -408,46 +410,66 @@ if __name__ == "__main__":
     set_environment()
     start_time = time.time()
 
-    for file in DATASETS:
-        if LOG_DEVELOPER:
-            print file
-        file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
-        k = determine_number_of_classes(file_lines)
-        examples = extract_examples(file_lines)
-        if LOG_VERBOSE: #To make sure parsing was successful
-            print "dataset:", file
-            print "number of classes:", k
-            print "first line id:", examples[0].id
-            print "first line features:", examples[0].features
-            print "first line label:", examples[0].label, "\n"
-            print "last line id:", examples[-1].id
-            print "last line features:", examples[-1].features
-            print "last line label:", examples[-1].label
+    cs_nmi_lists_by_dataset = [[] for _ in DATASETS]
+    subplotables = []
+
+    # for dataset_index, file in enumerate(DATASETS):
+    dataset_index = 0
+    file = DATASET_FILE_ART_05
+    if LOG_DEVELOPER:
+        print file
+    file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
+    k = determine_number_of_classes(file_lines)
+    examples = extract_examples(file_lines)
+    if LOG_VERBOSE: #To make sure parsing was successful
+        print "dataset:", file
+        print "number of classes:", k
+        print "first line id:", examples[0].id
+        print "first line features:", examples[0].features
+        print "first line label:", examples[0].label, "\n"
+        print "last line id:", examples[-1].id
+        print "last line features:", examples[-1].features
+        print "last line label:", examples[-1].label
 
 
-        golden_clusters = calculate_golden_clusters(k, examples)
+    golden_clusters = calculate_golden_clusters(k, examples)
 
 
-        part_start_time = time.time()
-        part_1_1_random_initialization(k, examples, golden_clusters)
-        part_elapsed_time = time.time() - part_start_time
-        if LOG_CLIENT:
-            print "part 1.1 took {} seconds to run".format(part_elapsed_time)
+    part_start_time = time.time()
 
-        part_start_time = time.time()
-        part_1_2_smart_initialization(k, examples, golden_clusters)
-        part_elapsed_time = time.time() - part_start_time
-        if LOG_CLIENT:
-            print "part 1.2 took {} seconds to run".format(part_elapsed_time)
+    cs_nmi_list_of_random_inits = part_1_1_random_initialization(k, examples, golden_clusters)
+    part_elapsed_time = time.time() - part_start_time
+    if LOG_CLIENT:
+        print "part 1.1 took {} seconds to run".format(part_elapsed_time)
 
-        part_start_time = time.time()
-        part_2_effect_of_k_on_cs(examples, [])
-        part_elapsed_time = time.time() - part_start_time
-        if LOG_CLIENT:
-            print "part 2 took {} seconds to run".format(part_elapsed_time)
+    part_start_time = time.time()
+    cs_nmi_of_smart_time  = part_1_2_smart_initialization(k, examples, golden_clusters)
+    part_elapsed_time = time.time() - part_start_time
+    if LOG_CLIENT:
+        print "part 1.2 took {} seconds to run".format(part_elapsed_time)
 
-        elapsed_time = time.time() - start_time
+    cs_nmi_part_1 = cs_nmi_list_of_random_inits
+    cs_nmi_part_1.append(cs_nmi_of_smart_time)
+    subplot = SubPlotable(DATASETS[dataset_index], x_values=[nmi for (_, nmi) in cs_nmi_part_1],
+                          y_values=[cs for (cs, _) in cs_nmi_part_1],
+                          y_std_error_values=[0 for _ in cs_nmi_part_1])
 
-        if LOG_CLIENT:
-            print "program took {} seconds to run".format(elapsed_time)
+    subplotables.append(subplot)
+
+    plot_x_y("Random vs Smart Clustering",
+             "Normalized Mutual Information (higher is better)", "Cluster Scatter (lower is better)",
+             subplotables=subplotables, output_file_name="/hw3/part1")
+
+
+
+    # part_start_time = time.time()
+    # part_2_effect_of_k_on_cs(examples)
+    # part_elapsed_time = time.time() - part_start_time
+    # if LOG_CLIENT:
+    #     print "part 2 took {} seconds to run".format(part_elapsed_time)
+
+    elapsed_time = time.time() - start_time
+
+    if LOG_CLIENT:
+        print "program took {} seconds to run".format(elapsed_time)
 

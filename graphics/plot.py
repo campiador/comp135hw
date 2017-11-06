@@ -71,8 +71,8 @@ def get_cmap(n, name='hsv'):
     return plt.cm.get_cmap(name, n)
 
 
-def plot_accuracies_with_stderr_poly(main_title, x_axis_tile, y_axis_title, range_x, range_y, subplotables,
-                                     output_file_name):
+def plot_y_with_stderr(main_title, x_axis_tile, y_axis_title, range_x, range_y, subplotables,
+                       output_file_name):
     cmap = get_cmap(len(subplotables) + 1)
 
     for i, plotable in enumerate(subplotables):
@@ -110,6 +110,57 @@ def plot_accuracies_with_stderr_poly(main_title, x_axis_tile, y_axis_title, rang
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
     plt.savefig('./output/{}_{}_{}.png'.format(output_file_name, main_title, st))
 
-    plt.show(block=False)
+    plt.show(block=True)
+    # plt.show(block=False)
     plt.gcf().clear()
 
+
+def plot_x_y(main_title, x_axis_tile, y_axis_title, subplotables, output_file_name):
+    cmap = get_cmap(len(subplotables) + 1)
+
+    for i, plotable in enumerate(subplotables):
+        color = cmap(i)
+        if constants.DEBUG_VERBOSE:
+            print " color {} = {}".format(i, color)
+
+        randoms_x_values = plotable.x_values[0:-1]
+        randoms_y_values = plotable.y_values[0:-1]
+        random_label = "{}{}".format("random ", plotable.label)
+        smart_label = "{}{}".format("smart ", plotable.label)
+
+        smart_x_values = [plotable.x_values[-1]]
+        smart_y_values = [plotable.y_values[-1]]
+        plt.scatter(randoms_x_values, randoms_y_values, color=color, label=random_label, marker='o')
+        plt.scatter(smart_x_values, smart_y_values, color=color, label=smart_label, marker='s')
+
+        # the dots
+        # plt.plot(plotable.x_values, plotable.y_values, )
+
+    plt.title(main_title)
+    plt.xlabel(x_axis_tile)
+    plt.ylabel(y_axis_title)
+
+    # plt.axis([range_x[PLOT_START], range_x[PLOT_END], range_y[PLOT_START], range_y[PLOT_END]])
+    plt.legend(loc='best')
+
+    plt.grid(True)
+
+    # BUG:
+    # When I show(block=False) or don't show() at all, the plt object somehow does not die and what happens is
+    # the past plots are not discarded when drawing new plots.
+    # When I show(block=True), the image does not get saved!
+
+    # BUG FIX 1:
+    # First save, then show(block = True)
+
+    # BUG FIX 2:
+    # Even better: after show(block=false)  call plt.gcf().clear(). Also might call plt.clf() plt.cla() plt.close().
+
+
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+    # plt.savefig('./output/{}_{}_{}.png'.format(output_file_name, main_title, st))
+
+    plt.show()
+    # plt.show(block=False)
+    # plt.gcf().clear()
