@@ -115,7 +115,7 @@ def plot_y_with_stderr(main_title, x_axis_tile, y_axis_title, range_x, range_y, 
     plt.gcf().clear()
 
 
-def plot_x_y(main_title, x_axis_tile, y_axis_title, subplotables, output_file_name):
+def plot_x_y_scatter(main_title, x_axis_tile, y_axis_title, subplotables, output_file_name):
     cmap = get_cmap(len(subplotables) + 1)
 
     for i, plotable in enumerate(subplotables):
@@ -159,8 +159,51 @@ def plot_x_y(main_title, x_axis_tile, y_axis_title, subplotables, output_file_na
 
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-    # plt.savefig('./output/{}_{}_{}.png'.format(output_file_name, main_title, st))
+    plt.savefig('./output/{}_{}_{}.png'.format(output_file_name, main_title, st))
 
-    plt.show()
-    # plt.show(block=False)
-    # plt.gcf().clear()
+    # plt.show()
+    plt.show(block=False)
+    plt.gcf().clear()
+
+
+def plot_x_y_line(main_title, x_axis_tile, y_axis_title, subplotables, output_file_name):
+    cmap = get_cmap(len(subplotables) + 1)
+
+    for i, plotable in enumerate(subplotables):
+        color = cmap(i)
+        if constants.DEBUG_VERBOSE:
+            print " color {} = {}".format(i, color)
+
+        plt.plot(plotable.x_values, plotable.y_values, color=color, label=plotable.label, marker='o')
+
+
+        # the dots
+        # plt.plot(plotable.x_values, plotable.y_values, )
+
+    plt.title(main_title)
+    plt.xlabel(x_axis_tile)
+    plt.ylabel(y_axis_title)
+
+    # plt.axis([range_x[PLOT_START], range_x[PLOT_END], range_y[PLOT_START], range_y[PLOT_END]])
+    plt.legend(loc='best')
+
+    plt.grid(True)
+
+    # BUG:
+    # When I show(block=False) or don't show() at all, the plt object somehow does not die and what happens is
+    # the past plots are not discarded when drawing new plots.
+    # When I show(block=True), the image does not get saved!
+
+    # BUG FIX 1:
+    # First save, then show(block = True)
+
+    # BUG FIX 2:
+    # Even better: after show(block=false)  call plt.gcf().clear(). Also might call plt.clf() plt.cla() plt.close().
+
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+    plt.savefig('./output/{}_{}_{}.png'.format(output_file_name, main_title, st))
+
+    # plt.show()
+    plt.show(block=False)
+    plt.gcf().clear()
