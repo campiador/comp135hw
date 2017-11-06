@@ -413,8 +413,7 @@ if __name__ == "__main__":
     part2_subplotables = []
 
     for dataset_index, file in enumerate(DATASETS):
-
-        if LOG_DEVELOPER:
+        if LOG_CLIENT:
             print file
         file_lines = parse_file_to_lines(INPUT_FILES_DIR, file)
         k = determine_number_of_classes(file_lines)
@@ -422,24 +421,22 @@ if __name__ == "__main__":
 
         golden_clusters = calculate_golden_clusters(k, examples)
 
-        # cs_nmi_list_of_random_inits = part_1_1_random_initialization(k, examples, golden_clusters)
-        # cs_nmi_of_smart_time  = part_1_2_smart_initialization(k, examples, golden_clusters)
-        #
-        # cs_nmi_part_1 = cs_nmi_list_of_random_inits
-        # cs_nmi_part_1.append(cs_nmi_of_smart_time)
-        #
-        # subplot = SubPlotable(DATASETS[dataset_index], x_values=[nmi for (_, nmi) in cs_nmi_part_1],
-        #                       y_values=[cs for (cs, _) in cs_nmi_part_1],
-        #                       y_std_error_values=[0 for _ in cs_nmi_part_1])
-        #
-        # part1_subplotables = [subplot]
-        # plot_x_y_scatter("Random vs Smart Clustering",
-        #                  "Normalized Mutual Information (higher is better)", "Cluster Scatter (lower is better)",
-        #                  subplotables=part1_subplotables, output_file_name="/hw3/part1")
+        cs_nmi_list_of_random_inits = part_1_1_random_initialization(k, examples, golden_clusters)
+        cs_nmi_of_smart_time  = part_1_2_smart_initialization(k, examples, golden_clusters)
+
+        cs_nmi_part_1 = cs_nmi_list_of_random_inits
+        cs_nmi_part_1.append(cs_nmi_of_smart_time)
+
+        subplot = SubPlotable(file, x_values=[nmi for (_, nmi) in cs_nmi_part_1],
+                              y_values=[cs for (cs, _) in cs_nmi_part_1],
+                              y_std_error_values=[0 for _ in cs_nmi_part_1])
+
+        part1_subplotables = [subplot]
+        plot_x_y_scatter("Random vs Smart Clustering",
+                         "Normalized Mutual Information (higher is better)", "Cluster Scatter (lower is better)",
+                         subplotables=part1_subplotables, output_file_name="/hw3/part1")
 
         part2_k_cs_list = part_2_effect_of_k_on_cs(examples)
-
-
 
         part2_subplot = SubPlotable(DATASETS[dataset_index], x_values=[k for (k, _) in part2_k_cs_list],
                               y_values=[cs for (_, cs) in part2_k_cs_list],

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/reports/README.hw2" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/reports/README" afterPath="$PROJECT_DIR$/README" />
+    <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="readme_added">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compile_and_run" afterPath="$PROJECT_DIR$/compile_and_run" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hw3.py" afterPath="$PROJECT_DIR$/hw3.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,14 +16,24 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="hw3.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hw3.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="450" column="31" lean-forward="false" selection-start-line="450" selection-start-column="31" selection-end-line="450" selection-end-column="31" />
+            <state relative-caret-position="406">
+              <caret line="439" column="0" lean-forward="true" selection-start-line="439" selection-start-column="0" selection-end-line="439" selection-end-column="0" />
               <folding>
                 <element signature="e#523#554#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="compile_and_run" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compile_and_run">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -32,17 +42,17 @@
         <entry file="file://$PROJECT_DIR$/input/hw2 sentiment labelled sentences/readme.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="401">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+            <state relative-caret-position="234">
+              <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -52,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/graphics/plot.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="424">
-              <caret line="206" column="16" lean-forward="true" selection-start-line="206" selection-start-column="16" selection-end-line="206" selection-end-column="16" />
+              <caret line="206" column="16" lean-forward="false" selection-start-line="206" selection-start-column="16" selection-end-line="206" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -131,9 +141,10 @@
         <option value="$PROJECT_DIR$/models/example.py" />
         <option value="$PROJECT_DIR$/hw2.py" />
         <option value="$PROJECT_DIR$/graphics/plot.py" />
-        <option value="$PROJECT_DIR$/hw3.py" />
-        <option value="$PROJECT_DIR$/hw3.py" />
         <option value="$PROJECT_DIR$/README" />
+        <option value="$PROJECT_DIR$/compile_and_run" />
+        <option value="$PROJECT_DIR$/hw3.py" />
+        <option value="$PROJECT_DIR$/hw3.py" />
       </list>
     </option>
   </component>
@@ -736,7 +747,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509986945136</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="readme_added">
+      <created>1509987384831</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1509987384831</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -758,7 +776,7 @@
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265086" sideWeight="0.24418604" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3265086" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3265086" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -784,7 +802,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="HW 2, finished parsing data from input to vocabulary" />
     <MESSAGE value="vocabulary calculates probabilities" />
     <MESSAGE value="split line and vocab functions" />
     <MESSAGE value="stratified NB classifier works" />
@@ -809,14 +826,14 @@
     <MESSAGE value="k means implemented" />
     <MESSAGE value="alll experiments working correctly" />
     <MESSAGE value="plot part 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="plot part 1" />
+    <MESSAGE value="readme_added" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme_added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 15:02:40.png" />
     <entry file="file://$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 14:54:56.png" />
     <entry file="file://$PROJECT_DIR$/output/hw1_part1.png">
       <provider selected="true" editor-type-id="images">
@@ -1103,34 +1120,42 @@
     <entry file="file://$PROJECT_DIR$/graphics/plot.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
-          <caret line="206" column="16" lean-forward="true" selection-start-line="206" selection-start-column="16" selection-end-line="206" selection-end-column="16" />
+          <caret line="206" column="16" lean-forward="false" selection-start-line="206" selection-start-column="16" selection-end-line="206" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="450" column="31" lean-forward="false" selection-start-line="450" selection-start-column="31" selection-end-line="450" selection-end-column="31" />
-          <folding>
-            <element signature="e#523#554#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/input/hw2 sentiment labelled sentences/readme.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+        <state relative-caret-position="234">
+          <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compile_and_run">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="439" column="0" lean-forward="true" selection-start-line="439" selection-start-column="0" selection-end-line="439" selection-end-column="0" />
+          <folding>
+            <element signature="e#523#554#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
