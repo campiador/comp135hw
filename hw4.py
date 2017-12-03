@@ -13,11 +13,9 @@ import argparse
 
 import math
 
-import numpy
-
-numpy.random.seed(0)
 
 from models.neural_network import NeuralNetwork
+from models.neural_node import NeuralNode
 
 N_ITER = 3000
 
@@ -35,7 +33,8 @@ def construct_network_and_initialize_weights(width, depth, input_layer, output_l
 
 
 def extract_input_and_output_layer(train_data):
-    return [], []
+    #TODO parse data to get input and output layers
+    return [NeuralNode(0, 0)], [NeuralNode(0, 0)]
 
 
 def learn(width, depth, train_data, test_data):
@@ -65,7 +64,8 @@ def sigmoid(x):
 if __name__ == '__main__':
     args = parser.parse_args()
 
-    w = 3
+# TODO: Parse these
+    w = 2
     d = 1
 
     train_data = []

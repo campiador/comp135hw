@@ -5,7 +5,14 @@
 #
 # This module models a neural network
 #
-from numpy.random import random
+import random
+
+import numpy
+
+from log.log import LOG_VERBOSE, LOG_DEVELOPER
+
+numpy.random.seed(0)
+
 
 from models.neural_node import NeuralNode
 
@@ -16,11 +23,21 @@ class NeuralNetwork():
         self.width = width
         self.depth = depth
 
-        self.layers = []
+        self.node_layers = []
 
         self.init_node_layers(self.depth, self.width, input_layer, output_layer)
+        if LOG_DEVELOPER:
+            for i, layer in enumerate(self.node_layers):
+                print "layer {}".format(i)
+                print layer
 
         self.initialize_weights_randomly(self.width, self.depth, len(input_layer), len(output_layer))
+
+        if LOG_DEVELOPER:
+            print "\nweights"
+            print self.weights
+
+        exit(2)
 
     def update_weights_using_forward_and_backpropagation(self, example):
         self.forward_propagate_input_and_calculate_node_output_values(example)
@@ -40,11 +57,15 @@ class NeuralNetwork():
                         self.get_weight(lower_layer, hidden_node, lower_layer_node) * lower_layer_node.getoutputvalue()
 
     def initialize_weights_randomly(self, width, depth, input_layer_len, output_layer_len):
+
         for weight_layer_index in range(0, depth + 1):
-            pass
+            this_layer = self.node_layers[weight_layer_index]
+            next_layer = self.node_layers[weight_layer_index + 1]
+
+            self.weights.append([random.uniform(-0.1, 0.1) for _ in range(0, len(this_layer) * len(next_layer))])
 
     def init_node_layers(self, depth, width, input_layer, output_layer):
-        self.layers.append(input_layer)
+        self.node_layers.append(input_layer)
 
         # Now hidden layers
         for i in range(0, depth):
@@ -52,9 +73,9 @@ class NeuralNetwork():
             for j in range(0, width):
                 layer.append(NeuralNode(0, 0))  # random.randrange(-1, 1)
 
-            self.layers.append(layer)
+            self.node_layers.append(layer)
 
-        self.layers.append(output_layer)
+        self.node_layers.append(output_layer)
 
 
 
