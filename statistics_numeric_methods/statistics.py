@@ -4,6 +4,8 @@
 #  COMP 135 Machine Learning
 #
 #  This class keeps statistical formulas for mean and std deviation
+import math
+
 import numpy
 
 from models import constants
@@ -32,3 +34,8 @@ def calculate_std_mean(array_of_arrays):
     stds = numpy.std(arr, axis=0)
 
     return stds, means
+
+
+def sigmoid(x):
+    x = max(-50, x)  # to avoid numerical issues
+    return 1/(1 + math.exp(x))

@@ -11,19 +11,10 @@ from __future__ import division
 
 import argparse
 
-import math
-
-
 from models.neural_network import NeuralNetwork
 from models.neuron import Neuron
 
 N_ITER = 3000
-
-
-
-parser = argparse.ArgumentParser()
-parser.parse_args()
-
 
 
 
@@ -57,12 +48,9 @@ def learn(width, depth, train_data, test_data):
         #TODO: what to do with above variable?
 
 
-def sigmoid(x):
-    x = max(-50, x)  # to avoid numerical issues
-    return 1/(1 + math.exp(x))
-
-
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.parse_args()
     args = parser.parse_args()
 
 # TODO: Parse these
