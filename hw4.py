@@ -15,7 +15,7 @@ import math
 
 
 from models.neural_network import NeuralNetwork
-from models.neural_node import NeuralNode
+from models.neuron import Neuron
 
 N_ITER = 3000
 
@@ -34,7 +34,7 @@ def construct_network_and_initialize_weights(width, depth, input_layer, output_l
 
 def extract_input_and_output_layer(train_data):
     #TODO parse data to get input and output layers
-    return [NeuralNode(0, 0)], [NeuralNode(0, 0)]
+    return [Neuron()], [Neuron()]
 
 
 def learn(width, depth, train_data, test_data):
@@ -43,17 +43,18 @@ def learn(width, depth, train_data, test_data):
 
     network = construct_network_and_initialize_weights(width, depth, input_layer, output_layer)
 
+    number_of_examples = len(train_data)
+    training_error_rates = []
+
     for i in range(0, N_ITER):
+        number_of_training_errors = 0
         for example in train_data:
-            network.update_weights_using_forward_and_backpropagation(example)
+            number_of_training_errors += \
+                network.update_weights_using_forward_and_backpropagation_return_train_errors(example)
 
-        network.calculate_training_error_rate()
-
-
-
-
-
-
+        training_error_rate = network.calculate_training_error_rate(number_of_training_errors, number_of_examples)
+        training_error_rates.append(training_error_rate)
+        #TODO: what to do with above variable?
 
 
 def sigmoid(x):
@@ -66,7 +67,7 @@ if __name__ == '__main__':
 
 # TODO: Parse these
     w = 2
-    d = 1
+    d = 5
 
     train_data = []
 

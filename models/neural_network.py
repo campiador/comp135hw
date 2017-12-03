@@ -14,7 +14,7 @@ from log.log import LOG_VERBOSE, LOG_DEVELOPER
 numpy.random.seed(0)
 
 
-from models.neural_node import NeuralNode
+from models.neuron import Neuron
 
 
 class NeuralNetwork():
@@ -37,12 +37,14 @@ class NeuralNetwork():
             print "\nweights"
             print self.weights
 
-        exit(2)
 
-    def update_weights_using_forward_and_backpropagation(self, example):
+    def update_weights_using_forward_and_backpropagation_return_train_errors(self, example):
         self.forward_propagate_input_and_calculate_node_output_values(example)
         self.backward_propagate_and_calculate_deltas()
         self.forward_update_weights()
+
+        # TODO: calculate training errors
+        return 0
 
     def forward_propagate_input_and_calculate_node_output_values(self, example):
         """ calculate s for each node, and then calculate x for it """
@@ -65,16 +67,17 @@ class NeuralNetwork():
             self.weights.append([random.uniform(-0.1, 0.1) for _ in range(0, len(this_layer) * len(next_layer))])
 
     def init_node_layers(self, depth, width, input_layer, output_layer):
+        # First layer is input layer
         self.node_layers.append(input_layer)
 
         # Now hidden layers
         for i in range(0, depth):
             layer = []
             for j in range(0, width):
-                layer.append(NeuralNode(0, 0))  # random.randrange(-1, 1)
-
+                layer.append(Neuron())
             self.node_layers.append(layer)
 
+        # Last layer is output layer
         self.node_layers.append(output_layer)
 
 

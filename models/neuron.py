@@ -6,8 +6,9 @@
 # This module models a neural node
 
 
-class NeuralNode():
-    def __init__(self, sum, output):
+class Neuron():
+    def __init__(self):
         """ sum j = sigma wij * xi """
-        self.sum = sum
-        self.output = output
+        self.sum = 0
+        self.output = 0
+        self.delta = 0
