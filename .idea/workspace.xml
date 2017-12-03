@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/hw4/838.arff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/hw4/optdigits_test.arff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/hw4/optdigits_train.arff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parser/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parser/arffparser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hw3.py" afterPath="$PROJECT_DIR$/hw3.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hw4.py" afterPath="$PROJECT_DIR$/hw4.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/statistics_numeric_methods/statistics.py" afterPath="$PROJECT_DIR$/statistics_numeric_methods/statistics.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/hw3/unit_test.py" afterPath="$PROJECT_DIR$/tests/hw3/unit_test.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,15 +20,39 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/comp135hw$hw4.coverage" NAME="hw4 Coverage Results" MODIFIED="1512344058967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/comp135hw$hw4.coverage" NAME="hw4 Coverage Results" MODIFIED="1512345066525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="hw3.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hw3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1538">
+              <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
+              <folding>
+                <element signature="e#523#554#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arffparser.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/parser/arffparser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+              <folding>
+                <element signature="e#156#187#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="hw4.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state relative-caret-position="316">
+              <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
               <folding>
                 <element signature="e#226#257#0" expanded="true" />
               </folding>
@@ -55,8 +85,8 @@
       <file leaf-file-name="example.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-116">
-              <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+            <state relative-caret-position="-98">
+              <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -136,13 +166,14 @@
         <option value="$PROJECT_DIR$/graphics/plot.py" />
         <option value="$PROJECT_DIR$/README" />
         <option value="$PROJECT_DIR$/compile_and_run" />
-        <option value="$PROJECT_DIR$/hw3.py" />
-        <option value="$PROJECT_DIR$/hw3.py" />
         <option value="$PROJECT_DIR$/models/example.py" />
         <option value="$PROJECT_DIR$/tests/hw4.py" />
         <option value="$PROJECT_DIR$/models/neural_node.py" />
         <option value="$PROJECT_DIR$/models/neuron.py" />
         <option value="$PROJECT_DIR$/models/neural_network.py" />
+        <option value="$PROJECT_DIR$/parser/arffparser.py" />
+        <option value="$PROJECT_DIR$/hw3.py" />
+        <option value="$PROJECT_DIR$/hw3.py" />
         <option value="$PROJECT_DIR$/hw4.py" />
       </list>
     </option>
@@ -210,7 +241,18 @@
             <path>
               <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
               <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
+              <item name="input" type="462c0819:PsiDirectoryNode" />
+              <item name="hw4" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
+              <item name="parser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
@@ -227,7 +269,7 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/statistics_numeric_methods/statistics.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/parser/arffparser.py" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -729,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512344141777</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="refactoring math code">
+      <created>1512344240028</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1512344240028</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -751,7 +800,7 @@
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265086" sideWeight="0.24418604" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264865" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264865" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -805,7 +854,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="sanitizes test" />
     <MESSAGE value="tests accuracy vs smoothing" />
     <MESSAGE value="modernized directory" />
     <MESSAGE value="knn outline" />
@@ -830,20 +878,14 @@
     <MESSAGE value="nueral network initial commit" />
     <MESSAGE value="network initializes correctly" />
     <MESSAGE value="boiler plate code for network" />
-    <option name="LAST_COMMIT_MESSAGE" value="boiler plate code for network" />
+    <MESSAGE value="refactoring math code" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring math code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/statistics_numeric_methods/statistics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="67" lean-forward="false" selection-start-line="5" selection-start-column="67" selection-end-line="5" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/hw1_part.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1123,24 +1165,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hw3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="75" column="57" lean-forward="false" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="57" />
-          <folding>
-            <element signature="e#523#554#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-116">
-          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/neuron.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -1159,10 +1183,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-98">
+          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/arffparser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+          <folding>
+            <element signature="e#156#187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1538">
+          <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
+          <folding>
+            <element signature="e#523#554#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hw4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state relative-caret-position="316">
+          <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
           <folding>
             <element signature="e#226#257#0" expanded="true" />
           </folding>

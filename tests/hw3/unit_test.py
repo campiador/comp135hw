@@ -1,5 +1,5 @@
-from hw3 import parse_file_to_lines, INPUT_FILES_DIR, DATASET_FILE_SOYBEAN, determine_number_of_classes, \
-    extract_examples
+from hw3 import INPUT_FILES_DIR, DATASET_FILE_SOYBEAN
+from parser.arffparser import parse_file_to_lines, determine_number_of_classes, extract_examples
 
 expected_first_feature_line_soybean = "0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,1,0,0,1,1,1,0,0,0,0,1\
 ,0,0,1,0,0,1,0,0,1,1,0,0,0,1,0,1,0,0,1,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0"

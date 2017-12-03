@@ -21,15 +21,13 @@ from math import sqrt, log
 
 import numpy as np
 
-# Control Variables
-import time
-
-from graphics.plot import plot_y_with_stderr, plot_x_y_scatter, plot_x_y_line
+from graphics.plot import plot_x_y_scatter, plot_x_y_line
 from graphics.subplotable import SubPlotable
 from log.log import LOG_VERBOSE, LOG_DEVELOPER, LOG_CLIENT
-from models.example import data_line_to_example
-
 # from tests.hw3.unit_test import test_hw3_parser
+from parser.arffparser import parse_file_to_lines, determine_number_of_classes, extract_examples
+
+# Control Variables
 
 ON_SERVER = False
 INPUT_FILES_DIR = "."
@@ -272,52 +270,6 @@ def calculate_clustering_nmi(clusters, golden_clusters):
     nmi = (2 * i_clusters_and_golden_clusters) / (h_clusters + h_golden_clusters)
 
     return nmi
-
-
-def parse_file_to_lines(file_dir, file_name):
-
-    file_lines = open("{}/{}".format(file_dir, file_name), 'r').readlines()
-
-    if LOG_VERBOSE:
-        print "lines read: ", len(file_lines)
-    return file_lines
-
-
-def determine_number_of_classes(file_lines):
-    class_line = ""
-    for file_line in file_lines:
-        file_line = file_line.lower()
-        if file_line.startswith("@attribute class"):
-            class_line = file_line
-            break
-    if class_line is "":
-        raise ValueError
-    else: # class_line found
-        classes_string = class_line[class_line.index('{') + 1:class_line.index('}')]
-        classes_string.replace(" ,", ",")
-        classes_list = classes_string.split(",")
-        return len(classes_list)
-
-
-def find_data_line_position(file_lines):
-    for i, line in enumerate(file_lines):
-        line = line.lower()
-        if line.startswith("@data"):
-            return i
-    # if @data not found
-    print "input file missed @data (case-insensitive) "
-    raise ValueError
-
-
-
-def extract_examples(file_lines):
-    index_data = find_data_line_position(file_lines)
-    data_lines = file_lines[index_data + 1:]
-    examples = []
-    for i, data_line in enumerate(data_lines):
-        example = data_line_to_example(data_line, i)
-        examples.append(example)
-    return examples
 
 
 def find_all_k_labels_in_examples(k, examples):

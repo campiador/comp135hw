@@ -13,8 +13,15 @@ import argparse
 
 from models.neural_network import NeuralNetwork
 from models.neuron import Neuron
+from parser.arffparser import parse_file_to_lines, determine_number_of_classes, extract_examples
 
 N_ITER = 3000
+INPUT_FILES_DIR = "./input/hw4"
+
+FILE_838 = "838.arff"
+FILE_OPT_DIGITS_TRAIN = "optdigits_train.arff"
+FILE_OPT_DIGITS_TEST = "optdigits_test.arff"
+
 
 
 
@@ -52,6 +59,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.parse_args()
     args = parser.parse_args()
+
+    file_lines = parse_file_to_lines(INPUT_FILES_DIR, FILE_838)
+    n_classes = determine_number_of_classes(file_lines)
+    examples = extract_examples(file_lines)
+
+    print n_classes
+    print examples
+    for examples in examples:
+        print examples.features, examples.label
+
+    exit(2)
 
 # TODO: Parse these
     w = 2
