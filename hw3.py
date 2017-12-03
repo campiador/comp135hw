@@ -56,7 +56,6 @@ DATASETS = [DATASET_FILE_ART_05, DATASET_FILE_ART_1, DATASET_FILE_ART_2, DATASET
             DATASET_FILE_IONOSPHERE, DATASET_FILE_IRIS, DATASET_FILE_SOYBEAN]
 
 
-
 def set_environment():
     global INPUT_FILES_DIR
     # Don't put a "/" in the end of the path
@@ -183,7 +182,7 @@ def recalculate_means(clusters, random_centers):
 def cluster_k_means(k, examples, initialization_method):
     iteration = 0
 
-    #  INITIALIZATION
+    # INITIALIZATION
     centers = generate_cluster_centers(k, examples, initialization_method)
 
     if LOG_VERBOSE:
@@ -278,8 +277,6 @@ def calculate_clustering_nmi(clusters, golden_clusters):
 def parse_file_to_lines(file_dir, file_name):
 
     file_lines = open("{}/{}".format(file_dir, file_name), 'r').readlines()
-    # if LIMIT_LINES_TO_10:
-    #     file_lines = file_lines[0:20]
 
     if LOG_VERBOSE:
         print "lines read: ", len(file_lines)
