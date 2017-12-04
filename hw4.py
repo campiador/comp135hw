@@ -11,9 +11,11 @@ from __future__ import division
 
 import argparse
 
+from log.log import LOG_VERBOSE, LOG_DEVELOPER
 from models.neural_network import NeuralNetwork
 from models.neuron import Neuron
-from parser.arffparser import parse_file_to_lines, determine_number_of_classes, extract_examples
+from parser.arffparser import parse_file_and_extract_examples_and_number_of_classes_and_features, \
+    parse_file_and_extract_examples
 
 N_ITER = 3000
 INPUT_FILES_DIR = "./input/hw4"
@@ -23,30 +25,37 @@ FILE_OPT_DIGITS_TRAIN = "optdigits_train.arff"
 FILE_OPT_DIGITS_TEST = "optdigits_test.arff"
 
 
-
-
-
 def construct_network_and_initialize_weights(width, depth, input_layer, output_layer):
     return NeuralNetwork(width, depth, input_layer, output_layer)
 
 
-def extract_input_and_output_layer(train_data):
-    #TODO parse data to get input and output layers
-    return [Neuron()], [Neuron()]
+def calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_output_nodes):
+    input_layer = [Neuron() for _ in range(0, n_input_nodes)]
+    # FIXME: should I write output values to the input unit? probably not
+    # for i, neuron in enumerate(input_layer):
+    #     neuron.output = train_data_examples[i]
+
+    output_layer = [Neuron() for _ in range(0, n_output_nodes)]
+
+    return input_layer, output_layer
 
 
-def learn(width, depth, train_data, test_data):
+def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_nodes):
 
-    (input_layer, output_layer) = extract_input_and_output_layer(train_data)
+    print "train data examples:", train_data_examples
+
+
+    (input_layer, output_layer) = calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_output_nodes)
 
     network = construct_network_and_initialize_weights(width, depth, input_layer, output_layer)
 
-    number_of_examples = len(train_data)
+
+    number_of_examples = len(train_data_examples)
     training_error_rates = []
 
     for i in range(0, N_ITER):
         number_of_training_errors = 0
-        for example in train_data:
+        for example in train_data_examples:
             number_of_training_errors += \
                 network.update_weights_using_forward_and_backpropagation_return_train_errors(example)
 
@@ -60,24 +69,20 @@ if __name__ == '__main__':
     parser.parse_args()
     args = parser.parse_args()
 
-    file_lines = parse_file_to_lines(INPUT_FILES_DIR, FILE_838)
-    n_classes = determine_number_of_classes(file_lines)
-    examples = extract_examples(file_lines)
+# calculate these from input?
+    w = 3
+    d = 1
 
-    print n_classes
-    print examples
-    for examples in examples:
-        print examples.features, examples.label
+    (examples, n_classes, n_features) = parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_838)
 
-    exit(2)
+    if LOG_VERBOSE:
+        print "examples after parsing file:", examples
+        for example in examples:
+            print example.features, example.label
 
-# TODO: Parse these
-    w = 2
-    d = 5
+    train_data = examples
 
-    train_data = []
 
     test_data = []
 
-    learn(w, d, train_data, test_data)
-
+    learn(w, d, train_data, test_data, n_features, n_classes)

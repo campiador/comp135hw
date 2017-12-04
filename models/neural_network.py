@@ -1,4 +1,4 @@
-# hw4.py
+# neural_network.py
 # by Behnam Heydarshahi, December 2017
 # Empirical/Programming Assignment 4
 # COMP 135 Machine Learning
@@ -49,14 +49,15 @@ class NeuralNetwork():
     def forward_propagate_input_and_calculate_node_output_values(self, example):
         """ calculate s for each node, and then calculate x for it """
         # for input_node in input_layer:
-        #   no work needed here
+        for i, input_node in enumerate(self.node_layers[0]):
+            input_node.output = example.features[i]
 
-        for l, hidden_layer in enumerate(self.hidden_layers):
-            for i, hidden_node in enumerate(hidden_layer):
-                lower_layer = hidden_node.get_lower_layer()
+        for l, noneinput_layer in enumerate(self.node_layers[1:]):
+            for i, noneinput_node in enumerate(noneinput_layer):
+                lower_layer = self.get_lower_layer(l)
                 for lower_layer_node in lower_layer:
-                    hidden_node.sum_of_node_inputs += \
-                        self.get_weight(lower_layer, hidden_node, lower_layer_node) * lower_layer_node.getoutputvalue()
+                    noneinput_node.sum_of_node_inputs += \
+                        self.get_weight(lower_layer, lower_layer_node, noneinput_node) * lower_layer_node.output
 
     def initialize_weights_randomly(self, width, depth, input_layer_len, output_layer_len):
 
@@ -79,6 +80,15 @@ class NeuralNetwork():
 
         # Last layer is output layer
         self.node_layers.append(output_layer)
+
+    def calculate_training_error_rate(self, number_of_training_errors, number_of_examples):
+        raise NotImplementedError, "not implemented"
+
+    def get_lower_layer(self, l):
+        return self.layers[l-1]
+
+    def get_weight(self, lower_layer, lower_layer_node, noneinput_node):
+        return self.weights[lower_layer]
 
 
 

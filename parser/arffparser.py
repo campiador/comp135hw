@@ -52,3 +52,21 @@ def find_data_line_position(file_lines):
     # if @data not found
     print "input file missed @data (case-insensitive) "
     raise ValueError
+
+
+def parse_file_and_extract_examples_and_number_of_classes_and_features(input_dir, file_name):
+    file_lines = parse_file_to_lines(input_dir, file_name)
+    examples = extract_examples(file_lines)
+    n_features = len(examples[0].features)
+    n_classes = determine_number_of_classes(file_lines)
+
+    return examples, n_classes, n_features
+
+
+def parse_file_and_extract_examples(input_dir, file_name):
+    file_lines = parse_file_to_lines(input_dir, file_name)
+    examples = extract_examples(file_lines)
+
+    return examples
+
+
