@@ -53,10 +53,11 @@ class NeuralNetwork():
         return str
 
     def update_weights_using_forward_and_backpropagation_return_train_errors(self, example):
+
+
         self.forward_feed_input_and_calculate_node_output_values(example)
 
         print self
-        exit(2)
 
         self.backward_propagate_and_calculate_deltas()
         self.forward_update_weights()
@@ -82,9 +83,6 @@ class NeuralNetwork():
                         * lower_layer_node.output
                 node_in_current_layer.output = sigmoid(node_in_current_layer.sum_of_node_inputs)
 
-            print index_current_layer
-
-
     def initialize_weights_randomly(self, width, depth, input_layer_len, output_layer_len):
 
         for weight_layer_index in range(0, depth + 1):
@@ -95,6 +93,7 @@ class NeuralNetwork():
 
     def init_node_layers(self, depth, width, input_layer, output_layer):
         # First layer is input layer
+        #FIXME: was first layer added to node_layers twice? do we need to check something
         self.node_layers.append(input_layer)
 
         # Now hidden layers
@@ -122,9 +121,15 @@ class NeuralNetwork():
     # def get_weight_backward(self, lower_layer_index, i, current_node_index):
     #     return self.weights[lower_layer_index][(i * m) + j]
 
+    def backward_propagate_and_calculate_deltas(self):
 
+        # calculate delta for last layer
+        for index, last_layer_node in enumerate(self.node_layers[-1]):
+            last_layer_node.delta = -(last_layer_node.onehot_label - last_layer_node.output) * \
+                                    last_layer_node.output * (1 - last_layer_node.output)
 
-
-
-
+    def init_onehot_labels_for_output_nodes(self, label, output_classes):
+        print output_classes
+        for position_of_neuron_in_layer, node in enumerate(self.node_layers[-1]):
+            node.set_onehot_label(position_of_neuron_in_layer, output_classes, label)
 

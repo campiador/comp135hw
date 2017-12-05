@@ -34,6 +34,21 @@ def determine_number_of_classes(file_lines):
         return len(classes_list)
 
 
+def extract_output_classes(file_lines):
+    class_line = ""
+    for file_line in file_lines:
+        file_line = file_line.lower()
+        if file_line.startswith("@attribute class"):
+            class_line = file_line
+            break
+    if class_line is "":
+        raise ValueError
+    else: # class_line found
+        classes_string = class_line[class_line.index('{') + 1:class_line.index('}')]
+        classes_string.replace(" ,", ",")
+        classes_list = classes_string.split(",")
+        return classes_list
+
 def extract_examples(file_lines):
     index_data = find_data_line_position(file_lines)
     data_lines = file_lines[index_data + 1:]
@@ -59,8 +74,9 @@ def parse_file_and_extract_examples_and_number_of_classes_and_features(input_dir
     examples = extract_examples(file_lines)
     n_features = len(examples[0].features)
     n_classes = determine_number_of_classes(file_lines)
+    output_classes = extract_output_classes(file_lines)
 
-    return examples, n_classes, n_features
+    return examples, n_classes, n_features, output_classes
 
 
 def parse_file_and_extract_examples(input_dir, file_name):

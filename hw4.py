@@ -15,7 +15,7 @@ from log.log import LOG_VERBOSE, LOG_DEVELOPER
 from models.neural_network import NeuralNetwork
 from models.neuron import Neuron
 from parser.arffparser import parse_file_and_extract_examples_and_number_of_classes_and_features, \
-    parse_file_and_extract_examples
+    parse_file_and_extract_examples, extract_output_classes
 
 N_ITER = 3000
 INPUT_FILES_DIR = "./input/hw4"
@@ -29,7 +29,7 @@ def construct_network_and_initialize_weights(width, depth, input_layer, output_l
     return NeuralNetwork(width, depth, input_layer, output_layer)
 
 
-def calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_output_nodes):
+def calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_output_nodes, output_classes):
     input_layer = [Neuron() for _ in range(0, n_input_nodes)]
     # FIXME: should I write output values to the input unit? probably not
     # for i, neuron in enumerate(input_layer):
@@ -40,9 +40,10 @@ def calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_outp
     return input_layer, output_layer
 
 
-def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_nodes):
+def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_nodes, output_classes):
 
-    (input_layer, output_layer) = calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_output_nodes)
+    (input_layer, output_layer) = \
+        calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_output_nodes, output_classes)
 
     network = construct_network_and_initialize_weights(width, depth, input_layer, output_layer)
 
@@ -52,6 +53,7 @@ def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_
     for i in range(0, N_ITER):
         number_of_training_errors = 0
         for example in train_data_examples:
+            network.init_onehot_labels_for_output_nodes(example.label, output_classes)
             number_of_training_errors += \
                 network.update_weights_using_forward_and_backpropagation_return_train_errors(example)
         exit(2)
@@ -69,7 +71,12 @@ if __name__ == '__main__':
     w = 3
     d = 1
 
-    (examples, n_classes, n_features) = parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_838)
+    (examples, n_classes, n_features, output_classes) = \
+        parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_838)
+
+
+
+
 
     if LOG_VERBOSE:
         print "examples after parsing file:", examples
@@ -81,4 +88,4 @@ if __name__ == '__main__':
 
     test_data = []
 
-    learn(w, d, train_data, test_data, n_features, n_classes)
+    learn(w, d, train_data, test_data, n_features, n_classes, output_classes)
