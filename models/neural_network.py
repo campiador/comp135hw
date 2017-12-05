@@ -16,6 +16,7 @@ numpy.random.seed(0)
 
 from models.neuron import Neuron
 
+DEFAULT_LEARNING_RATE = 0.1
 
 class NeuralNetwork():
     def __init__(self, width, depth, input_layer, output_layer):
@@ -29,6 +30,8 @@ class NeuralNetwork():
         self.init_node_layers(self.depth, self.width, input_layer, output_layer)
 
         self.initialize_weights_randomly(self.width, self.depth, len(input_layer), len(output_layer))
+
+        self.learning_rate = DEFAULT_LEARNING_RATE
 
         print self
 
@@ -130,11 +133,8 @@ class NeuralNetwork():
             last_layer_node.delta = -(last_layer_node.onehot_label - last_layer_node.output) * \
                                     last_layer_node.output * (1 - last_layer_node.output)
 
-        print "printing index"
-
         # calculate delta for hidden layers. top down
         for reversed_index, current_layer in enumerate(reversed(self.node_layers[1:-1])):
-            print reversed_index, current_layer
 
             higher_layer_index = len(self.node_layers) - 1 - reversed_index
 
@@ -162,6 +162,17 @@ class NeuralNetwork():
         for position_of_neuron_in_layer, node in enumerate(self.node_layers[-1]):
             node.set_onehot_label(position_of_neuron_in_layer, output_classes, label)
 
+    # CONTINUE HERE
     def forward_update_weights(self):
-        raise NotImplementedError
+        for index_current_layer, noneinput_layer in enumerate(self.node_layers):
+            if index_current_layer == 0:
+                continue  # already addressed input layer in the first for loop
+            for node_index_in_current_layer, node_in_current_layer in enumerate(noneinput_layer):
+                lower_layer = self.get_lower_layer(index_current_layer)
+                for lower_layer_node_index, lower_layer_node in enumerate(lower_layer):
+                    node_in_current_layer.selfnode= \
+                        self.get_weight(index_current_layer - 1, lower_layer_node_index, node_index_in_current_layer) \
+                        * self.learning_rate
+
+
 

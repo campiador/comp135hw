@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="onehot label">
+    <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="backward propagation">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/neural_network.py" afterPath="$PROJECT_DIR$/models/neural_network.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/neuron.py" afterPath="$PROJECT_DIR$/models/neuron.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/arffparser.py" afterPath="$PROJECT_DIR$/parser/arffparser.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,14 +13,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/comp135hw$hw4.coverage" NAME="hw4 Coverage Results" MODIFIED="1512449675579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/comp135hw$hw4.coverage" NAME="hw4 Coverage Results" MODIFIED="1512453608044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="hw4.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hw4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="179">
               <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
                 <element signature="e#226#257#0" expanded="true" />
@@ -46,8 +44,8 @@
       <file leaf-file-name="neural_network.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/neural_network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="129" column="8" lean-forward="false" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
+            <state relative-caret-position="226">
+              <caret line="164" column="19" lean-forward="false" selection-start-line="164" selection-start-column="19" selection-end-line="164" selection-end-column="19" />
               <folding>
                 <element signature="e#166#179#0" expanded="true" />
               </folding>
@@ -108,10 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>itera</find>
-      <find>conti</find>
-      <find>random from</find>
-      <find>nmi</find>
       <find>converged</find>
       <find>random</find>
       <find>[</find>
@@ -132,12 +126,16 @@
       <find>var</find>
       <find>init</find>
       <find>train data</find>
-      <find>exit</find>
       <find>detere</find>
       <find>node_layers.app</find>
       <find>node_layers</find>
       <find>node_layers =</find>
       <find>print</find>
+      <find>exit</find>
+      <find>unifor</find>
+      <find>printing</find>
+      <find>exit(2</find>
+      <find>weight</find>
     </findStrings>
     <replaceStrings>
       <replace>constants.DEBUG_VERBOSE</replace>
@@ -176,9 +174,9 @@
         <option value="$PROJECT_DIR$/hw3.py" />
         <option value="$PROJECT_DIR$/hw3.py" />
         <option value="$PROJECT_DIR$/models/example.py" />
-        <option value="$PROJECT_DIR$/hw4.py" />
         <option value="$PROJECT_DIR$/parser/arffparser.py" />
         <option value="$PROJECT_DIR$/models/neuron.py" />
+        <option value="$PROJECT_DIR$/hw4.py" />
         <option value="$PROJECT_DIR$/models/neural_network.py" />
       </list>
     </option>
@@ -811,7 +809,21 @@
       <option name="project" value="LOCAL" />
       <updated>1512449137130</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="onehot working">
+      <created>1512449817035</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1512449817035</updated>
+    </task>
+    <task id="LOCAL-00047" summary="backward propagation. check!">
+      <created>1512452653242</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1512452653242</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -833,7 +845,7 @@
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265086" sideWeight="0.24418604" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264865" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264865" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -887,8 +899,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="cluster scatter implemented" />
-    <MESSAGE value="1. Adds NMI calculations&#10;2. Restructures assignment" />
     <MESSAGE value="parsing files and calculating classes" />
     <MESSAGE value="parses data lines into examples" />
     <MESSAGE value="kmeans implemented and tested with nmi and cs" />
@@ -912,7 +922,9 @@
     <MESSAGE value="input output layer" />
     <MESSAGE value="feed forward" />
     <MESSAGE value="onehot label" />
-    <option name="LAST_COMMIT_MESSAGE" value="onehot label" />
+    <MESSAGE value="onehot working" />
+    <MESSAGE value="backward propagation. check!" />
+    <option name="LAST_COMMIT_MESSAGE" value="backward propagation. check!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1220,6 +1232,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/neuron.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/parser/arffparser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
@@ -1230,17 +1250,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/neuron.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hw4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="179">
           <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
             <element signature="e#226#257#0" expanded="true" />
@@ -1250,8 +1262,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/neural_network.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="129" column="8" lean-forward="false" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
+        <state relative-caret-position="226">
+          <caret line="164" column="19" lean-forward="false" selection-start-line="164" selection-start-column="19" selection-end-line="164" selection-end-column="19" />
           <folding>
             <element signature="e#166#179#0" expanded="true" />
           </folding>
