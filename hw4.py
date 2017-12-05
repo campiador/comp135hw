@@ -42,13 +42,9 @@ def calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_outp
 
 def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_nodes):
 
-    print "train data examples:", train_data_examples
-
-
     (input_layer, output_layer) = calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_output_nodes)
 
     network = construct_network_and_initialize_weights(width, depth, input_layer, output_layer)
-
 
     number_of_examples = len(train_data_examples)
     training_error_rates = []
@@ -58,7 +54,7 @@ def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_
         for example in train_data_examples:
             number_of_training_errors += \
                 network.update_weights_using_forward_and_backpropagation_return_train_errors(example)
-
+        exit(2)
         training_error_rate = network.calculate_training_error_rate(number_of_training_errors, number_of_examples)
         training_error_rates.append(training_error_rate)
         #TODO: what to do with above variable?

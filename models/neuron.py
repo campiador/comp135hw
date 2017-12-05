@@ -14,8 +14,9 @@ class Neuron():
         self.delta = 0
 
     def __str__(self):
-        return "Neuron"
+        return "Neuron x:{0:.{2}f}, s:{1:.{2}f}".format(self.output, self.sum_of_node_inputs, 2)
 
     def __repr__(self):
-        return "Neuron"
+        return "Neuron x:{0:.{2}f}, s:{1:.{2}f}".format(self.output, self.sum_of_node_inputs, 2)
+
 

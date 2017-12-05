@@ -9,7 +9,8 @@ import random
 
 import numpy
 
-from log.log import LOG_VERBOSE, LOG_DEVELOPER
+from log.log import LOG_VERBOSE, LOG_DEVELOPER, LOG_CLIENT
+from statistics_numeric_methods.statistics import sigmoid
 
 numpy.random.seed(0)
 
@@ -26,38 +27,63 @@ class NeuralNetwork():
         self.node_layers = []
 
         self.init_node_layers(self.depth, self.width, input_layer, output_layer)
-        if LOG_DEVELOPER:
-            for i, layer in enumerate(self.node_layers):
-                print "layer {}".format(i)
-                print layer
 
         self.initialize_weights_randomly(self.width, self.depth, len(input_layer), len(output_layer))
 
-        if LOG_DEVELOPER:
-            print "\nweights"
-            print self.weights
+        print self
 
+    def __str__(self):
+        str = ""
+        for i, layer in enumerate(self.node_layers):
+            str += "\nlayer {}".format(i)
+            str += "{}".format(layer)
+            if i < len(self.weights):
+                pretty_weights = ["%.2f" % item for item in self.weights[i]]
+                str += "\nweights:{}".format(pretty_weights)
+        return str
+
+    def __repr__(self):
+        str = ""
+        for i, layer in enumerate(self.node_layers):
+            str += "\nlayer {}".format(i)
+            str += "{}".format(layer)
+            if i < len(self.weights):
+                pretty_weights = ["%.2f" % item for item in self.weights[i]]
+                str += "weights:{}".format(pretty_weights)
+        return str
 
     def update_weights_using_forward_and_backpropagation_return_train_errors(self, example):
-        self.forward_propagate_input_and_calculate_node_output_values(example)
+        self.forward_feed_input_and_calculate_node_output_values(example)
+
+        print self
+        exit(2)
+
         self.backward_propagate_and_calculate_deltas()
         self.forward_update_weights()
 
         # TODO: calculate training errors
         return 0
 
-    def forward_propagate_input_and_calculate_node_output_values(self, example):
+    def forward_feed_input_and_calculate_node_output_values(self, example):
         """ calculate s for each node, and then calculate x for it """
         # for input_node in input_layer:
         for i, input_node in enumerate(self.node_layers[0]):
             input_node.output = example.features[i]
 
-        for l, noneinput_layer in enumerate(self.node_layers[1:]):
-            for i, noneinput_node in enumerate(noneinput_layer):
-                lower_layer = self.get_lower_layer(l)
-                for lower_layer_node in lower_layer:
-                    noneinput_node.sum_of_node_inputs += \
-                        self.get_weight(lower_layer, lower_layer_node, noneinput_node) * lower_layer_node.output
+        # for layers after the input, calculate the sums
+        for index_current_layer, noneinput_layer in enumerate(self.node_layers):
+            if index_current_layer == 0:
+                continue  # already addressed input layer in the first for loop
+            for node_index_in_current_layer, node_in_current_layer in enumerate(noneinput_layer):
+                lower_layer = self.get_lower_layer(index_current_layer)
+                for lower_layer_node_index, lower_layer_node in enumerate(lower_layer):
+                    node_in_current_layer.sum_of_node_inputs += \
+                        self.get_weight(index_current_layer - 1, lower_layer_node_index, node_index_in_current_layer) \
+                        * lower_layer_node.output
+                node_in_current_layer.output = sigmoid(node_in_current_layer.sum_of_node_inputs)
+
+            print index_current_layer
+
 
     def initialize_weights_randomly(self, width, depth, input_layer_len, output_layer_len):
 
@@ -85,13 +111,16 @@ class NeuralNetwork():
         raise NotImplementedError, "not implemented"
 
     def get_lower_layer(self, l):
-        return self.layers[l-1]
+        return self.node_layers[l-1]
 
-    def get_weight(self, lower_layer, lower_layer_node, noneinput_node):
-        return self.weights[lower_layer]
+    def get_weight(self, lower_layer_index, lower_layer_node_index, current_layer_node_index):
+        n = len(self.node_layers[lower_layer_index])
+        return self.weights[lower_layer_index][n * current_layer_node_index + lower_layer_node_index]
 
 
-
+    #
+    # def get_weight_backward(self, lower_layer_index, i, current_node_index):
+    #     return self.weights[lower_layer_index][(i * m) + j]
 
 
 
