@@ -54,7 +54,6 @@ class NeuralNetwork():
 
     def update_weights_using_forward_and_backpropagation_return_train_errors(self, example):
 
-
         self.forward_feed_input_and_calculate_node_output_values(example)
 
         print self
@@ -128,8 +127,11 @@ class NeuralNetwork():
             last_layer_node.delta = -(last_layer_node.onehot_label - last_layer_node.output) * \
                                     last_layer_node.output * (1 - last_layer_node.output)
 
+
+
+
+
     def init_onehot_labels_for_output_nodes(self, label, output_classes):
-        print output_classes
         for position_of_neuron_in_layer, node in enumerate(self.node_layers[-1]):
             node.set_onehot_label(position_of_neuron_in_layer, output_classes, label)
 

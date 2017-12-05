@@ -47,7 +47,10 @@ def extract_output_classes(file_lines):
         classes_string = class_line[class_line.index('{') + 1:class_line.index('}')]
         classes_string.replace(" ,", ",")
         classes_list = classes_string.split(",")
-        return classes_list
+    for i, label in enumerate(classes_list):
+        classes_list[i] = label.replace("\n", "")
+
+    return classes_list
 
 def extract_examples(file_lines):
     index_data = find_data_line_position(file_lines)

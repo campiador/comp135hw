@@ -24,9 +24,10 @@ class Neuron():
                                                                                   2, self.delta, self.onehot_label)
 
     def set_onehot_label(self, position_of_neuron_in_layer, all_labels, label):
-        label = label.replace("\n", "")
+        label = label.replace("\n", "") # FIXME: this will be handled in a lower level in the future
+
         position_of_output_in_labels = all_labels.index(label)
-        print position_of_output_in_labels, position_of_neuron_in_layer
+
         if position_of_output_in_labels == position_of_neuron_in_layer:
             self.onehot_label = 1.0
         else:
