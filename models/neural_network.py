@@ -14,12 +14,12 @@ from statistics_numeric_methods.statistics import sigmoid
 
 numpy.random.seed(0)
 
-
 from models.neuron import Neuron
 
 
 class NeuralNetwork():
     def __init__(self, width, depth, input_layer, output_layer):
+
         self.weights = []
         self.width = width
         self.depth = depth
@@ -59,6 +59,9 @@ class NeuralNetwork():
         print self
 
         self.backward_propagate_and_calculate_deltas()
+
+        print self
+
         self.forward_update_weights()
 
         # TODO: calculate training errors
@@ -127,11 +130,38 @@ class NeuralNetwork():
             last_layer_node.delta = -(last_layer_node.onehot_label - last_layer_node.output) * \
                                     last_layer_node.output * (1 - last_layer_node.output)
 
+        print "printing index"
 
+        # calculate delta for hidden layers. top down
+        for reversed_index, current_layer in enumerate(reversed(self.node_layers[1:-1])):
+            print reversed_index, current_layer
 
+            higher_layer_index = len(self.node_layers) - 1 - reversed_index
+
+            current_layer_index = higher_layer_index - 1
+
+            higher_layer = self.node_layers[higher_layer_index]
+
+            for current_layer_node_index, current_layer_node in enumerate(current_layer):
+                new_delta = 0
+
+                higher_layer_delta_times_w_sum = 0
+
+                for higher_layer_node_index, higher_layer_node in enumerate(higher_layer):
+                    higher_layer_node_delta = higher_layer_node.delta
+                    higher_layer_weight = self.get_weight(current_layer_index, current_layer_node_index,
+                                                          higher_layer_node_index)
+                    higher_layer_delta_times_w_sum += higher_layer_node_delta * higher_layer_weight
+
+                new_delta = current_layer_node.output * (1- current_layer_node.output) * higher_layer_delta_times_w_sum
+
+                self.node_layers[current_layer_index][current_layer_node_index].d = new_delta
 
 
     def init_onehot_labels_for_output_nodes(self, label, output_classes):
         for position_of_neuron_in_layer, node in enumerate(self.node_layers[-1]):
             node.set_onehot_label(position_of_neuron_in_layer, output_classes, label)
+
+    def forward_update_weights(self):
+        raise NotImplementedError
 

@@ -56,7 +56,6 @@ def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_
             network.init_onehot_labels_for_output_nodes(example.label, output_classes)
             number_of_training_errors += \
                 network.update_weights_using_forward_and_backpropagation_return_train_errors(example)
-        exit(2)
         training_error_rate = network.calculate_training_error_rate(number_of_training_errors, number_of_examples)
         training_error_rates.append(training_error_rate)
         #TODO: what to do with above variable?
@@ -69,7 +68,7 @@ if __name__ == '__main__':
 
 # calculate these from input?
     w = 3
-    d = 1
+    d = 2
 
     (examples, n_classes, n_features, output_classes) = \
         parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_838)
