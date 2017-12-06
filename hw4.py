@@ -18,7 +18,7 @@ from models.neuron import Neuron
 from parser.arffparser import parse_file_and_extract_examples_and_number_of_classes_and_features, \
     parse_file_and_extract_examples, extract_output_classes
 
-N_ITER = 3000
+N_ITER = 2
 INPUT_FILES_DIR = "./input/hw4"
 
 FILE_838 = "838.arff"
@@ -94,11 +94,18 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
 # calculate these from input?
-    w = 3
+    w = 5
     d = 1
 
+    # (examples, n_classes, n_features, output_classes) = \
+    #     parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_838)
+
+    # (opt_train_examples, _, _, _) = \
     (examples, n_classes, n_features, output_classes) = \
-        parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_838)
+        parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_OPT_DIGITS_TRAIN)
+
+    (opt_test_examples, _, _, _) = \
+        parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_OPT_DIGITS_TEST)
 
 
     if LOG_VERBOSE:
@@ -119,5 +126,5 @@ if __name__ == '__main__':
         my_ex_output_classes = ["0"]
         learn(w, d, my_example_train_data, test_data, my_ex_num_features, my_ex_n_classes, my_ex_output_classes)
     else:
-        learn(w, d, train_data_examples, test_data, n_features, n_classes, output_classes)
+        learn(w, d, train_data_examples, opt_test_examples, n_features, n_classes, output_classes)
 
