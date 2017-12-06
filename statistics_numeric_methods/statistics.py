@@ -38,4 +38,4 @@ def calculate_std_mean(array_of_arrays):
 
 def sigmoid(x):
     x = max(-50, x)  # to avoid numerical issues
-    return 1/(1 + math.exp(x))
+    return 1/(1 + math.exp(-x))

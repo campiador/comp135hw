@@ -12,12 +12,13 @@ from __future__ import division
 import argparse
 
 from log.log import LOG_VERBOSE, LOG_DEVELOPER
+from models.example import Example
 from models.neural_network import NeuralNetwork
 from models.neuron import Neuron
 from parser.arffparser import parse_file_and_extract_examples_and_number_of_classes_and_features, \
     parse_file_and_extract_examples, extract_output_classes
 
-N_ITER = 3000
+N_ITER = 1
 INPUT_FILES_DIR = "./input/hw4"
 
 FILE_838 = "838.arff"
@@ -51,30 +52,32 @@ def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_
     training_error_rates = []
 
     for i in range(0, N_ITER):
+        print "ITERATION:", i
         number_of_training_errors = 0
         for example in train_data_examples:
+
+            print "example:", example
+
             network.init_onehot_labels_for_output_nodes(example.label, output_classes)
             number_of_training_errors += \
                 network.update_weights_using_forward_and_backpropagation_return_train_errors(example)
         training_error_rate = network.calculate_training_error_rate(number_of_training_errors, number_of_examples)
         training_error_rates.append(training_error_rate)
+
         #TODO: what to do with above variable?
 
-
+RUN_MY_EX = True
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.parse_args()
     args = parser.parse_args()
 
 # calculate these from input?
-    w = 3
+    w = 2
     d = 2
 
     (examples, n_classes, n_features, output_classes) = \
         parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_838)
-
-
-
 
 
     if LOG_VERBOSE:
@@ -82,9 +85,14 @@ if __name__ == '__main__':
         for example in examples:
             print example.features, example.label
 
-    train_data = examples
+    train_data_examples = examples
 
 
     test_data = []
 
-    learn(w, d, train_data, test_data, n_features, n_classes, output_classes)
+    my_example_train_data = [Example(0, [2, 3], "\n0")]
+    my_ex_num_features = 2
+    my_ex_n_classes = 1
+    my_ex_output_classes = ["0"]
+    if RUN_MY_EX:
+        learn(w, d, my_example_train_data, test_data, my_ex_num_features, my_ex_n_classes, my_ex_output_classes)
