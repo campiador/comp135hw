@@ -173,6 +173,8 @@ def plot_x_y_line(main_title, x_axis_tile, y_axis_title, subplotables, output_fi
         color = cmap(i)
         if constants.DEBUG_VERBOSE:
             print " color {} = {}".format(i, color)
+            print plotable.y_values
+            print plotable.x_values
 
         plt.plot(plotable.x_values, plotable.y_values, color=color, label=plotable.label, marker='o')
 
@@ -202,7 +204,7 @@ def plot_x_y_line(main_title, x_axis_tile, y_axis_title, subplotables, output_fi
 
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-    plt.savefig('./output/{}_{}_{}.png'.format(output_file_name, main_title, st))
+    plt.savefig('./output/hw4/{}_{}_{}.png'.format(output_file_name, main_title, st))
 
     # plt.show()
     plt.show(block=False)

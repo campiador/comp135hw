@@ -7,19 +7,17 @@
 #
 
 import random
-
+from random import seed
 import numpy
 
 from log.log import LOG_VERBOSE, LOG_DEVELOPER
 from statistics_numeric_methods.statistics import sigmoid
 
-numpy.random.seed(0)
+seed(1)
 
 from models.neuron import Neuron
 
 DEFAULT_LEARNING_RATE = 0.1
-
-
 
 
 
@@ -112,7 +110,7 @@ class NeuralNetwork():
         for index_current_layer, noninput_layer in enumerate(self.node_layers):
             if index_current_layer == 0:
                 continue  # already addressed input layer in the first for loop
-
+        # Hidden layers and output layer
             for node_index_in_current_layer, node_in_current_layer in enumerate(noninput_layer):
                 lower_layer = self.get_lower_layer(index_current_layer)
                 for lower_layer_node_index, lower_layer_node in enumerate(lower_layer):
@@ -156,8 +154,7 @@ class NeuralNetwork():
             print "lower layer node index:", relatively_lower_layer_node_index
             print "relatively higher level index", relatively_higher_layer_node_index
         n = len(self.node_layers[relatively_lower_layer_index])
-        return self.weights[relatively_lower_layer_index] \
-        [n * relatively_higher_layer_node_index + relatively_lower_layer_node_index]
+        return self.weights[relatively_lower_layer_index][n * relatively_higher_layer_node_index + relatively_lower_layer_node_index]
 
 
     #
@@ -168,8 +165,7 @@ class NeuralNetwork():
 
         # calculate delta for last layer
         for index, last_layer_node in enumerate(self.node_layers[-1]):
-            last_layer_node.delta = -(last_layer_node.onehot_label - last_layer_node.output) * \
-                                    last_layer_node.output * (1 - last_layer_node.output)
+            last_layer_node.delta = -(last_layer_node.dp) * (last_layer_node.onehot_label - last_layer_node.output)
 
         # calculate delta for hidden layers. top down
         for reversed_index, current_layer in enumerate(reversed(self.node_layers[1:-1])):
@@ -177,6 +173,8 @@ class NeuralNetwork():
             higher_layer_index = len(self.node_layers) - 1 - reversed_index
 
             current_layer_index = higher_layer_index - 1
+            if LOG_VERBOSE:
+                print "bpp for hidden layer:", current_layer_index
 
             higher_layer = self.node_layers[higher_layer_index]
 
@@ -202,19 +200,24 @@ class NeuralNetwork():
 
         for index_weight_layer, weight_layer in enumerate(self.weights):
 
-            for weight_index_in_layer, weight in enumerate(weight_layer):
+            for weight_index_in_layer, _ in enumerate(weight_layer):
 
                 from_node, to_node = self.get_from_and_to_nodes_by_weight(index_weight_layer, weight_index_in_layer)
 
                 self.weights[index_weight_layer][weight_index_in_layer] \
-                    -= self.learning_rate * from_node.output * to_node.delta
+                    -= (self.learning_rate * from_node.output * to_node.delta)
 
     def get_from_and_to_nodes_by_weight(self, index_weight_layer, weight_index_in_layer):
-        len_lower_layer = len(self.node_layers[index_weight_layer])
-        index_node_in_higher_layer = weight_index_in_layer / len_lower_layer
-        index_node_in_lower_layer = weight_index_in_layer % len_lower_layer
+
+        len_lower_node_layer = len(self.node_layers[index_weight_layer])
+
+        index_node_in_higher_layer = weight_index_in_layer / len_lower_node_layer
+
+        index_node_in_lower_layer = weight_index_in_layer % len_lower_node_layer
+
         from_node = self.node_layers[index_weight_layer][index_node_in_lower_layer]
         to_node = self.node_layers[index_weight_layer + 1][index_node_in_higher_layer]
+
         return from_node, to_node
 
     def was_there_a_mistake_in_output(self):
@@ -223,8 +226,6 @@ class NeuralNetwork():
         output_values = [node.output for node in output_layer]
         predicted_index = output_values.index(max(output_values))
         output_labels = [node.onehot_label for node in output_layer]
-        print output_values
-        print output_labels
 
         actual_index = -1
 
@@ -235,8 +236,8 @@ class NeuralNetwork():
 
         if actual_index == -1:
             raise AssertionError, "No datapoint has been assigned onehot value 1. This suggests a bug in onehot code."
-
-        print "predicted:{}, actual:{}".format(predicted_index, actual_index)
+        if LOG_VERBOSE:
+            print "predicted:{}, actual:{}".format(predicted_index, actual_index)
         if predicted_index == actual_index:
             return False
         else:
