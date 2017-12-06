@@ -18,7 +18,7 @@ from models.neuron import Neuron
 from parser.arffparser import parse_file_and_extract_examples_and_number_of_classes_and_features, \
     parse_file_and_extract_examples, extract_output_classes
 
-N_ITER = 1
+N_ITER = 100
 INPUT_FILES_DIR = "./input/hw4"
 
 FILE_838 = "838.arff"
@@ -41,6 +41,10 @@ def calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_outp
     return input_layer, output_layer
 
 
+def calculate_training_error_rate(number_of_training_errors_per_example, number_of_examples):
+    return number_of_training_errors_per_example / number_of_examples
+
+
 def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_nodes, output_classes):
 
     (input_layer, output_layer) = \
@@ -53,20 +57,22 @@ def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_
 
     for i in range(0, N_ITER):
         print "ITERATION:", i
-        number_of_training_errors = 0
+        number_of_training_mistakes = 0
         for example in train_data_examples:
 
             print "example:", example
 
             network.init_onehot_labels_for_output_nodes(example.label, output_classes)
-            number_of_training_errors += \
-                network.update_weights_using_forward_and_backpropagation_return_train_errors(example)
-        training_error_rate = network.calculate_training_error_rate(number_of_training_errors, number_of_examples)
+            number_of_training_mistakes += \
+                network.update_weights_using_forward_and_backpropagation_return_1_if_mistake(example)
+        print "mistake#", number_of_training_mistakes
+        training_error_rate = calculate_training_error_rate(number_of_training_mistakes, number_of_examples)
         training_error_rates.append(training_error_rate)
 
+    print "training error rates for all iterations:", training_error_rates
         #TODO: what to do with above variable?
 
-RUN_MY_EX = True
+RUN_MY_EX = False
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.parse_args()
@@ -90,9 +96,13 @@ if __name__ == '__main__':
 
     test_data = []
 
-    my_example_train_data = [Example(0, [2, 3], "\n0")]
-    my_ex_num_features = 2
-    my_ex_n_classes = 1
-    my_ex_output_classes = ["0"]
+
     if RUN_MY_EX:
+        my_example_train_data = [Example(0, [2, 3], "\n0")]
+        my_ex_num_features = 2
+        my_ex_n_classes = 1
+        my_ex_output_classes = ["0"]
         learn(w, d, my_example_train_data, test_data, my_ex_num_features, my_ex_n_classes, my_ex_output_classes)
+    else:
+        learn(w, d, train_data_examples, test_data, n_features, n_classes, output_classes)
+

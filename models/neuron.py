@@ -29,7 +29,7 @@ class Neuron():
         position_of_output_in_labels = all_labels.index(label)
 
         if position_of_output_in_labels == position_of_neuron_in_layer:
-            self.onehot_label = 0.0   # FIXME: 1.0
+            self.onehot_label = 1.0   # FIXME: 1.0
         else:
             self.onehot_label = 0.0
 
