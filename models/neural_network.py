@@ -94,7 +94,7 @@ class NeuralNetwork():
 
         # Note: we already set the onehotlabels of data before calling the function we are in
 
-        is_mistake = self.was_there_a_mistake_in_training()
+        is_mistake = self.was_there_a_mistake_in_output()
 
         if is_mistake:
             return 1
@@ -194,10 +194,9 @@ class NeuralNetwork():
 
                 self.node_layers[current_layer_index][current_layer_node_index].delta = new_delta
 
-
-    def init_onehot_labels_for_output_nodes(self, label, output_classes):
-        for position_of_neuron_in_layer, node in enumerate(self.node_layers[-1]):
-            node.set_onehot_label(position_of_neuron_in_layer, output_classes, label)
+    def init_desired_onehot_labels_for_output_nodes(self, label, output_classes):
+        for position_of_neuron_in_layer, output_node in enumerate(self.node_layers[-1]):  # output layer
+            output_node.set_onehot_label(position_of_neuron_in_layer, output_classes, label)
 
     def forward_update_weights(self):
 
@@ -218,7 +217,7 @@ class NeuralNetwork():
         to_node = self.node_layers[index_weight_layer + 1][index_node_in_higher_layer]
         return from_node, to_node
 
-    def was_there_a_mistake_in_training(self):
+    def was_there_a_mistake_in_output(self):
         output_layer = self.node_layers[-1]
 
         output_values = [node.output for node in output_layer]

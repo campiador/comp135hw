@@ -18,7 +18,7 @@ from models.neuron import Neuron
 from parser.arffparser import parse_file_and_extract_examples_and_number_of_classes_and_features, \
     parse_file_and_extract_examples, extract_output_classes
 
-N_ITER = 100
+N_ITER = 3000
 INPUT_FILES_DIR = "./input/hw4"
 
 FILE_838 = "838.arff"
@@ -41,35 +41,50 @@ def calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_outp
     return input_layer, output_layer
 
 
-def calculate_training_error_rate(number_of_training_errors_per_example, number_of_examples):
+def calculate_error_rate(number_of_training_errors_per_example, number_of_examples):
     return number_of_training_errors_per_example / number_of_examples
 
 
-def learn(width, depth, train_data_examples, test_data, n_input_nodes, n_output_nodes, output_classes):
+def learn(width, depth, train_data_examples, test_data_examples, n_input_nodes, n_output_nodes, output_classes):
 
     (input_layer, output_layer) = \
         calculate_input_and_output_layers(train_data_examples, n_input_nodes, n_output_nodes, output_classes)
 
     network = construct_network_and_initialize_weights(width, depth, input_layer, output_layer)
 
-    number_of_examples = len(train_data_examples)
+    number_of_training_examples = len(train_data_examples)
     training_error_rates = []
+
+    number_of_test_examples = len(test_data_examples)
+    test_error_rates = []
 
     for i in range(0, N_ITER):
         print "ITERATION:", i
         number_of_training_mistakes = 0
-        for example in train_data_examples:
-
-            print "example:", example
-
-            network.init_onehot_labels_for_output_nodes(example.label, output_classes)
+        for train_example in train_data_examples:
+            # print "example:", train_example
+            network.init_desired_onehot_labels_for_output_nodes(train_example.label, output_classes)
             number_of_training_mistakes += \
-                network.update_weights_using_forward_and_backpropagation_return_1_if_mistake(example)
+                network.update_weights_using_forward_and_backpropagation_return_1_if_mistake(train_example)
         print "mistake#", number_of_training_mistakes
-        training_error_rate = calculate_training_error_rate(number_of_training_mistakes, number_of_examples)
+        training_error_rate = calculate_error_rate(number_of_training_mistakes, number_of_training_examples)
         training_error_rates.append(training_error_rate)
 
-    print "training error rates for all iterations:", training_error_rates
+        number_of_test_errors = 0
+
+        for test_example in test_data_examples:
+            # Note: assuming the same output classes for test and training
+            network.init_desired_onehot_labels_for_output_nodes(test_example.label, output_classes)
+            network.forward_feed_input_and_calculate_node_output_values(test_example)
+            if network.was_there_a_mistake_in_output():
+                number_of_test_errors += 1
+        if len(test_data_examples) != 0:
+            test_error_rate = calculate_error_rate(number_of_test_errors, number_of_test_examples)
+            test_error_rates.append(test_error_rate)
+
+
+    print "training and test error rates for all iterations:", training_error_rates, test_error_rates
+    print len(training_error_rates), len(test_error_rates)
         #TODO: what to do with above variable?
 
 RUN_MY_EX = False
@@ -79,8 +94,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
 # calculate these from input?
-    w = 2
-    d = 2
+    w = 3
+    d = 1
 
     (examples, n_classes, n_features, output_classes) = \
         parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, FILE_838)
@@ -94,7 +109,7 @@ if __name__ == '__main__':
     train_data_examples = examples
 
 
-    test_data = []
+    test_data = [Example(1000, [0, 1, 0, 0, 0, 0, 0, 0], "2")]
 
 
     if RUN_MY_EX:
