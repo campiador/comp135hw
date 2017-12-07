@@ -52,12 +52,16 @@ def learn_and_return_test_train_errors(width, depth, train_data_examples, test_d
         print "\ncreating a neural network for w:{}, d:{}, and running it for n:{} iterations"\
             .format(width, depth, n_iterations)
 
-
     (input_layer, output_layer) = create_input_and_output_layers(n_input_nodes, n_output_nodes)
 
     network = construct_network_and_initialize_weights(width, depth, input_layer, output_layer)
 
     number_of_training_examples = len(train_data_examples)
+
+    print "traindata examples:", train_data_examples
+
+    print "hi!"
+
     training_error_rates = []
 
     number_of_test_examples = len(test_data_examples)
@@ -92,6 +96,9 @@ def learn_and_return_test_train_errors(width, depth, train_data_examples, test_d
         print "training error rate after {} iterations: {}".format(n_iterations, training_error_rates[-1])
     if len(test_error_rates) > 0:
         print "test error rate after {} iterations: {}".format(n_iterations, test_error_rates[-1])
+
+    print network
+
     return training_error_rates, test_error_rates
 
 
@@ -126,6 +133,7 @@ def run_program(train_input_file, test_input_file, w_list, d_list, iteration_cou
                                                                              iteration_count)
             d_results.append(train_test_errors)
         w_results.append(d_results)
+
 
     return w_results
 
@@ -221,8 +229,11 @@ if __name__ == '__main__':
     parser.parse_args()
     args = parser.parse_args()
 
-    # For manula use with w, d, traindata, testdata args
+    # For manual use from command prompt with user input args: w, d, traindata, testdata
     if len(sys.argv) > 1:
+        if len(sys.argv != 4):
+            raise AssertionError, "Please provide 4 arguments: w, d, traindata, testdata"
+            exit(1)
         w = int(sys.argv[1])
         d = int(sys.argv[2])
         train_data_file = sys.argv[3]
@@ -230,24 +241,14 @@ if __name__ == '__main__':
 
         run_program(train_data_file, test_data_file, [w], [d], N_ITER_DEFAULT)
 
+    # No user input args
     w_d_results_part1 = run_program(part1_input_file, None, part1_w, part1_d, part1_iteration)
-    plot_part1(w_d_results_part1)
 
-    w_d_results_part2_exp1 = run_program(part2_input_file, part2_test_file, part2_exp1_w, part2_exp1_d, part2_iteration)
-    w_d_results_part2_exp2 = run_program(part2_input_file, part2_test_file, part2_exp2_w, part2_exp2_d, part2_iteration)
-    #
+    # plot_part1(w_d_results_part1)
 
-    # plot_part2_1()
-    # plot_part2_2()
+    # w_d_results_part2_exp1 = run_program(part2_input_file, part2_test_file, part2_exp1_w, part2_exp1_d, part2_iteration)
+    # w_d_results_part2_exp2 = run_program(part2_input_file, part2_test_file, part2_exp2_w, part2_exp2_d, part2_iteration)
 
-
-
-
-   # if RUN_MY_EX:
-    #     my_example_train_data = [Example(0, [2, 3], "\n0")]
-    #     my_ex_num_features = 2
-    #     my_ex_n_classes = 1
-    #     my_ex_output_classes = ["0"]
-    #     learn(w, d, my_example_train_data, test_examples, my_ex_num_features, my_ex_n_classes, my_ex_output_classes)
+    # plot_part2()
 
 

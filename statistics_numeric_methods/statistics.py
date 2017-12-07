@@ -4,7 +4,7 @@
 #  COMP 135 Machine Learning
 #
 #  This class keeps statistical formulas for mean and std deviation
-import math
+from __future__ import division
 
 import numpy
 

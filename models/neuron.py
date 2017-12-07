@@ -17,11 +17,11 @@ class Neuron():
 
     def __str__(self):
         return "N x:{0:.{2}f}, s:{1:.{2}f}, d:{3:.{2}f}, L:{4:.{2}f, dp:{5:.{2}f}".\
-            format(self.output, self.sum_of_node_inputs, 8,self.delta, self.onehot_label, self.dp)
+            format(self.output, self.sum_of_node_inputs, 4,self.delta, self.onehot_label, self.dp)
 
     def __repr__(self):
         return "N x:{0:.{2}f}, s:{1:.{2}f}, d:{3:.{2}f}, L:{4:.{2}f}, dp:{5:.{2}f}".\
-            format(self.output, self.sum_of_node_inputs, 8, self.delta, self.onehot_label, self.dp)
+            format(self.output, self.sum_of_node_inputs, 4, self.delta, self.onehot_label, self.dp)
 
     def set_onehot_label(self, position_of_neuron_in_layer, all_labels, label):
         label = label.replace("\n", "") # TODO: this will be handled in a lower level in the future

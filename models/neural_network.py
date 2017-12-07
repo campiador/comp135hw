@@ -7,13 +7,12 @@
 #
 
 import random
-from random import seed
 import numpy
 
-from log.log import LOG_VERBOSE, LOG_DEVELOPER
+from log.log import LOG_VERBOSE, LOG_DEVELOPER, LOG_CLIENT
 from statistics_numeric_methods.statistics import sigmoid
 
-seed(1)
+random.seed(162)
 
 from models.neuron import Neuron
 
@@ -35,13 +34,8 @@ class NeuralNetwork():
         self.node_layers = []
 
         self.init_node_layers(self.depth, self.width, input_layer, output_layer)
-        if False:  # FIXME
-            self.weights.append([1, 1, 1, 1])
-            self.weights.append([0.6, 0.6, 0.6, 0.6])
-            self.weights.append([1, 1])
 
-        else:
-            self.initialize_weights_randomly(self.width, self.depth, len(input_layer), len(output_layer))
+        self.initialize_weights_randomly(self.width, self.depth, len(input_layer), len(output_layer))
 
         self.learning_rate = DEFAULT_LEARNING_RATE
 
@@ -74,21 +68,22 @@ class NeuralNetwork():
 
         self.forward_feed_input_and_calculate_node_output_values(example)
 
-        if LOG_VERBOSE:
+        if LOG_DEVELOPER:
             print "*** after feeding forward: ***"
             print self
 
         self.backward_propagate_and_calculate_deltas()
 
-        if LOG_VERBOSE:
+        if LOG_DEVELOPER:
             print "after backpropagate:"
             print self
 
         self.forward_update_weights()
 
-        if LOG_VERBOSE:
+        if LOG_DEVELOPER:
             print "after weight update:"
             print self
+
 
         # Note: we already set the onehotlabels of data before calling the function we are in
 
@@ -111,8 +106,10 @@ class NeuralNetwork():
             if index_current_layer == 0:
                 continue  # already addressed input layer in the first for loop
         # Hidden layers and output layer
+
             for node_index_in_current_layer, node_in_current_layer in enumerate(noninput_layer):
                 lower_layer = self.get_lower_layer(index_current_layer)
+                node_in_current_layer.sum_of_node_inputs = 0
                 for lower_layer_node_index, lower_layer_node in enumerate(lower_layer):
                     node_in_current_layer.sum_of_node_inputs += \
                         self.get_weight(index_current_layer - 1, lower_layer_node_index, node_index_in_current_layer) \
@@ -127,6 +124,8 @@ class NeuralNetwork():
             next_layer = self.node_layers[weight_layer_index + 1]
 
             self.weights.append([random.uniform(-0.1, 0.1) for _ in range(0, len(this_layer) * len(next_layer))])
+            print len(self.weights[-1])
+            # print self.weights
 
     def init_node_layers(self, depth, width, input_layer, output_layer):
         # First layer is input layer
@@ -225,7 +224,13 @@ class NeuralNetwork():
 
         output_values = [node.output for node in output_layer]
         predicted_index = output_values.index(max(output_values))
+
+        print output_values
+        print predicted_index
+
         output_labels = [node.onehot_label for node in output_layer]
+
+        print output_labels
 
         actual_index = -1
 
@@ -236,8 +241,10 @@ class NeuralNetwork():
 
         if actual_index == -1:
             raise AssertionError, "No datapoint has been assigned onehot value 1. This suggests a bug in onehot code."
-        if LOG_VERBOSE:
+            exit(1)
+        if LOG_DEVELOPER:
             print "predicted:{}, actual:{}".format(predicted_index, actual_index)
+            # raw_input("press any key to continue")
         if predicted_index == actual_index:
             return False
         else:
