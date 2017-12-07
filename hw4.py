@@ -276,13 +276,14 @@ ENUM_PART_21 = 21
 ENUM_PART_22 = 22
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.parse_args()
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser()
+    # parser.parse_args()
+    # args = parser.parse_args()
 
     # For manual use from command prompt with user input args: w, d, traindata, testdata
     if len(sys.argv) > 1:
-        if len(sys.argv != 4):
+        print sys.argv
+        if len(sys.argv) != 5:
             raise AssertionError, "Please provide 4 arguments: w, d, traindata, testdata"
             exit(1)
         w = int(sys.argv[1])
@@ -293,18 +294,19 @@ if __name__ == '__main__':
         w_d_results_user = run_program(train_data_file, test_data_file, [w], [d], N_ITER_DEFAULT)
         plot_part1(w_d_results_user)
 
-    # No user input args, run the parts from the assignment
-    # PART 1
-    w_d_results_part1 = run_program(part1_input_file, None, part1_w, part1_d, part1_iteration)
-    plot_part1(w_d_results_part1)
+    else:  # No user input args, run the parts from the assignment
 
-    # PART 2.1: depth = 3
-    w_d_results_part2_exp1 = run_program(part2_input_file, part2_test_file, part2_exp1_w, part2_exp1_d, part2_iteration_count)
-    plot_part2(w_d_results_part2_exp1, ENUM_PART_21)
+        # PART 1
+        w_d_results_part1 = run_program(part1_input_file, None, part1_w, part1_d, part1_iteration)
+        plot_part1(w_d_results_part1)
 
-    # Part 2.2: width = 10
-    w_d_results_part2_exp2 = run_program(part2_input_file, part2_test_file, part2_exp2_w, part2_exp2_d, part2_iteration_count)
-    plot_part2(w_d_results_part2_exp2, ENUM_PART_22)
+        # PART 2.1: depth = 3
+        w_d_results_part2_exp1 = run_program(part2_input_file, part2_test_file, part2_exp1_w, part2_exp1_d, part2_iteration_count)
+        plot_part2(w_d_results_part2_exp1, ENUM_PART_21)
+
+        # Part 2.2: width = 10
+        w_d_results_part2_exp2 = run_program(part2_input_file, part2_test_file, part2_exp2_w, part2_exp2_d, part2_iteration_count)
+        plot_part2(w_d_results_part2_exp2, ENUM_PART_22)
 
 
 

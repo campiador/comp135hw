@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw1_part.png" afterPath="$PROJECT_DIR$/output/hw1/hw1_part.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw1_part1.png" afterPath="$PROJECT_DIR$/output/hw1/hw1_part1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw1p1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 16:50:41.png" afterPath="$PROJECT_DIR$/output/hw1/hw1p1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 16:50:41.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw1p1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-17 18:23:07.png" afterPath="$PROJECT_DIR$/output/hw1/hw1p1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-17 18:23:07.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw1p1_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 16:46:27.png" afterPath="$PROJECT_DIR$/output/hw1/hw1p1_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 16:46:27.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw1p1_Learning Curves with Cross Validation for imdb_labelled_2017-10-17 18:16:38.png" afterPath="$PROJECT_DIR$/output/hw1/hw1p1_Learning Curves with Cross Validation for imdb_labelled_2017-10-17 18:16:38.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw1p1_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 16:40:58.png" afterPath="$PROJECT_DIR$/output/hw1/hw1p1_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 16:40:58.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw1p1_Learning Curves with Cross Validation for yelp_labelled_2017-10-17 18:07:10.png" afterPath="$PROJECT_DIR$/output/hw1/hw1p1_Learning Curves with Cross Validation for yelp_labelled_2017-10-17 18:07:10.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 12:24:55.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 12:24:55.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 12:47:54.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part1_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 12:47:54.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 12:22:52.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 12:22:52.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 12:43:45.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part1_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 12:43:45.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 12:19:49.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 12:19:49.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 12:38:19.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part1_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 12:38:19.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 15:16:06.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 15:16:06.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 15:41:14.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 15:41:14.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 17:15:23.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-15 17:15:23.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-16 11:05:44.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-16 11:05:44.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-16 15:50:53.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for amazon_cells_labelled_2017-10-16 15:50:53.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 15:08:34.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 15:08:34.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 15:33:39.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 15:33:39.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 17:07:57.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-15 17:07:57.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-16 11:04:49.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-16 11:04:49.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-16 15:50:27.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for imdb_labelled_2017-10-16 15:50:27.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 14:58:53.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 14:58:53.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 15:24:05.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 15:24:05.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 16:58:24.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-15 16:58:24.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-16 11:01:28.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-16 11:01:28.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-16 11:02:55.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-16 11:02:55.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-16 15:49:45.png" afterPath="$PROJECT_DIR$/output/hw1/hw2_part2_Learning Curves with Cross Validation for yelp_labelled_2017-10-16 15:49:45.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/report_hw4.docx" afterPath="$PROJECT_DIR$/reports/report_hw4.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graphics/plot.py" afterPath="$PROJECT_DIR$/graphics/plot.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hw4.py" afterPath="$PROJECT_DIR$/hw4.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/neural_network.py" afterPath="$PROJECT_DIR$/models/neural_network.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,18 +13,30 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/comp135hw$hw4.coverage" NAME="hw4 Coverage Results" MODIFIED="1512629061705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/comp135hw$hw4.coverage" NAME="hw4 Coverage Results" MODIFIED="1512629971013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="hw4.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="272" column="14" lean-forward="false" selection-start-line="272" selection-start-column="14" selection-end-line="272" selection-end-column="14" />
+            <state relative-caret-position="320">
+              <caret line="298" column="8" lean-forward="false" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
               <folding>
                 <element signature="e#226#257#0" expanded="true" />
-                <marker date="1512629634045" expanded="true" signature="10613:11002" ph="..." />
+                <marker date="1512629964489" expanded="true" signature="10666:11075" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arffparser.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/parser/arffparser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+              <folding>
+                <element signature="e#156#187#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -279,12 +258,6 @@
               <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
               <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
               <item name="output" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
-              <item name="hw4" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
@@ -533,13 +506,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1506199862817</updated>
-    </task>
-    <task id="LOCAL-00007" summary="HW 2, finished parsing data from input to vocabulary">
-      <created>1507752286578</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1507752286578</updated>
     </task>
     <task id="LOCAL-00008" summary="HW 2, finished parsing data from input to vocabulary">
       <created>1507752348050</created>
@@ -877,7 +843,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512609113532</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="debugged and printing fine">
+      <created>1512629655300</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1512629655300</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -899,7 +872,7 @@
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265086" sideWeight="0.24418604" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264865" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264865" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -953,7 +926,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="smart init implemented" />
     <MESSAGE value="k means implemented" />
     <MESSAGE value="alll experiments working correctly" />
     <MESSAGE value="plot part 1" />
@@ -978,7 +950,8 @@
     <MESSAGE value="wrong answers" />
     <MESSAGE value="debugged hw1" />
     <MESSAGE value="BUG: sigma was not being cleared in feedforward" />
-    <option name="LAST_COMMIT_MESSAGE" value="BUG: sigma was not being cleared in feedforward" />
+    <MESSAGE value="debugged and printing fine" />
+    <option name="LAST_COMMIT_MESSAGE" value="debugged and printing fine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1087,16 +1060,6 @@
           <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
           <folding>
             <element signature="e#523#554#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser/arffparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="e#156#187#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1284,6 +1247,16 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/parser/arffparser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="e#156#187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/neural_network.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -1296,11 +1269,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hw4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="272" column="14" lean-forward="false" selection-start-line="272" selection-start-column="14" selection-end-line="272" selection-end-column="14" />
+        <state relative-caret-position="320">
+          <caret line="298" column="8" lean-forward="false" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
           <folding>
             <element signature="e#226#257#0" expanded="true" />
-            <marker date="1512629634045" expanded="true" signature="10613:11002" ph="..." />
+            <marker date="1512629964489" expanded="true" signature="10666:11075" ph="..." />
           </folding>
         </state>
       </provider>
