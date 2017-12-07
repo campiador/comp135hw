@@ -209,3 +209,55 @@ def plot_x_y_line(main_title, x_axis_tile, y_axis_title, subplotables, output_fi
     # plt.show()
     plt.show(block=False)
     plt.gcf().clear()
+
+
+def plot_x_y_line_train_test(main_title, x_axis_tile, y_axis_title, subplotables, output_file_name):
+    cmap = get_cmap(len(subplotables) + 1)
+
+    for i, plotable in enumerate(subplotables):
+        color = cmap(i)
+        my_marker = 'o'
+        linestyle = '--'
+        if i % 2 == 1:  # use the same color for test as train, but change the marker
+            my_marker = 's'
+            linestyle = '-'
+            color = cmap(i-1)
+        if constants.DEBUG_VERBOSE:
+            print " color {} = {}".format(i, color)
+            print plotable.y_values
+            print plotable.x_values
+
+        plt.plot(plotable.x_values, plotable.y_values, color=color, label=plotable.label, marker=my_marker, alpha=0.45,
+                 ls=linestyle)
+
+
+        # the dots
+        # plt.plot(plotable.x_values, plotable.y_values, )
+
+    plt.title(main_title)
+    plt.xlabel(x_axis_tile)
+    plt.ylabel(y_axis_title)
+
+    # plt.axis([range_x[PLOT_START], range_x[PLOT_END], range_y[PLOT_START], range_y[PLOT_END]])
+    plt.legend(loc='best')
+
+    plt.grid(True)
+
+    # BUG:
+    # When I show(block=False) or don't show() at all, the plt object somehow does not die and what happens is
+    # the past plots are not discarded when drawing new plots.
+    # When I show(block=True), the image does not get saved!
+
+    # BUG FIX 1:
+    # First save, then show(block = True)
+
+    # BUG FIX 2:
+    # Even better: after show(block=false)  call plt.gcf().clear(). Also might call plt.clf() plt.cla() plt.close().
+
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+    plt.savefig('./output/hw4/{}_{}_{}.png'.format(output_file_name, main_title, st))
+
+    # plt.show()
+    plt.show(block=False)
+    plt.gcf().clear()

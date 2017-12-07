@@ -13,7 +13,7 @@ import argparse
 
 import sys
 
-from graphics.plot import plot_x_y_line
+from graphics.plot import plot_x_y_line, plot_x_y_line_train_test
 from graphics.subplotable import SubPlotable
 from log.log import LOG_VERBOSE, LOG_DEVELOPER, LOG_CLIENT
 from models.example import Example
@@ -58,46 +58,57 @@ def learn_and_return_test_train_errors(width, depth, train_data_examples, test_d
 
     number_of_training_examples = len(train_data_examples)
 
-    print "traindata examples:", train_data_examples
-
-    print "hi!"
-
     training_error_rates = []
 
     number_of_test_examples = len(test_data_examples)
     test_error_rates = []
 
+    hidden_units_representation = ""
+
     for i in range(0, n_iterations):
+
         print "ITERATION:", i
         number_of_training_mistakes = 0
+
         for train_example in train_data_examples:
+
             # print "example:", train_example
             network.init_desired_onehot_labels_for_output_nodes(train_example.label, output_classes)
             number_of_training_mistakes += \
                 network.update_weights_using_forward_and_backpropagation_return_1_if_mistake(train_example)
-        print "mistakes :", number_of_training_mistakes
+
+            if i == n_iterations - 1:  # during last iteration
+                hidden_units_representation += "{} --> ".format(train_example.features)
+                hidden_layers = network.node_layers[1:-1]
+                for hidden_layer in hidden_layers:
+                    for node in hidden_layer:
+                        hidden_units_representation += "{} ".format(node.output)
+                hidden_units_representation += "--> {}\n".format(train_example.label)
+
         training_error_rate = calculate_error_rate(number_of_training_mistakes, number_of_training_examples)
         training_error_rates.append(training_error_rate)
 
         number_of_test_errors = 0
 
         for test_example in test_data_examples:
-            # Note: assuming the same output classes for test and training
+
             network.init_desired_onehot_labels_for_output_nodes(test_example.label, output_classes)
             network.forward_feed_input_and_calculate_node_output_values(test_example)
-            if network.was_there_a_mistake_in_output():
+            if network.is_there_a_mistake_in_output_prediction():
                 number_of_test_errors += 1
+
         if len(test_data_examples) != 0:
             test_error_rate = calculate_error_rate(number_of_test_errors, number_of_test_examples)
             test_error_rates.append(test_error_rate)
 
+
     if LOG_CLIENT:
         print "training and test error rates for all iterations:", training_error_rates, test_error_rates
         print "training error rate after {} iterations: {}".format(n_iterations, training_error_rates[-1])
-    if len(test_error_rates) > 0:
-        print "test error rate after {} iterations: {}".format(n_iterations, test_error_rates[-1])
-
-    print network
+        print "hidden units representation:"
+        print hidden_units_representation
+        if len(test_error_rates) > 0:
+            print "test error rate after {} iterations: {}".format(n_iterations, test_error_rates[-1])
 
     return training_error_rates, test_error_rates
 
@@ -134,9 +145,7 @@ def run_program(train_input_file, test_input_file, w_list, d_list, iteration_cou
             d_results.append(train_test_errors)
         w_results.append(d_results)
 
-
     return w_results
-
 
 def plot_part1(w_d_results_part1):
     # total = len(w_d_results_part1)
@@ -159,47 +168,89 @@ def plot_part1(w_d_results_part1):
     subplotable_train = SubPlotable("trainerror ", x_values, train_values, [0 for _ in train_values])
     # subplotable_test = SubPlotable("test error", x_values, test_values, [0 for _ in test_values])
 
-
-
     subplotables = [subplotable_train]
-
-
 
     plot_x_y_line("Part 1", "Iteration", "Train Error", subplotables, "part1")
 
 
+TRAIN_ERROR_INDEX = 0
+TEST_ERROR_INDEX = 1
 
-def plot_part2(w_d_results_part2):
-    # total = len(w_d_results_part1)
 
-    # x_values = []
-    # train_values = []
-    # test_values = []
+def plot_part2(w_d_results_part2, which_part):
+    """ Organize data and plot the output for part2
+    :param w_d_results_part2: 3 indexes: w, d, train/test
+    :param which_part: 21 or 22, use enums
+    :return: nothing
+    """
 
-    # 3 indexes: w, d, train/test
-    # results = w_d_results_part1[0][0][0]
 
-    print "results:", results
+    print "wd_results", w_d_results_part2
+    # raw_input("press any key\n")
+
     subplotables = []
 
-    for w_index, results_by_w in w_d_results_part2:
-        w = part2_exp1_w[w_index]
-        for d_index, results_by_d in results_by_w:
-            d = part2_exp1_d[d_index]
-            subplotables = []
-            for i, result in enumerate(results_by_d):
-                total_x_train = len(result[0])
+    last_iteration_test_errors = []
 
-                x_values = [x for x in range(1, total_x_train + 1)]
-                train_values = result[0]
-                test_values = result[1]
+    for w_index, results_for_one_w in enumerate(w_d_results_part2):
+        if which_part == ENUM_PART_21:
+            width = part2_exp1_w[w_index]
+        else:  # ENUM_PART_22
+            width = part2_exp2_d[w_index]
 
-                subplotable_train = SubPlotable("train error ", x_values, train_values, [0 for _ in train_values])
-                subplotable_test = SubPlotable("test error", x_values, test_values, [0 for _ in test_values])
-                subplotables.append(subplotable_train)
-                subplotables.append(subplotable_test)
-                plot_x_y_line("Part 2-1-1", "Iteration", "Train and Test Error for w:{} and d:{}",
-                              subplotables, "part2_1_1_w{}_d{}".format(w, d))
+        for d_index, results_for_one_d in enumerate(results_for_one_w):
+
+            if which_part == ENUM_PART_21:
+                depth = part2_exp1_d[d_index]
+            else:  # ENUM_PART_22
+                depth = part2_exp2_d[d_index]
+
+            train_values = results_for_one_d[TRAIN_ERROR_INDEX]
+            test_values = results_for_one_d[TEST_ERROR_INDEX]
+
+            last_iteration_test_errors.append(test_values[-1])
+
+            total_x_train = len(train_values)
+            x_values = [x for x in range(1, total_x_train + 1)]
+            if LOG_VERBOSE:
+                print "xvalues:", x_values
+                print "train values:", train_values
+                print "test values:", test_values
+            # raw_input("press any key\n")
+
+            if which_part == ENUM_PART_21:
+                subplot_label = "w:{}".format(width)
+            else:  # ENUM_PART_22
+                subplot_label = "d:{}".format(depth)
+
+
+            subplotable_train = SubPlotable(subplot_label, x_values, train_values, [0 for _ in train_values])
+            subplotable_test = SubPlotable(subplot_label, x_values, test_values, [0 for _ in test_values])
+            subplotables.append(subplotable_train)
+            subplotables.append(subplotable_test)
+
+    if which_part == ENUM_PART_21:
+        label = "Part 2-1-1: OPT Digits (circle = training, square = test), depth = {}".format(depth)
+
+        last_iteration_x_values = part2_exp1_w
+        label_last_iteration_errors = "Part 2-1-2"
+        x_axis_label_last_iter_err = "Width"
+    else:  # ENUM_PART_22
+        label = "Part 2-2-1: OPT Digits (circle = training, square = test), width = {}".format(width)
+
+        last_iteration_x_values = part2_exp2_d
+        label_last_iteration_errors = "Part 2-2-2"
+        x_axis_label_last_iter_err = "Depth"
+
+    plot_x_y_line_train_test(label, "Iteration", "Error Rate",
+                             subplotables, "part{}_1".format(which_part))
+
+
+    last_iterations_subplotable = SubPlotable("Test Error", last_iteration_x_values, last_iteration_test_errors,
+                                              [0 for _ in last_iteration_test_errors])
+    plot_x_y_line(label_last_iteration_errors, x_axis_label_last_iter_err, "Error rate", [last_iterations_subplotable],
+                  "part2_last_iteration_error_")
+
 
 
 # CONSTANTS
@@ -213,16 +264,16 @@ part1_iteration = 3000
 part2_input_file = FILE_OPT_DIGITS_TRAIN
 part2_test_file = FILE_OPT_DIGITS_TEST
 
-part2_exp1_w = [5, 10]
-# part2_exp1_w = [5, 10, 15, 20, 30, 40]
+part2_exp1_w = [5, 10, 15, 20, 30, 40]
 part2_exp1_d = [3]
 
 part2_exp2_w = [10]
-# part2_exp2_d = [0, 1, 2, 3, 4, 5]
-part2_exp2_d = [0, 1]
+part2_exp2_d = [0, 1, 2, 3, 4, 5]
 
-part2_iteration = 1
+part2_iteration_count = 200
 
+ENUM_PART_21 = 21
+ENUM_PART_22 = 22
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -239,16 +290,21 @@ if __name__ == '__main__':
         train_data_file = sys.argv[3]
         test_data_file = sys.argv[4]
 
-        run_program(train_data_file, test_data_file, [w], [d], N_ITER_DEFAULT)
+        w_d_results_user = run_program(train_data_file, test_data_file, [w], [d], N_ITER_DEFAULT)
+        plot_part1(w_d_results_user)
 
-    # No user input args
+    # No user input args, run the parts from the assignment
+    # PART 1
     w_d_results_part1 = run_program(part1_input_file, None, part1_w, part1_d, part1_iteration)
+    plot_part1(w_d_results_part1)
 
-    # plot_part1(w_d_results_part1)
+    # PART 2.1: depth = 3
+    w_d_results_part2_exp1 = run_program(part2_input_file, part2_test_file, part2_exp1_w, part2_exp1_d, part2_iteration_count)
+    plot_part2(w_d_results_part2_exp1, ENUM_PART_21)
 
-    # w_d_results_part2_exp1 = run_program(part2_input_file, part2_test_file, part2_exp1_w, part2_exp1_d, part2_iteration)
-    # w_d_results_part2_exp2 = run_program(part2_input_file, part2_test_file, part2_exp2_w, part2_exp2_d, part2_iteration)
+    # Part 2.2: width = 10
+    w_d_results_part2_exp2 = run_program(part2_input_file, part2_test_file, part2_exp2_w, part2_exp2_d, part2_iteration_count)
+    plot_part2(w_d_results_part2_exp2, ENUM_PART_22)
 
-    # plot_part2()
 
 

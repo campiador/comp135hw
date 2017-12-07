@@ -87,7 +87,7 @@ class NeuralNetwork():
 
         # Note: we already set the onehotlabels of data before calling the function we are in
 
-        is_mistake = self.was_there_a_mistake_in_output()
+        is_mistake = self.is_there_a_mistake_in_output_prediction()
 
         if is_mistake:
             return 1
@@ -109,7 +109,7 @@ class NeuralNetwork():
 
             for node_index_in_current_layer, node_in_current_layer in enumerate(noninput_layer):
                 lower_layer = self.get_lower_layer(index_current_layer)
-                node_in_current_layer.sum_of_node_inputs = 0
+                node_in_current_layer.sum_of_node_inputs = 0  # This is all logic code was changed from version 1 to 2
                 for lower_layer_node_index, lower_layer_node in enumerate(lower_layer):
                     node_in_current_layer.sum_of_node_inputs += \
                         self.get_weight(index_current_layer - 1, lower_layer_node_index, node_index_in_current_layer) \
@@ -219,18 +219,13 @@ class NeuralNetwork():
 
         return from_node, to_node
 
-    def was_there_a_mistake_in_output(self):
+    def is_there_a_mistake_in_output_prediction(self):
         output_layer = self.node_layers[-1]
 
         output_values = [node.output for node in output_layer]
         predicted_index = output_values.index(max(output_values))
 
-        print output_values
-        print predicted_index
-
         output_labels = [node.onehot_label for node in output_layer]
-
-        print output_labels
 
         actual_index = -1
 
@@ -242,9 +237,7 @@ class NeuralNetwork():
         if actual_index == -1:
             raise AssertionError, "No datapoint has been assigned onehot value 1. This suggests a bug in onehot code."
             exit(1)
-        if LOG_DEVELOPER:
-            print "predicted:{}, actual:{}".format(predicted_index, actual_index)
-            # raw_input("press any key to continue")
+
         if predicted_index == actual_index:
             return False
         else:
