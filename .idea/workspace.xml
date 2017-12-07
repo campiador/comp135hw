@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/report_hw4.docx" afterPath="$PROJECT_DIR$/reports/report_hw4.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compile_and_run" afterPath="$PROJECT_DIR$/compile_and_run" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graphics/plot.py" afterPath="$PROJECT_DIR$/graphics/plot.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hw4.py" afterPath="$PROJECT_DIR$/hw4.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/example.py" afterPath="$PROJECT_DIR$/models/example.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/neural_network.py" afterPath="$PROJECT_DIR$/models/neural_network.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,11 +20,11 @@
       <file leaf-file-name="hw4.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2110">
-              <caret line="107" column="31" lean-forward="false" selection-start-line="107" selection-start-column="31" selection-end-line="107" selection-end-column="31" />
+            <state relative-caret-position="-202">
+              <caret line="224" column="109" lean-forward="false" selection-start-line="224" selection-start-column="109" selection-end-line="224" selection-end-column="109" />
               <folding>
                 <element signature="e#226#257#0" expanded="true" />
-                <marker date="1512656766536" expanded="true" signature="10540:10949" ph="..." />
+                <marker date="1512657265220" expanded="true" signature="10651:11060" ph="..." />
               </folding>
             </state>
           </provider>
@@ -474,13 +468,6 @@
       <option name="presentableId" value="Default" />
       <updated>1506199862817</updated>
     </task>
-    <task id="LOCAL-00009" summary="vocabulary calculates probabilities">
-      <created>1507771818747</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1507771818747</updated>
-    </task>
     <task id="LOCAL-00010" summary="split line and vocab functions">
       <created>1507833806406</created>
       <option name="number" value="00010" />
@@ -817,7 +804,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512630029699</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="removes unnecessary prints">
+      <created>1512656813043</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1512656813043</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -893,7 +887,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="alll experiments working correctly" />
     <MESSAGE value="plot part 1" />
     <MESSAGE value="readme_added" />
     <MESSAGE value="final product hw 3" />
@@ -918,7 +911,8 @@
     <MESSAGE value="BUG: sigma was not being cleared in feedforward" />
     <MESSAGE value="debugged and printing fine" />
     <MESSAGE value="works with commandline arguments too" />
-    <option name="LAST_COMMIT_MESSAGE" value="works with commandline arguments too" />
+    <MESSAGE value="removes unnecessary prints" />
+    <option name="LAST_COMMIT_MESSAGE" value="removes unnecessary prints" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1238,11 +1232,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hw4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2110">
-          <caret line="107" column="31" lean-forward="false" selection-start-line="107" selection-start-column="31" selection-end-line="107" selection-end-column="31" />
+        <state relative-caret-position="-202">
+          <caret line="224" column="109" lean-forward="false" selection-start-line="224" selection-start-column="109" selection-end-line="224" selection-end-column="109" />
           <folding>
             <element signature="e#226#257#0" expanded="true" />
-            <marker date="1512656766536" expanded="true" signature="10540:10949" ph="..." />
+            <marker date="1512657265220" expanded="true" signature="10651:11060" ph="..." />
           </folding>
         </state>
       </provider>

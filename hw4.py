@@ -180,7 +180,6 @@ def plot_part2(w_d_results_part2, which_part):
     :param which_part: 21 or 22, use enums
     :return: nothing
     """
-    subplotables = []
 
     last_iteration_test_errors = []
 
@@ -190,6 +189,7 @@ def plot_part2(w_d_results_part2, which_part):
         else:  # ENUM_PART_22
             width = part2_exp2_d[w_index]
 
+        subplotables = []
         for d_index, results_for_one_d in enumerate(results_for_one_w):
 
             if which_part == ENUM_PART_21:
@@ -219,22 +219,22 @@ def plot_part2(w_d_results_part2, which_part):
             subplotables.append(subplotable_train)
             subplotables.append(subplotable_test)
 
-    if which_part == ENUM_PART_21:
-        label = "Part 2-1-1: OPT Digits (circle = training, square = test), depth = {}".format(depth)
+            if which_part == ENUM_PART_21:
+                label = "Part 2-1-1: OPT Digits (circle = training, square = test), depth = {}".format(depth)
+            else:  # ENUM_PART_22
+                label = "Part 2-2-1: OPT Digits (circle = training, square = test), width = {}".format(width)
 
-        last_iteration_x_values = part2_exp1_w
+            plot_x_y_line_train_test(label, "Iteration", "Error Rate",
+                                     subplotables, "part{}_1".format(which_part))
+
+    if which_part == ENUM_PART_21:
         label_last_iteration_errors = "Part 2-1-2"
+        last_iteration_x_values = part2_exp1_w
         x_axis_label_last_iter_err = "Width"
     else:  # ENUM_PART_22
-        label = "Part 2-2-1: OPT Digits (circle = training, square = test), width = {}".format(width)
-
-        last_iteration_x_values = part2_exp2_d
         label_last_iteration_errors = "Part 2-2-2"
         x_axis_label_last_iter_err = "Depth"
-
-    plot_x_y_line_train_test(label, "Iteration", "Error Rate",
-                             subplotables, "part{}_1".format(which_part))
-
+        last_iteration_x_values = part2_exp2_d
     last_iterations_subplotable = SubPlotable("Test Error", last_iteration_x_values, last_iteration_test_errors,
                                               [0 for _ in last_iteration_test_errors])
     plot_x_y_line(label_last_iteration_errors, x_axis_label_last_iter_err, "Error rate", [last_iterations_subplotable],
