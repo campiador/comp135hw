@@ -66,8 +66,8 @@ def learn_and_return_test_train_errors(width, depth, train_data_examples, test_d
     hidden_units_representation = ""
 
     for i in range(0, n_iterations):
-
-        print "ITERATION:", i
+        if LOG_CLIENT:
+            print "ITERATION:", i
         number_of_training_mistakes = 0
 
         for train_example in train_data_examples:
@@ -103,10 +103,11 @@ def learn_and_return_test_train_errors(width, depth, train_data_examples, test_d
 
 
     if LOG_CLIENT:
-        print "training and test error rates for all iterations:", training_error_rates, test_error_rates
-        print "training error rate after {} iterations: {}".format(n_iterations, training_error_rates[-1])
         print "hidden units representation:"
         print hidden_units_representation
+        print "w:{}, d:{}, ran it for n:{} iterations".format(width, depth, n_iterations)
+        print "training and test error rates for all iterations:", training_error_rates, test_error_rates
+        print "training error rate after {} iterations: {}".format(n_iterations, training_error_rates[-1])
         if len(test_error_rates) > 0:
             print "test error rate after {} iterations: {}".format(n_iterations, test_error_rates[-1])
 
@@ -124,10 +125,10 @@ def run_program(train_input_file, test_input_file, w_list, d_list, iteration_cou
     if LOG_CLIENT:
         print "\nfile:{}".format(train_input_file)
 
-    if LOG_VERBOSE:
-        print "examples after parsing file:", train_input_file
-        for example in train_examples:
-            print example.features, example.label
+    # if LOG_VERBOSE:
+    #     print "examples after parsing file:", train_input_file
+    #     for example in train_examples:
+    #         print example.features, example.label
 
     if test_input_file == None:
         test_input_examples = []
@@ -147,6 +148,7 @@ def run_program(train_input_file, test_input_file, w_list, d_list, iteration_cou
 
     return w_results
 
+
 def plot_part1(w_d_results_part1):
     # total = len(w_d_results_part1)
 
@@ -157,17 +159,12 @@ def plot_part1(w_d_results_part1):
     # 3 indexes: w, d, train/test
     results = w_d_results_part1[0][0][0]
 
-    print "results:", results
-
     for i, result in enumerate(results):
         x_values.append(i)
         train_values.append(result)
         # test_values.append(results[1])
 
-
     subplotable_train = SubPlotable("trainerror ", x_values, train_values, [0 for _ in train_values])
-    # subplotable_test = SubPlotable("test error", x_values, test_values, [0 for _ in test_values])
-
     subplotables = [subplotable_train]
 
     plot_x_y_line("Part 1", "Iteration", "Train Error", subplotables, "part1")
@@ -183,11 +180,6 @@ def plot_part2(w_d_results_part2, which_part):
     :param which_part: 21 or 22, use enums
     :return: nothing
     """
-
-
-    print "wd_results", w_d_results_part2
-    # raw_input("press any key\n")
-
     subplotables = []
 
     last_iteration_test_errors = []
@@ -212,17 +204,15 @@ def plot_part2(w_d_results_part2, which_part):
 
             total_x_train = len(train_values)
             x_values = [x for x in range(1, total_x_train + 1)]
-            if LOG_VERBOSE:
-                print "xvalues:", x_values
-                print "train values:", train_values
-                print "test values:", test_values
-            # raw_input("press any key\n")
+            # if LOG_VERBOSE:
+            #     print "xvalues:", x_values
+            #     print "train values:", train_values
+            #     print "test values:", test_values
 
             if which_part == ENUM_PART_21:
                 subplot_label = "w:{}".format(width)
             else:  # ENUM_PART_22
                 subplot_label = "d:{}".format(depth)
-
 
             subplotable_train = SubPlotable(subplot_label, x_values, train_values, [0 for _ in train_values])
             subplotable_test = SubPlotable(subplot_label, x_values, test_values, [0 for _ in test_values])
@@ -245,12 +235,10 @@ def plot_part2(w_d_results_part2, which_part):
     plot_x_y_line_train_test(label, "Iteration", "Error Rate",
                              subplotables, "part{}_1".format(which_part))
 
-
     last_iterations_subplotable = SubPlotable("Test Error", last_iteration_x_values, last_iteration_test_errors,
                                               [0 for _ in last_iteration_test_errors])
     plot_x_y_line(label_last_iteration_errors, x_axis_label_last_iter_err, "Error rate", [last_iterations_subplotable],
                   "part2_last_iteration_error_")
-
 
 
 # CONSTANTS

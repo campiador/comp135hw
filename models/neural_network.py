@@ -67,23 +67,19 @@ class NeuralNetwork():
     def update_weights_using_forward_and_backpropagation_return_1_if_mistake(self, example):
 
         self.forward_feed_input_and_calculate_node_output_values(example)
-
-        if LOG_DEVELOPER:
-            print "*** after feeding forward: ***"
-            print self
+        # if LOG_DEVELOPER:
+        #     print "*** after feeding forward: ***"
+        #     print self
 
         self.backward_propagate_and_calculate_deltas()
-
-        if LOG_DEVELOPER:
-            print "after backpropagate:"
-            print self
+        # if LOG_DEVELOPER:
+        #     print "after backpropagate:"
+        #     print self
 
         self.forward_update_weights()
-
-        if LOG_DEVELOPER:
-            print "after weight update:"
-            print self
-
+        # if LOG_DEVELOPER:
+        #     print "after weight update:"
+        #     print self
 
         # Note: we already set the onehotlabels of data before calling the function we are in
 
@@ -124,8 +120,8 @@ class NeuralNetwork():
             next_layer = self.node_layers[weight_layer_index + 1]
 
             self.weights.append([random.uniform(-0.1, 0.1) for _ in range(0, len(this_layer) * len(next_layer))])
-            print len(self.weights[-1])
-            # print self.weights
+            # if LOG_VERBOSE:
+            #     print len(self.weights[-1])
 
     def init_node_layers(self, depth, width, input_layer, output_layer):
         # First layer is input layer
@@ -148,10 +144,10 @@ class NeuralNetwork():
     def get_weight(self, relatively_lower_layer_index, relatively_lower_layer_node_index,
                    relatively_higher_layer_node_index):
 
-        if LOG_VERBOSE:
-            print "lower layer index:", relatively_lower_layer_index
-            print "lower layer node index:", relatively_lower_layer_node_index
-            print "relatively higher level index", relatively_higher_layer_node_index
+        # if LOG_VERBOSE:
+        #     print "lower layer index:", relatively_lower_layer_index
+        #     print "lower layer node index:", relatively_lower_layer_node_index
+        #     print "relatively higher level index", relatively_higher_layer_node_index
         n = len(self.node_layers[relatively_lower_layer_index])
         return self.weights[relatively_lower_layer_index][n * relatively_higher_layer_node_index + relatively_lower_layer_node_index]
 
@@ -172,8 +168,8 @@ class NeuralNetwork():
             higher_layer_index = len(self.node_layers) - 1 - reversed_index
 
             current_layer_index = higher_layer_index - 1
-            if LOG_VERBOSE:
-                print "bpp for hidden layer:", current_layer_index
+            # if LOG_VERBOSE:
+            #     print "bpp for hidden layer:", current_layer_index
 
             higher_layer = self.node_layers[higher_layer_index]
 

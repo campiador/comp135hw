@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/report_hw4.docx" afterPath="$PROJECT_DIR$/reports/report_hw4.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compile_and_run" afterPath="$PROJECT_DIR$/compile_and_run" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graphics/plot.py" afterPath="$PROJECT_DIR$/graphics/plot.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hw4.py" afterPath="$PROJECT_DIR$/hw4.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/example.py" afterPath="$PROJECT_DIR$/models/example.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/neural_network.py" afterPath="$PROJECT_DIR$/models/neural_network.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,18 +19,18 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/comp135hw$hw4.coverage" NAME="hw4 Coverage Results" MODIFIED="1512629971013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/comp135hw$hw4.coverage" NAME="hw4 Coverage Results" MODIFIED="1512630138183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="hw4.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="298" column="8" lean-forward="false" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
+            <state relative-caret-position="-2110">
+              <caret line="107" column="31" lean-forward="false" selection-start-line="107" selection-start-column="31" selection-end-line="107" selection-end-column="31" />
               <folding>
                 <element signature="e#226#257#0" expanded="true" />
-                <marker date="1512629964489" expanded="true" signature="10666:11075" ph="..." />
+                <marker date="1512656766536" expanded="true" signature="10540:10949" ph="..." />
               </folding>
             </state>
           </provider>
@@ -33,7 +39,7 @@
       <file leaf-file-name="arffparser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parser/arffparser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="-980">
               <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
               <folding>
                 <element signature="e#156#187#0" expanded="true" />
@@ -45,21 +51,11 @@
       <file leaf-file-name="neural_network.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/neural_network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="221" column="9" lean-forward="false" selection-start-line="221" selection-start-column="9" selection-end-line="221" selection-end-column="9" />
+            <state relative-caret-position="3028">
+              <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="171" selection-end-column="68" />
               <folding>
                 <element signature="e#167#180#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="neuron.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/neuron.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="23" column="58" lean-forward="false" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -69,7 +65,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
               <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1512654653232" expanded="true" signature="768:996" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,8 +75,8 @@
       <file leaf-file-name="plot.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graphics/plot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="229" column="118" lean-forward="false" selection-start-line="229" selection-start-column="118" selection-end-line="229" selection-end-column="118" />
+            <state relative-caret-position="478">
+              <caret line="173" column="0" lean-forward="false" selection-start-line="173" selection-start-column="0" selection-end-line="176" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -102,7 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>uniford</find>
       <find>back</find>
       <find>train file</find>
       <find>]</find>
@@ -132,6 +129,7 @@
       <find>--&gt;</find>
       <find>learn</find>
       <find>raw</find>
+      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>constants.DEBUG_VERBOSE</replace>
@@ -236,43 +234,12 @@
             <path>
               <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
               <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
-              <item name="graphics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
-              <item name="input" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
-              <item name="input" type="462c0819:PsiDirectoryNode" />
-              <item name="hw4" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
               <item name="log" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
               <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
               <item name="output" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
-              <item name="reports" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comp135hw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="comp135hw" type="462c0819:PsiDirectoryNode" />
-              <item name="statistics_numeric_methods" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -506,13 +473,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1506199862817</updated>
-    </task>
-    <task id="LOCAL-00008" summary="HW 2, finished parsing data from input to vocabulary">
-      <created>1507752348050</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1507752348050</updated>
     </task>
     <task id="LOCAL-00009" summary="vocabulary calculates probabilities">
       <created>1507771818747</created>
@@ -850,7 +810,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512629655300</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="works with commandline arguments too">
+      <created>1512630029699</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1512630029699</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -871,12 +838,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265086" sideWeight="0.24418604" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264865" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264865" sideWeight="0.24785802" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32216215" sideWeight="0.752142" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2741738" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1493268" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26939654" sideWeight="0.79498166" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.49761903" order="1" side_tool="false" content_ui="tabs" />
@@ -926,7 +893,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="k means implemented" />
     <MESSAGE value="alll experiments working correctly" />
     <MESSAGE value="plot part 1" />
     <MESSAGE value="readme_added" />
@@ -951,33 +917,14 @@
     <MESSAGE value="debugged hw1" />
     <MESSAGE value="BUG: sigma was not being cleared in feedforward" />
     <MESSAGE value="debugged and printing fine" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugged and printing fine" />
+    <MESSAGE value="works with commandline arguments too" />
+    <option name="LAST_COMMIT_MESSAGE" value="works with commandline arguments too" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/output/hw3/hw3_part1_Random vs Smart Clustering_2017-11-06 10:17:11.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/hw3/hw3_part1_Random vs Smart Clustering_2017-11-06 10:19:36.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/hw3/hw3_part1_Random vs Smart Clustering_2017-11-06 10:20:02.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/hw3/hw3_part1_Random vs Smart Clustering_2017-11-06 10:20:07.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/hw3/hw3_part1_Random vs Smart Clustering_2017-11-06 10:19:24.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1122,7 +1069,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1512654653232" expanded="true" signature="768:996" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1184,14 +1133,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graphics/plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="229" column="118" lean-forward="false" selection-start-line="229" selection-start-column="118" selection-end-line="229" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/hw4/part21_1_Part 2-1-1: OPT Digits (circle = training, square = test), depth = 3_2017-12-07 01:15:02.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1232,6 +1173,11 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/output/hw4/part1_Part 1_2017-12-07 01:44:34.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/output/hw4/part2_last_iteration_error__Part 2-2-2_2017-12-07 01:46:19.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1242,14 +1188,37 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/hw4/part1_Part 1_2017-12-07 01:44:34.png">
+    <entry file="file://$PROJECT_DIR$/output/hw4/part22_1_Part 2-2-1: OPT Digits (circle = training, square = test), width = 0_2017-12-07 01:46:18.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/output/hw4/part1_Part 1_2017-12-07 01:59:33.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/hw4/part1_Part 1_2017-12-07 01:57:39.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/hw4/part1_Part 1_2017-12-07 02:02:30.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graphics/plot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="173" column="0" lean-forward="false" selection-start-line="173" selection-start-column="0" selection-end-line="176" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/parser/arffparser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="-980">
           <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
           <folding>
             <element signature="e#156#187#0" expanded="true" />
@@ -1259,8 +1228,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/neural_network.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="221" column="9" lean-forward="false" selection-start-line="221" selection-start-column="9" selection-end-line="221" selection-end-column="9" />
+        <state relative-caret-position="3028">
+          <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="171" selection-end-column="68" />
           <folding>
             <element signature="e#167#180#0" expanded="true" />
           </folding>
@@ -1269,11 +1238,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hw4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="298" column="8" lean-forward="false" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
+        <state relative-caret-position="-2110">
+          <caret line="107" column="31" lean-forward="false" selection-start-line="107" selection-start-column="31" selection-end-line="107" selection-end-column="31" />
           <folding>
             <element signature="e#226#257#0" expanded="true" />
-            <marker date="1512629964489" expanded="true" signature="10666:11075" ph="..." />
+            <marker date="1512656766536" expanded="true" signature="10540:10949" ph="..." />
           </folding>
         </state>
       </provider>

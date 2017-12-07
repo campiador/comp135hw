@@ -27,9 +27,6 @@ class Example:
         return "example {}".format(self.id)
 
 
-
-
-
 def data_line_to_example(data_line, index):
 
     data_line = data_line.replace(", ", ",")

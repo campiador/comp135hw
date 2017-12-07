@@ -171,10 +171,10 @@ def plot_x_y_line(main_title, x_axis_tile, y_axis_title, subplotables, output_fi
 
     for i, plotable in enumerate(subplotables):
         color = cmap(i)
-        if constants.DEBUG_VERBOSE:
-            print " color {} = {}".format(i, color)
-            print plotable.y_values
-            print plotable.x_values
+        # if constants.DEBUG_VERBOSE:
+        #     print " color {} = {}".format(i, color)
+        #     print plotable.y_values
+        #     print plotable.x_values
 
         plt.plot(plotable.x_values, plotable.y_values, color=color, label=plotable.label, marker='o')
 
@@ -222,10 +222,10 @@ def plot_x_y_line_train_test(main_title, x_axis_tile, y_axis_title, subplotables
             my_marker = 's'
             linestyle = '-'
             color = cmap(i-1)
-        if constants.DEBUG_VERBOSE:
-            print " color {} = {}".format(i, color)
-            print plotable.y_values
-            print plotable.x_values
+        # if constants.DEBUG_VERBOSE:
+        #     print " color {} = {}".format(i, color)
+        #     print plotable.y_values
+        #     print plotable.x_values
 
         plt.plot(plotable.x_values, plotable.y_values, color=color, label=plotable.label, marker=my_marker, alpha=0.45,
                  ls=linestyle)
