@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="224632a6-2eb3-44b5-980c-52dd3b5881fd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/reports/report_hw4.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hw4.py" afterPath="$PROJECT_DIR$/hw4.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/neural_network.py" afterPath="$PROJECT_DIR$/models/neural_network.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/neuron.py" afterPath="$PROJECT_DIR$/models/neuron.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/statistics_numeric_methods/statistics.py" afterPath="$PROJECT_DIR$/statistics_numeric_methods/statistics.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -525,13 +519,6 @@
       <option name="presentableId" value="Default" />
       <updated>1506199862817</updated>
     </task>
-    <task id="LOCAL-00005" summary="shuffle loses one line!">
-      <created>1506460541475</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1506460541475</updated>
-    </task>
     <task id="LOCAL-00006" summary="part 2 finished">
       <created>1506539791360</created>
       <option name="number" value="00006" />
@@ -868,7 +855,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512594046952</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="debugged hw1">
+      <created>1512609069501</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1512609069501</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -890,7 +884,7 @@
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265086" sideWeight="0.24418604" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264865" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264865" sideWeight="0.75581396" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -944,7 +938,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="debugged error: high nmi. bug cause: (1) n_total init wrong. (ii) I(H, V) formula missing n_total" />
     <MESSAGE value="more efficient nmi calculation" />
     <MESSAGE value="smart init implemented" />
     <MESSAGE value="k means implemented" />
@@ -969,7 +962,8 @@
     <MESSAGE value="testing" />
     <MESSAGE value="test working" />
     <MESSAGE value="wrong answers" />
-    <option name="LAST_COMMIT_MESSAGE" value="wrong answers" />
+    <MESSAGE value="debugged hw1" />
+    <option name="LAST_COMMIT_MESSAGE" value="debugged hw1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
