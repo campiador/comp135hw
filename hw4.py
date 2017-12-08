@@ -49,8 +49,8 @@ def learn_and_return_test_train_errors(width, depth, train_data_examples, test_d
                                        n_output_nodes, output_classes, n_iterations):
 
     if LOG_CLIENT:
-        print "\ncreating a neural network for w:{}, d:{}, and running it for n:{} iterations"\
-            .format(width, depth, n_iterations)
+        print ("\ncreating a neural network for w:{}, d:{}, and running it for n:{} iterations"\
+            .format(width, depth, n_iterations))
 
     (input_layer, output_layer) = create_input_and_output_layers(n_input_nodes, n_output_nodes)
 
@@ -67,7 +67,7 @@ def learn_and_return_test_train_errors(width, depth, train_data_examples, test_d
 
     for i in range(0, n_iterations):
         if LOG_CLIENT:
-            print "ITERATION:", i
+            print("ITERATION:", i)
         number_of_training_mistakes = 0
 
         for train_example in train_data_examples:
@@ -103,13 +103,13 @@ def learn_and_return_test_train_errors(width, depth, train_data_examples, test_d
 
 
     if LOG_CLIENT:
-        print "hidden units representation:"
-        print hidden_units_representation
-        print "w:{}, d:{}, ran it for n:{} iterations".format(width, depth, n_iterations)
-        print "training and test error rates for all iterations:", training_error_rates, test_error_rates
-        print "training error rate after {} iterations: {}".format(n_iterations, training_error_rates[-1])
+        print("hidden units representation:")
+        print(hidden_units_representation)
+        print("w:{}, d:{}, ran it for n:{} iterations".format(width, depth, n_iterations))
+        print("training and test error rates for all iterations:", training_error_rates, test_error_rates)
+        print("training error rate after {} iterations: {}".format(n_iterations, training_error_rates[-1]))
         if len(test_error_rates) > 0:
-            print "test error rate after {} iterations: {}".format(n_iterations, test_error_rates[-1])
+            print("test error rate after {} iterations: {}".format(n_iterations, test_error_rates[-1]))
 
     return training_error_rates, test_error_rates
 
@@ -123,7 +123,7 @@ def run_program(train_input_file, test_input_file, w_list, d_list, iteration_cou
         parse_file_and_extract_examples_and_number_of_classes_and_features(INPUT_FILES_DIR, train_input_file)
 
     if LOG_CLIENT:
-        print "\nfile:{}".format(train_input_file)
+        print("\nfile:{}".format(train_input_file))
 
     # if LOG_VERBOSE:
     #     print "examples after parsing file:", train_input_file
@@ -187,7 +187,7 @@ def plot_part2(w_d_results_part2, which_part):
         if which_part == ENUM_PART_21:
             width = part2_exp1_w[w_index]
         else:  # ENUM_PART_22
-            width = part2_exp2_d[w_index]
+            width = part2_exp2_w[w_index]
 
         subplotables = []
         for d_index, results_for_one_d in enumerate(results_for_one_w):
@@ -295,6 +295,3 @@ if __name__ == '__main__':
         # Part 2.2: width = 10
         w_d_results_part2_exp2 = run_program(part2_input_file, part2_test_file, part2_exp2_w, part2_exp2_d, part2_iteration_count)
         plot_part2(w_d_results_part2_exp2, ENUM_PART_22)
-
-
-
