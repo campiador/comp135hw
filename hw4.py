@@ -220,9 +220,9 @@ def plot_part2(w_d_results_part2, which_part):
             subplotables.append(subplotable_test)
 
             if which_part == ENUM_PART_21:
-                label = "Part 2-1-1: OPT Digits (circle = training, square = test), depth = {}".format(depth)
+                label = "Part 2-1-1: OPT Digits (circle = training, square = test), depth = {} width = {}".format(depth, width)
             else:  # ENUM_PART_22
-                label = "Part 2-2-1: OPT Digits (circle = training, square = test), width = {}".format(width)
+                label = "Part 2-2-1: OPT Digits (circle = training, square = test), width = {}, depth = {}".format(width, depth)
 
             plot_x_y_line_train_test(label, "Iteration", "Error Rate",
                                      subplotables, "part{}_1".format(which_part))
@@ -235,6 +235,7 @@ def plot_part2(w_d_results_part2, which_part):
         label_last_iteration_errors = "Part 2-2-2"
         x_axis_label_last_iter_err = "Depth"
         last_iteration_x_values = part2_exp2_d
+
     last_iterations_subplotable = SubPlotable("Test Error", last_iteration_x_values, last_iteration_test_errors,
                                               [0 for _ in last_iteration_test_errors])
     plot_x_y_line(label_last_iteration_errors, x_axis_label_last_iter_err, "Error rate", [last_iterations_subplotable],

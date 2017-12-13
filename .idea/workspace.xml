@@ -20,8 +20,8 @@
       <file leaf-file-name="hw4.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="290" column="0" lean-forward="true" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
+            <state relative-caret-position="256">
+              <caret line="237" column="8" lean-forward="false" selection-start-line="237" selection-start-column="8" selection-end-line="237" selection-end-column="8" />
               <folding>
                 <element signature="e#226#257#0" expanded="true" />
               </folding>
@@ -484,13 +484,6 @@
       <option name="presentableId" value="Default" />
       <updated>1506199862817</updated>
     </task>
-    <task id="LOCAL-00012" summary="learning curve for 1 smoothing factor">
-      <created>1507928538709</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1507928538709</updated>
-    </task>
     <task id="LOCAL-00013" summary="part 1 completed: learning curves">
       <created>1508015356722</created>
       <option name="number" value="00013" />
@@ -827,7 +820,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512747191964</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="save intermediary results">
+      <created>1513132188775</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1513132188775</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -903,7 +903,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="final product hw 3" />
     <MESSAGE value="report added" />
     <MESSAGE value="nueral network initial commit" />
     <MESSAGE value="network initializes correctly" />
@@ -928,7 +927,8 @@
     <MESSAGE value="removes unnecessary prints" />
     <MESSAGE value="for part2, plot as you go" />
     <MESSAGE value="done!" />
-    <option name="LAST_COMMIT_MESSAGE" value="done!" />
+    <MESSAGE value="save intermediary results" />
+    <option name="LAST_COMMIT_MESSAGE" value="save intermediary results" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1204,8 +1204,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hw4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="290" column="0" lean-forward="true" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
+        <state relative-caret-position="256">
+          <caret line="237" column="8" lean-forward="false" selection-start-line="237" selection-start-column="8" selection-end-line="237" selection-end-column="8" />
           <folding>
             <element signature="e#226#257#0" expanded="true" />
           </folding>
