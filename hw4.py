@@ -284,14 +284,27 @@ if __name__ == '__main__':
 
     else:  # No user input args, run the parts from the assignment
 
+        import io, json
+
         # PART 1
         w_d_results_part1 = run_program(part1_input_file, None, part1_w, part1_d, part1_iteration)
+
+        with io.open('output/hw4/w_d_results_part1.txt', 'w', encoding='utf-8') as f1:
+            f1.write(unicode(json.dumps(w_d_results_part1, ensure_ascii=False)))
         plot_part1(w_d_results_part1)
 
         # PART 2.1: depth = 3
         w_d_results_part2_exp1 = run_program(part2_input_file, part2_test_file, part2_exp1_w, part2_exp1_d, part2_iteration_count)
+
+        with io.open('output/hw4/w_d_results_part2_exp1.txt', 'w', encoding='utf-8') as f2:
+            f2.write(unicode(json.dumps(w_d_results_part2_exp1, ensure_ascii=False)))
+
         plot_part2(w_d_results_part2_exp1, ENUM_PART_21)
+
 
         # Part 2.2: width = 10
         w_d_results_part2_exp2 = run_program(part2_input_file, part2_test_file, part2_exp2_w, part2_exp2_d, part2_iteration_count)
+        with io.open('output/hw4/w_d_results_part2_exp2.txt', 'w', encoding='utf-8') as f3:
+                    f3.write(unicode(json.dumps(w_d_results_part2_exp2, ensure_ascii=False)))
         plot_part2(w_d_results_part2_exp2, ENUM_PART_22)
+
